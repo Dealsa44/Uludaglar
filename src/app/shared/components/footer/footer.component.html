@@ -1,0 +1,88 @@
+<footer class="footer">
+  <div class="footer-top">
+    <div class="footer-column">
+      <h3 class="footer-title">{{ getTranslatedText(footerData.usefulLinks.title) }}</h3>
+      <ul class="footer-links">
+        <li *ngFor="let link of footerData.usefulLinks.links">
+          <a href="#">{{ getTranslatedText(link) }}</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h3 class="footer-title">{{ getTranslatedText(footerData.centralBranch.title) }}</h3>
+      <address class="footer-address">
+        <p>
+          <a [href]="'https://www.google.com/maps/search/?api=1&query=' + getTranslatedText(footerData.centralBranch.address)" target="_blank" class="contact-link">
+            <img src="assets/icons/location.svg" alt="Location Icon" class="address-icon">
+            {{ getTranslatedText(footerData.centralBranch.address) }}
+          </a>
+        </p>
+        <p>
+          <a [href]="'tel:' + footerData.centralBranch.phone" class="contact-link">
+            <img src="assets/icons/phone.svg" alt="Phone Icon" class="address-icon">
+            {{ footerData.centralBranch.phone }}
+          </a>
+        </p>
+        <p>
+          <a [href]="'mailto:' + footerData.centralBranch.email" class="contact-link">
+            <img src="assets/icons/mail.svg" alt="Mail Icon" class="address-icon">
+            {{ footerData.centralBranch.email }}
+          </a>
+        </p>
+      </address>
+    </div>
+
+    <div class="footer-column">
+      <h3 class="footer-title">{{ getTranslatedText(footerData.eskisehirBranch.title) }}</h3>
+      <address class="footer-address">
+        <p>
+          <a [href]="'https://www.google.com/maps/search/?api=1&query=' + getTranslatedText(footerData.eskisehirBranch.address)" target="_blank" class="contact-link">
+            <img src="assets/icons/location.svg" alt="Location Icon" class="address-icon">
+            {{ getTranslatedText(footerData.eskisehirBranch.address) }}
+          </a>
+        </p>
+        <p>
+          <a [href]="'tel:' + footerData.eskisehirBranch.phone" class="contact-link">
+            <img src="assets/icons/phone.svg" alt="Phone Icon" class="address-icon">
+            {{ footerData.eskisehirBranch.phone }}
+          </a>
+        </p>
+        <p>
+          <a [href]="'mailto:' + footerData.eskisehirBranch.email" class="contact-link">
+            <img src="assets/icons/mail.svg" alt="Mail Icon" class="address-icon">
+            {{ footerData.eskisehirBranch.email }}
+          </a>
+        </p>
+      </address>
+    </div>
+
+    <div class="footer-column">
+      <h3 class="footer-title">{{ getTranslatedText(footerData.latestPosts.title) }}</h3>
+      <ul class="footer-links">
+        <li *ngFor="let post of footerData.latestPosts.posts">
+          <a href="#">{{ getTranslatedText(post) }}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-bottom-column">
+      <p>© Uludağlar Gayrimenkul ® {{ getTranslatedText(['Tüm Hakları Saklıdır', 'All Rights Reserved']) }}.</p>
+      <p>{{ getTranslatedText(['Web sitesi Heypager tarafından hazırlanmıştır.', 'Website prepared by Heypager.']) }}</p>
+    </div>
+
+    <div class="footer-bottom-column logo-column">
+      <img src="assets/imgs/navbar/logo.svg" alt="Uludağlar Logo" class="footer-logo">
+    </div>
+
+    <div class="footer-bottom-column social-column">
+      <div class="social-icons">
+        <a *ngFor="let social of footerData.socialMedia.links" [href]="social.url" class="social-icon">
+          <img [src]="'assets/icons/' + social.name + '.svg'" [alt]="social.name">
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>

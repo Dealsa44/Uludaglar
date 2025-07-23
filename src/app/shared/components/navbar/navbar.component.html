@@ -1,0 +1,61 @@
+<nav class="navbar"> 
+  <!-- Logo / Brand -->
+  <div class="navbar-brand">
+    <img src="assets/imgs/navbar/logo" alt="Uludağlar Logo" class="logo" />
+  </div>
+
+  <!-- Navigation Links (Desktop) -->
+  <div class="nav-links">
+    <div
+      *ngFor="let item of regularNavItems"
+      class="nav-link"
+      [class.has-dropdown]="hasDropdown(item)"
+    >
+      <span>{{ getNavItemTitle(item) }}</span>
+
+      <div class="dropdown" *ngIf="hasDropdown(item)">
+        <a *ngFor="let dropItem of getDropdownItems(item)" class="dropdown-item">
+          {{ dropItem.title[currentLanguageIndex] }}
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right Side Controls (Language + Hamburger) -->
+  <div class="right-controls">
+    <!-- Language Switcher -->
+    <button class="language-toggle" (click)="toggleLanguage()">
+      <img [src]="getOtherLanguageFlag()" class="flag-icon" alt="Language Flag" />
+      <span class="lang-text">{{ getOtherLanguageText() }}</span>
+    </button>
+
+    <!-- Hamburger Menu (Mobile Only) -->
+    <button class="hamburger" (click)="toggleMobileMenu()" [class.active]="isMobileMenuOpen">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+  </div>
+
+  <!-- Mobile Navigation Menu -->
+  <div class="mobile-nav" [class.active]="isMobileMenuOpen">
+    <div
+      *ngFor="let item of regularNavItems"
+      class="nav-link mobile-nav-item"
+      [class.has-dropdown]="hasDropdown(item)"
+      (mouseenter)="openMobileDropdown(item)"
+      (mouseleave)="closeMobileDropdown(item)"
+    >
+      <span>{{ getNavItemTitle(item) }}</span>
+      
+      <div class="mobile-dropdown" *ngIf="hasDropdown(item)" [class.active]="item.mobileDropdownOpen">
+        <a *ngFor="let dropItem of getDropdownItems(item)" class="dropdown-item">
+          {{ dropItem.title[currentLanguageIndex] }}
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-overlay" [class.active]="isMobileMenuOpen" (click)="closeMobileMenu()"></div>
+</nav>

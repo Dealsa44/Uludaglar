@@ -1,0 +1,334 @@
+/*=============================================
+=            Variable Declarations            =
+=============================================*/
+
+// Color Palette
+$primary-bg: #0d1b2a;
+$accent-gold: #ffd700;
+$primary-text: #e0e1dd;
+$hover-bg: #415a77;
+$subtle-lines: #1b263b;
+$dropdown-bg: #1b263b; /* Reused from navbar, but could be specific for footer if needed */
+$shadow-color: rgba(0, 0, 0, 0.4);
+
+// Fonts
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+$primary-font: 'Poppins', sans-serif;
+
+// Transitions & Animations
+$fast-transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+// Sizing & Spacing
+$footer-padding-desktop: 3rem 5rem;
+$footer-padding-tablet: 2rem 3rem;
+$footer-padding-mobile: 1.5rem 1.5rem;
+$border-radius-small: 8px; /* Reused from navbar */
+
+/*=====  End of Variable Declarations  ======*/
+
+/*=============================================
+=            Footer Base Styling              =
+=============================================*/
+
+.footer {
+  background-color: $primary-bg;
+  color: $primary-text;
+  font-family: $primary-font;
+  padding: $footer-padding-desktop;
+  border-top: 1px solid $subtle-lines;
+}
+
+/*=====  End of Footer Base Styling  ======*/
+
+/*=============================================
+=            Footer Top Section (4 Columns)   =
+=============================================*/
+
+.footer-top {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Four columns by default */
+  gap: 2.5rem; /* Gap between columns */
+  padding-bottom: 2.5rem; /* Space before the bottom section */
+  border-bottom: 1px solid $subtle-lines; /* Separator line */
+  margin-bottom: 2.5rem; /* Space after the separator */
+}
+
+.footer-column {
+  .footer-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: $accent-gold; /* Gold color for titles */
+    margin-bottom: 1.2rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 50px; /* Short gold line under title */
+      height: 3px;
+      background-color: $accent-gold;
+      border-radius: 2px;
+    }
+  }
+
+  .footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      margin-bottom: 0.8rem; /* Space between links */
+
+      a {
+        color: $primary-text;
+        text-decoration: none;
+        font-size: 0.95rem;
+        transition: $fast-transition;
+        display: inline-block; /* Allows padding and hover effect */
+        position: relative;
+        padding-left: 1rem; /* Space for the arrow */
+
+        &::before {
+          content: '›'; /* Simple arrow or bullet */
+          position: absolute;
+          left: 0;
+          top: 50%;
+          transform: translateY(-50%);
+          color: $accent-gold;
+          font-weight: bold;
+        }
+
+        &:hover {
+          color: $accent-gold;
+          transform: translateX(5px); /* Subtle slide effect on hover */
+        }
+      }
+    }
+  }
+
+  .footer-address {
+    font-style: normal; /* Override default address italic style */
+    font-size: 0.95rem;
+    line-height: 1.6; /* Spacing for address lines */
+
+    p {
+      margin-bottom: 0.5rem;
+      // We are moving the display: flex and align-items: center to .contact-link
+    }
+
+    .contact-link {
+      color: lighten($primary-text, 10%); /* Slightly lighter text for address details */
+      text-decoration: none;
+      display: flex; /* Enable flexbox for icon and text alignment */
+      align-items: center; /* Vertically align items */
+      transition: $fast-transition; /* Add transition for hover effect */
+
+      &:hover {
+        color: $accent-gold; /* Change text color on hover */
+        transform: translateX(5px); /* Subtle slide effect on hover */
+
+        .address-icon {
+          filter: brightness(0) saturate(100%) invert(80%) sepia(90%) saturate(1000%) hue-rotate(350deg) brightness(100%) contrast(100%); /* Maintain gold color or adjust as desired on hover */
+        }
+      }
+    }
+
+    .address-icon {
+      width: 18px; /* Size for icons */
+      height: 18px;
+      margin-right: 0.7rem; /* Space between icon and text */
+      filter: brightness(0) saturate(100%) invert(80%) sepia(90%) saturate(1000%) hue-rotate(350deg) brightness(100%) contrast(100%); /* Gold color for icons */
+      transition: $fast-transition; /* Add transition for hover effect */
+    }
+  }
+}
+
+/*=====  End of Footer Top Section  ======*/
+
+/*=============================================
+=            Footer Bottom Section (3 Columns) =
+=============================================*/
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  text-align: center; /* Center content when stacked */
+}
+
+.footer-bottom-column {
+  flex: 1; /* Distribute space equally */
+  padding: 0.5rem 0;
+
+  p {
+    font-size: 0.85rem;
+    color: lighten($primary-text, 15%); /* Lighter text for copyright */
+    margin-bottom: 0.3rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.logo-column {
+  display: flex;
+  justify-content: center; /* Center the logo */
+  align-items: center;
+}
+
+.footer-logo {
+  height: 60px; /* Adjust logo size */
+  width: auto;
+  filter: brightness(0) saturate(100%) invert(98%) sepia(2%) saturate(2462%) hue-rotate(189deg) brightness(115%) contrast(100%); /* Adjust to primary-text color if original is dark */
+  transition: $fast-transition;
+
+  &:hover {
+    transform: scale(1.05); /* Slight scale on hover */
+  }
+}
+
+.social-column {
+  text-align: right; /* Align social icons to the right */
+}
+
+.social-icons {
+  display: flex;
+  justify-content: flex-end; /* Align icons to the right within their column */
+  gap: 0.8rem; /* Space between social icons */
+
+  .social-icon {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: $subtle-lines; /* Background for icons */
+    transition: $fast-transition;
+
+    img {
+      width: 22px;
+      height: 22px;
+      filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7469%) hue-rotate(289deg) brightness(116%) contrast(100%); /* Make icons white */
+    }
+
+    &:hover {
+      background-color: $accent-gold; /* Gold background on hover */
+      transform: translateY(-3px); /* Subtle lift effect */
+      img {
+        filter: brightness(0) saturate(100%) invert(6%) sepia(16%) saturate(6747%) hue-rotate(193deg) brightness(97%) contrast(103%); /* Make icons dark when hovered */
+      }
+    }
+  }
+}
+
+/*=====  End of Footer Bottom Section  ======*/
+
+/*=============================================
+=            Responsive Design                =
+=============================================*/
+
+/* Tablet View: Stack columns 2x2, then 1x1 if needed */
+@media (max-width: 1024px) {
+  .footer {
+    padding: $footer-padding-tablet;
+  }
+
+  .footer-top {
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    gap: 2rem;
+  }
+
+  .footer-bottom {
+    flex-direction: column; /* Stack bottom columns */
+    gap: 1.5rem;
+  }
+
+  .footer-bottom-column {
+    width: 100%; /* Take full width when stacked */
+    text-align: center; /* Center all text */
+  }
+
+  .social-column {
+    text-align: center; /* Center social icons */
+    .social-icons {
+      justify-content: center; /* Center icons within the column */
+    }
+  }
+}
+
+/* Mobile View: Stack all columns vertically */
+@media (max-width: 768px) {
+  .footer {
+    padding: $footer-padding-mobile;
+  }
+
+  .footer-top {
+    grid-template-columns: 1fr; /* Single column */
+    gap: 2rem; /* Gap between stacked columns */
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .footer-column {
+    text-align: center; /* Center text for single column */
+
+    .footer-title {
+      &::after {
+        left: 50%; /* Center the underline */
+        transform: translateX(-50%);
+      }
+    }
+
+    .footer-links li a {
+      padding-left: 0; /* Remove left padding */
+      text-align: center; /* Center the links */
+      &::before {
+        display: none; /* Hide arrow on mobile */
+      }
+    }
+    .footer-address p {
+        text-align: center; // This targets the <p> elements
+    }
+    .footer-address .contact-link {
+        justify-content: center; /* Center content when icons are present on mobile */
+    }
+  }
+
+  .footer-logo {
+    height: 50px; /* Smaller logo on mobile */
+  }
+}
+
+/* Smaller Mobile Devices */
+@media (max-width: 480px) {
+  .footer {
+    padding: 1rem 1rem;
+  }
+
+  .footer-column .footer-title {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+
+  .footer-links li a,
+  .footer-address .contact-link { // Target the contact-link here
+    font-size: 0.9rem;
+  }
+
+  .social-icons .social-icon {
+    width: 35px;
+    height: 35px;
+    img {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+/*=====  End of Responsive Design  ======*/

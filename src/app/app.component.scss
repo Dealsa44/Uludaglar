@@ -1,0 +1,18 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+app-navbar {
+  flex-shrink: 0; /* Prevent navbar from shrinking */
+}
+
+.main-content {
+  flex: 1; /* This will take up all available space */
+  /* Add your main content styles here when you uncomment router-outlet */
+}
+
+app-footer {
+  flex-shrink: 0; /* Prevent footer from shrinking */
+}

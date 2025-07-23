@@ -1,0 +1,523 @@
+/*=============================================
+=            Variable Declarations            =
+=============================================*/
+
+// Color Palette
+$primary-bg: #0d1b2a;
+$accent-gold: #ffd700;
+$primary-text: #e0e1dd;
+$hover-bg: #415a77;
+$subtle-lines: #1b263b;
+$dropdown-bg: #1b263b;
+$shadow-color: rgba(0, 0, 0, 0.4);
+
+// Fonts
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+$primary-font: 'Poppins', sans-serif;
+
+// Transitions & Animations
+$fast-transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+$smooth-bounce: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+
+// Sizing & Spacing
+$navbar-height: 70px;
+$main-padding: 1.5rem 3rem;
+$mobile-padding: 1rem 1.5rem;
+$border-radius-main: 12px;
+$border-radius-small: 8px;
+
+/*=====  End of Variable Declarations  ======*/
+
+/*=============================================
+=            Base Navbar Styling              =
+=============================================*/
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $main-padding;
+  background-color: $primary-bg;
+  font-family: $primary-font;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: $navbar-height;
+  z-index: 1000;
+  box-shadow: 0 4px 15px $shadow-color;
+  transition: background-color 0.3s ease-in-out, height 0.3s ease;
+  border-bottom: 1px solid $subtle-lines;
+  box-sizing: border-box;
+}
+
+/* When scrolled */
+.navbar.scrolled {
+  height: 60px;
+  background-color: lighten($primary-bg, 5%);
+}
+
+/*=====  End of Base Navbar Styling  ======*/
+
+/*=============================================
+=                 Logo Styling                =
+=============================================*/
+
+.navbar-brand {
+  .logo {
+    height: 55px;
+    width: auto;
+    transition: $smooth-bounce;
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
+
+/*=====  End of Logo Styling  ======*/
+
+/*=============================================
+=          Navigation Links Styling           =
+=============================================*/
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.nav-link {
+  position: relative;
+  cursor: pointer;
+
+  > span {
+    color: $primary-text;
+    font-weight: 500;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    padding-bottom: 8px;
+    position: relative;
+    transition: color 0.3s ease;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background-color: $accent-gold;
+      transition: width 0.4s ease;
+    }
+  }
+
+  &:hover > span {
+    color: $accent-gold;
+    &::after {
+      width: 100%;
+    }
+  }
+}
+
+/*=====  End of Navigation Links Styling  ======*/
+
+/*=============================================
+=              Dropdown Menu Styling          =
+=============================================*/
+
+.dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) scaleY(0.9);
+  background-color: $dropdown-bg;
+  border-radius: $border-radius-main;
+  padding: 0.75rem 0;
+  margin-top: 0.5rem;
+  min-width: 220px;
+  opacity: 0;
+  visibility: hidden;
+  transform-origin: top center;
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 10px 20px $shadow-color;
+  border: 1px solid $subtle-lines;
+  z-index: 1001;
+
+  // Add invisible bridge to prevent gap issues
+  &::before {
+    content: '';
+    position: absolute;
+    top: -0.5rem;
+    left: 0;
+    right: 0;
+    height: 0.5rem;
+    background: transparent;
+  }
+}
+
+// Enhanced dropdown hover behavior - keeps dropdown open when hovering over nav-link or dropdown
+.nav-link {
+  &:hover {
+    .dropdown {
+      display: block;
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) scaleY(1);
+    }
+
+    > span {
+      color: $accent-gold;
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+}
+
+// Alternative approach using CSS only - this ensures dropdown stays visible
+.nav-link:hover .dropdown,
+.nav-link .dropdown:hover {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) scaleY(1);
+}
+
+// Keep parent highlighted when hovering dropdown
+.nav-link:hover > span {
+  color: $accent-gold;
+  &::after {
+    width: 100%;
+  }
+}
+
+.dropdown-item {
+  display: block;
+  padding: 0.8rem 1.8rem;
+  color: $primary-text;
+  text-decoration: none;
+  transition: $fast-transition;
+  white-space: nowrap;
+  font-size: 0.95rem;
+
+  &:hover {
+    background-color: $hover-bg;
+    color: $accent-gold;
+    transform: translateX(5px);
+  }
+
+  &:first-child {
+    border-top-left-radius: $border-radius-main;
+    border-top-right-radius: $border-radius-main;
+  }
+  &:last-child {
+    border-bottom-left-radius: $border-radius-main;
+    border-bottom-right-radius: $border-radius-main;
+  }
+}
+
+/*=====  End of Dropdown Menu Styling  ======*/
+
+/*=============================================
+=            Right Controls Styling           =
+=============================================*/
+
+.right-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/*=====  End of Right Controls Styling  ======*/
+
+/*=============================================
+=            Hamburger Menu Styling           =
+=============================================*/
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 24px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1010;
+
+  .bar {
+    width: 30px;
+    height: 3px;
+    background-color: $primary-text;
+    border-radius: 2px;
+    transition: all 0.3s linear;
+  }
+
+  // Hamburger animation when active
+  &.active {
+    .bar:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 6px);
+    }
+    .bar:nth-child(2) {
+      opacity: 0;
+    }
+    .bar:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -6px);
+    }
+  }
+}
+
+/*=====  End of Hamburger Menu Styling  ======*/
+
+/*=============================================
+=            Mobile Navigation Styling        =
+=============================================*/
+
+.mobile-nav {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 280px;
+  height: 100vh;
+  background-color: $primary-bg;
+  transition: right 0.4s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  padding-top: 100px;
+  box-shadow: -5px 0 15px $shadow-color;
+  z-index: 1005;
+  overflow-y: auto;
+  
+  &.active {
+    right: 0;
+  }
+  
+  .mobile-nav-item {
+    width: 100%;
+    text-align: left;
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid $subtle-lines;
+
+    > span {
+      font-size: 1.1rem;
+      display: block;
+      width: 100%;
+    }
+
+    &:hover {
+      background-color: $hover-bg;
+    }
+  }
+}
+
+.mobile-dropdown {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  background-color: darken($primary-bg, 3%);
+  margin-top: 1rem;
+  border-radius: $border-radius-small;
+
+  &.active {
+    max-height: 400px;
+  }
+
+  .dropdown-item {
+    padding: 1rem 1.5rem;
+    font-size: 0.9rem;
+    border-bottom: 1px solid $subtle-lines;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &:hover {
+      transform: translateX(10px);
+      background-color: $hover-bg;
+    }
+  }
+}
+
+// Mobile dropdown hover behavior
+.mobile-nav-item:hover .mobile-dropdown {
+  max-height: 400px;
+}
+
+.mobile-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1004;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+/*=====  End of Mobile Navigation Styling  ======*/
+
+/*=============================================
+=            Language Switcher Styling        =
+=============================================*/
+
+.language-toggle {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: 2px solid $accent-gold;
+  color: $accent-gold;
+  padding: 0.6rem 1.2rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: $fast-transition;
+  overflow: hidden;
+  min-width: fit-content; // Prevents cutting off
+
+  .flag-icon {
+    width: 28px;
+    height: 28px;
+    margin-right: 0.75rem;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid $subtle-lines;
+    flex-shrink: 0; // Prevents flag from shrinking
+  }
+
+  .lang-text {
+    font-weight: 600;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+    white-space: nowrap; // Prevents text wrapping
+  }
+
+  &:hover {
+    background-color: $accent-gold;
+    color: $primary-bg;
+    box-shadow: 0 0 15px rgba($accent-gold, 0.5);
+
+    .lang-text {
+      color: $primary-bg;
+    }
+  }
+}
+
+/*=====  End of Language Switcher Styling  ======*/
+
+/*=============================================
+=            Responsive Design                =
+=============================================*/
+
+/*
+ * Desktop First - Larger Screens
+ */
+@media (min-width: 1440px) {
+  .navbar {
+    padding: 1.5rem 5rem;
+  }
+  .nav-links {
+    gap: 3.5rem;
+  }
+}
+
+/*
+ * Tablet View and Hamburger Menu
+ */
+@media (max-width: 1024px) {
+  .navbar {
+    padding: $mobile-padding;
+  }
+  
+  .nav-links {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}
+
+/*
+ * Mobile View
+ */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1rem 1.5rem;
+  }
+
+  .navbar-brand .logo {
+    height: 45px;
+  }
+
+  .right-controls {
+    gap: 0.75rem;
+  }
+
+  .language-toggle {
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    min-width: 50px; // Fixed width to prevent cutting
+
+    .lang-text {
+      display: none;
+    }
+
+    .flag-icon {
+      margin-right: 0;
+      width: 28px;      
+      height: 28px;
+    }
+  }
+
+  .mobile-nav {
+    width: 85%;
+    max-width: 320px;
+  }
+}
+
+/*
+ * Smallest Mobile Devices
+ */
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0.8rem 1rem;
+  }
+  
+  .navbar-brand .logo {
+    height: 40px;
+  }
+
+  .right-controls {
+    gap: 0.5rem;
+  }
+  
+  .language-toggle {
+    width: 45px;
+    height: 45px;
+    min-width: 45px;
+    
+    .flag-icon {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  .mobile-nav {
+    width: 90%;
+  }
+}
+
+/*=====  End of Responsive Design  ======*/
