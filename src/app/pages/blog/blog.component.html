@@ -14,7 +14,7 @@
             <h2>{{ getTranslatedText(post.title) }}</h2>
             <p>{{ getFirstContentText(post) }}</p>
             <button
-              [routerLink]="['/', currentLanguageIndex, 'blog', post.id]"
+              [routerLink]="['/', currentLanguageCode, 'blog', post.id]"
               class="read-more-button"
             >
               {{ getTranslatedText(["Devamını Oku", "Read More"]) }}
@@ -60,7 +60,7 @@
             [alt]="getTranslatedText(post.title)"
             class="latest-post-image"
           />
-          <a [routerLink]="['/', currentLanguageIndex, 'blog', post.id]">
+          <a [routerLink]="['/', currentLanguageCode, 'blog', post.id]">
             {{ getTranslatedText(post.title) }}
           </a>
         </div>

@@ -13,7 +13,7 @@ import { LanguageService } from '../../core/services/language.service';
 })
 export class BlogComponent implements OnInit {
   blogData = blogMocks;
-  currentLanguageIndex = 0;
+  currentLanguageIndex = 0; // Keep this for getTranslatedText and other index-based logic
   currentPage = 1;
   postsPerPage = 6;
 
@@ -23,10 +23,17 @@ export class BlogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // Initialize currentLanguageIndex from the service
     this.currentLanguageIndex = this.languageService.getCurrentLanguage();
+    // Subscribe to language changes
     this.languageService.currentLanguage$.subscribe(index => {
       this.currentLanguageIndex = index;
     });
+  }
+
+  // New getter to provide the language code to the template
+  get currentLanguageCode(): string {
+    return this.languageService.getCurrentLanguageCode();
   }
 
   getTranslatedText(text: string | string[]): string {
