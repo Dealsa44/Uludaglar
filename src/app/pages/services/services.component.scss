@@ -1,0 +1,977 @@
+/* Color Palette Variables */
+$primary-bg: #0d1b2a;
+$accent-gold: #ffd700;
+$primary-text: #e0e1dd;
+$hover-bg: #415a77;
+$subtle-lines: #1b263b;
+$dropdown-bg: #1b263b;
+$shadow-color: rgba(0, 0, 0, 0.6);
+
+/* Global Resets and Base Styles (Ensure these are consistent across your app) */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  line-height: 1.6;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #08111a;
+  color: $primary-text;
+}
+
+/* --- Services Page Container --- */
+.services-page {
+  background: linear-gradient(145deg, darken($subtle-lines, 5%) 0%, $subtle-lines 100%);
+  padding: 0 2rem 3rem 2rem; /* Adjusted padding for hero section to stretch */
+  margin-top: 6rem; /* Ensures clearance from navbar */
+  margin-bottom: 3rem;
+  border-radius: 12px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 15px 30px $shadow-color, 0 5px 10px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba($accent-gold, 0.15);
+  transition: all 0.3s ease-in-out;
+  animation: fade-in 1s ease-out forwards;
+
+  &:hover {
+    box-shadow: 0 20px 40px $shadow-color, 0 8px 15px rgba(0, 0, 0, 0.4);
+    transform: translateY(-3px);
+  }
+
+  /* Decorative background elements (same as Contact page) */
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba($accent-gold, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(40px);
+    z-index: 0;
+    animation: pulse-light 10s infinite alternate;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -50px;
+    right: -50px;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, rgba($hover-bg, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(30px);
+    z-index: 0;
+    animation: pulse-light-reverse 8s infinite alternate;
+  }
+}
+
+/* Keyframe Animations */
+@keyframes fade-in {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-light {
+  0% { transform: scale(1); opacity: 0.7; }
+  100% { transform: scale(1.2); opacity: 0.9; }
+}
+
+@keyframes pulse-light-reverse {
+  0% { transform: scale(1.2); opacity: 0.9; }
+  100% { transform: scale(1); opacity: 0.7; }
+}
+
+/* --- Page Header Section (consistent with Contact page) --- */
+.page-header-background {
+  background: linear-gradient(160deg, $primary-bg 0%, darken($primary-bg, 5%) 100%);
+  padding: 2.5rem 2rem;
+  margin: 0 -2rem 3rem -2rem; /* Stretches to container edges, no top margin needed */
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  box-shadow: inset 0 -8px 15px rgba(0, 0, 0, 0.2);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, rgba($accent-gold, 0.05) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(25px);
+  }
+}
+
+.page-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.5rem;
+  color: $accent-gold;
+  margin-bottom: 0.8rem;
+  text-transform: capitalize;
+  letter-spacing: 3px;
+  font-weight: 800;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.6), 0 0 15px rgba($accent-gold, 0.3);
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: lighten($accent-gold, 10%);
+  }
+}
+
+.header-underline {
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(to right, transparent 0%, $accent-gold 50%, transparent 100%);
+  border-radius: 2px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+/* --- Hero Section Content --- */
+.hero-content-wrapper {
+  display: grid;
+  grid-template-columns: 1fr; /* Default to stack vertically */
+  gap: 3.5rem;
+  padding: 0 2rem; /* Inner padding for content within the hero */
+  margin-bottom: 4rem; /* Space before the next section */
+
+  @media (min-width: 992px) {
+    grid-template-columns: 1fr 1.8fr; /* Features on left, Gallery on right */
+    gap: 4rem;
+    padding: 0 2rem;
+  }
+}
+
+/* Features Section (Left Side of Hero) */
+.features-section {
+  background-color: $primary-bg;
+  padding: 2.5rem;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba($subtle-lines, 0.6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+
+  &::before { /* Subtle pattern background */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(circle at 20% 80%, rgba($accent-gold, 0.03) 0%, transparent 60%);
+    opacity: 0.8;
+    z-index: 0;
+    pointer-events: none;
+    transform: rotate(15deg);
+  }
+}
+
+.main-icon {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 1.5rem;
+  filter: drop-shadow(0 0 8px rgba($accent-gold, 0.7));
+  animation: float-icon 3s ease-in-out infinite alternate; /* Floating animation */
+}
+
+@keyframes float-icon {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-10px); }
+}
+
+.features-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.9rem;
+  color: $accent-gold;
+  margin-bottom: 2rem;
+  font-weight: 700;
+  line-height: 1.3;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+  position: relative;
+  z-index: 1;
+}
+
+.features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  background-color: lighten($primary-bg, 5%);
+  padding: 1rem 1.2rem;
+  border-radius: 8px;
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba($subtle-lines, 0.4);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+
+  &:hover {
+    background-color: $hover-bg;
+    transform: translateX(5px);
+  }
+}
+
+.feature-icon {
+  width: 32px;
+  height: 32px;
+  margin-right: 1rem;
+  filter: drop-shadow(0 0 5px rgba($accent-gold, 0.5));
+  flex-shrink: 0; /* Prevent shrinking */
+}
+
+.feature-text {
+  font-size: 1rem;
+  color: $primary-text;
+  font-weight: 500;
+  flex-grow: 1;
+  text-align: left; /* Align text to the left */
+}
+
+
+/* Gallery Section (Right Side of Hero) */
+.gallery-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid for gallery items */
+  gap: 1.5rem;
+  position: relative;
+  z-index: 1;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
+  }
+}
+
+.gallery-item {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  cursor: pointer;
+  border: 1px solid rgba($accent-gold, 0.2);
+
+  &:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.7);
+
+    .gallery-overlay {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+.gallery-image {
+  width: 100%;
+  height: 250px; /* Fixed height for consistent gallery items */
+  object-fit: cover; /* Cover the area, cropping if necessary */
+  display: block;
+  transition: transform 0.4s ease-in-out, filter 0.4s ease-in-out;
+  filter: brightness(0.7) grayscale(0.2);
+
+  &:hover {
+    transform: scale(1.08);
+    filter: brightness(1) grayscale(0);
+  }
+}
+
+.gallery-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(to top, rgba($primary-bg, 0.9) 0%, transparent 100%);
+  color: $primary-text;
+  padding: 1rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* Push content to the bottom */
+  align-items: flex-start; /* Align content to the left */
+  height: 100%; /* Cover full height for the gradient */
+}
+
+.gallery-title {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  color: $accent-gold;
+  font-weight: 600;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.gallery-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  width: 100%; /* Ensure actions take full width for spacing */
+  justify-content: space-between; /* Space out read more and play icon */
+}
+
+.read-more {
+  font-size: 0.95rem;
+  color: lighten($primary-text, 10%);
+  text-decoration: none;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: $accent-gold;
+    text-decoration: underline;
+  }
+}
+
+.play-icon {
+  width: 24px;
+  height: 24px;
+  filter: drop-shadow(0 0 3px rgba($accent-gold, 0.5));
+  transition: filter 0.3s ease;
+
+  &:hover {
+    filter: drop-shadow(0 0 8px rgba($accent-gold, 0.8));
+  }
+}
+
+/* --- Other Services Section --- */
+.other-services {
+  padding: 3rem 2rem;
+  margin-top: 4rem; /* Space from hero section */
+  background-color: lighten($primary-bg, 2%);
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba($subtle-lines, 0.8);
+  position: relative;
+  z-index: 1;
+}
+
+.section-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.5rem;
+  color: $accent-gold;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  line-height: 1.3;
+  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
+}
+
+.section-underline {
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(to right, transparent 0%, $accent-gold 50%, transparent 100%);
+  border-radius: 2px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+  margin: 0 auto 3rem auto; /* Centered with space below */
+}
+
+.services-grid {
+  display: flex;
+  flex-direction: column; /* Stack cards vertically */
+  gap: 3.5rem; /* Space between each service card */
+}
+
+.service-card {
+  background-color: $primary-bg;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba($subtle-lines, 0.6);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  display: flex; /* Make it a flex container */
+  flex-direction: column; /* Default: stack image on top of content */
+  height: auto;
+  width: 100%;
+
+  &:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+  }
+
+  @media (min-width: 850px) { /* Apply split layout on larger screens */
+    flex-direction: row; /* Horizontal layout for image and content */
+    align-items: stretch; /* Stretch items to fill height */
+
+    .service-image-container {
+      flex: 1; /* Take up 1 part of the flex space */
+      min-width: 300px; /* Ensure image doesn't get too small */
+      height: auto; /* Allow image container to adjust height based on content */
+    }
+
+    .service-image {
+      height: 100%; /* Make image fill the height of its container */
+      object-fit: cover;
+    }
+
+    .service-content {
+      flex: 1.5; /* Take up 1.5 parts of the flex space (more for text) */
+      padding: 2rem; /* Adjust padding for horizontal layout */
+    }
+
+    // Alternating sides for even-numbered cards
+    &:nth-child(even) {
+      flex-direction: row-reverse; /* Image on right, content on left */
+    }
+  }
+}
+
+.service-image-container {
+  width: 100%;
+  height: 220px; /* Fixed height for service card images on mobile/vertical layout */
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0; /* Prevent image container from shrinking on smaller screens */
+}
+
+.service-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease-in-out, filter 0.4s ease-in-out;
+  filter: brightness(0.8);
+
+  &:hover {
+    transform: scale(1.05);
+    filter: brightness(1);
+  }
+}
+
+.service-content {
+  padding: 1.8rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Allow content to grow and fill space */
+}
+
+.service-title-card {
+  font-size: 1.5rem;
+  color: $accent-gold;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  line-height: 1.3;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.service-paragraphs {
+  font-size: 0.95rem;
+  color: lighten($primary-text, 5%);
+  margin-bottom: 1.5rem;
+}
+
+.service-paragraphs p {
+  margin-bottom: 0.8em; /* Spacing between paragraphs */
+  &:last-child {
+    margin-bottom: 0; /* No margin after the last paragraph */
+  }
+}
+
+.contact-button {
+  background-color: $accent-gold;
+  color: $primary-bg;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 3px 10px rgba($accent-gold, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: auto; /* Push button to the bottom of the card */
+
+  &:hover {
+    background-color: lighten($accent-gold, 10%);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba($accent-gold, 0.6);
+  }
+}
+
+/* --- CTA Section --- */
+.cta-section {
+  background: linear-gradient(135deg, $primary-bg 0%, darken($primary-bg, 5%) 100%);
+  padding: 3.5rem 2rem;
+  margin-top: 4rem;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba($accent-gold, 0.3);
+  position: relative;
+  overflow: hidden;
+
+  &::before { /* Corner accent */
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle, rgba($accent-gold, 0.1) 0%, transparent 70%);
+    border-bottom-left-radius: 10px;
+    filter: blur(20px);
+  }
+}
+
+.cta-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.2rem;
+  color: $accent-gold;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  line-height: 1.3;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+.cta-description {
+  font-size: 1.1rem;
+  color: lighten($primary-text, 5%);
+  margin-bottom: 2rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-button {
+  background-color: $accent-gold;
+  color: $primary-bg;
+  padding: 1.2rem 3rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 5px 15px rgba($accent-gold, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+
+  &:hover {
+    background-color: lighten($accent-gold, 10%);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 20px rgba($accent-gold, 0.7);
+  }
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 992px) {
+  .services-page {
+    margin-top: 5rem;
+    padding: 0 1.5rem 2.5rem 1.5rem;
+  }
+
+  .page-header-background {
+    margin: 0 -1.5rem 2.5rem -1.5rem;
+    padding: 2rem 1.5rem;
+  }
+
+  .page-title {
+    font-size: 2.8rem;
+  }
+
+  .hero-content-wrapper {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding: 0 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .features-section {
+    padding: 2rem;
+  }
+
+  .main-icon {
+    width: 80px;
+    height: 80px;
+  }
+
+  .features-title {
+    font-size: 1.6rem;
+  }
+
+  .features-list {
+    gap: 1rem;
+  }
+
+  .feature-item {
+    padding: 0.8rem 1rem;
+  }
+
+  .feature-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .feature-text {
+    font-size: 0.95rem;
+  }
+
+  .gallery-section {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.2rem;
+  }
+
+  .gallery-image {
+    height: 200px;
+  }
+
+  .gallery-title {
+    font-size: 1.1rem;
+  }
+
+  .read-more {
+    font-size: 0.85rem;
+  }
+
+  .play-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .other-services {
+    padding: 2.5rem 1.5rem;
+    margin-top: 3.5rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .section-underline {
+    margin-bottom: 2.5rem;
+  }
+
+  .services-grid {
+    gap: 2.5rem;
+  }
+
+  .service-card {
+    .service-image-container {
+      height: 200px;
+    }
+  }
+
+  .service-content {
+    padding: 1.5rem;
+  }
+
+  .service-title-card {
+    font-size: 1.3rem;
+  }
+
+  .service-paragraphs {
+    font-size: 0.9rem;
+  }
+
+  .contact-button {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  .cta-section {
+    padding: 3rem 1.5rem;
+    margin-top: 3.5rem;
+  }
+
+  .cta-title {
+    font-size: 1.8rem;
+  }
+
+  .cta-description {
+    font-size: 1rem;
+  }
+
+  .cta-button {
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .services-page {
+    margin-top: 4rem;
+    padding: 0 1rem 2rem 1rem;
+    border-radius: 8px;
+  }
+
+  .page-header-background {
+    margin: 0 -1rem 2rem -1rem;
+    padding: 1.8rem 1rem;
+  }
+
+  .page-title {
+    font-size: 2.2rem;
+    letter-spacing: 2px;
+  }
+
+  .header-underline {
+    width: 60px;
+  }
+
+  .hero-content-wrapper {
+    gap: 2.5rem;
+    padding: 0 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .features-section {
+    padding: 1.8rem;
+  }
+
+  .main-icon {
+    width: 70px;
+    height: 70px;
+  }
+
+  .features-title {
+    font-size: 1.4rem;
+  }
+
+  .features-list {
+    gap: 0.8rem;
+  }
+
+  .feature-item {
+    padding: 0.7rem 0.8rem;
+  }
+
+  .feature-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .feature-text {
+    font-size: 0.9rem;
+  }
+
+  .gallery-section {
+    grid-template-columns: 1fr; /* Stack gallery items on smaller tablets/mobile */
+    gap: 1rem;
+  }
+
+  .gallery-image {
+    height: 180px;
+  }
+
+  .gallery-title {
+    font-size: 1rem;
+  }
+
+  .read-more {
+    font-size: 0.8rem;
+  }
+
+  .play-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .other-services {
+    padding: 2rem 1rem;
+    margin-top: 3rem;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .section-underline {
+    margin-bottom: 2rem;
+  }
+
+  .services-grid {
+    gap: 2rem;
+  }
+
+  .service-card {
+    .service-image-container {
+      height: 180px;
+    }
+  }
+
+  .service-content {
+    padding: 1.2rem;
+  }
+
+  .service-title-card {
+    font-size: 1.2rem;
+  }
+
+  .service-paragraphs {
+    font-size: 0.85rem;
+  }
+
+  .contact-button {
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .cta-section {
+    padding: 2.5rem 1rem;
+    margin-top: 3rem;
+  }
+
+  .cta-title {
+    font-size: 1.6rem;
+  }
+
+  .cta-description {
+    font-size: 0.95rem;
+  }
+
+  .cta-button {
+    padding: 0.9rem 2rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .services-page {
+    margin-top: 3rem;
+    padding: 0 0.8rem 1.5rem 0.8rem;
+  }
+
+  .page-header-background {
+    margin: 0 -0.8rem 1.5rem -0.8rem;
+    padding: 1.2rem 0.8rem;
+  }
+
+  .page-title {
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+  }
+
+  .hero-content-wrapper {
+    gap: 2rem;
+    padding: 0 0.8rem;
+    margin-bottom: 2rem;
+  }
+
+  .features-section {
+    padding: 1.5rem;
+  }
+
+  .main-icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .features-title {
+    font-size: 1.2rem;
+  }
+
+  .features-list {
+    gap: 0.8rem;
+  }
+
+  .feature-item {
+    padding: 0.6rem 0.7rem;
+  }
+
+  .feature-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .feature-text {
+    font-size: 0.85rem;
+  }
+
+  .gallery-image {
+    height: 150px;
+  }
+
+  .gallery-title {
+    font-size: 0.9rem;
+  }
+
+  .read-more {
+    font-size: 0.75rem;
+  }
+
+  .play-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .other-services {
+    padding: 1.5rem 0.8rem;
+    margin-top: 2.5rem;
+  }
+
+  .section-title {
+    font-size: 1.4rem;
+  }
+
+  .section-underline {
+    margin-bottom: 1.5rem;
+  }
+
+  .services-grid {
+    gap: 1.5rem;
+  }
+
+  .service-card {
+    .service-image-container {
+      height: 150px;
+    }
+  }
+
+  .service-content {
+    padding: 1rem;
+  }
+
+  .service-title-card {
+    font-size: 1rem;
+  }
+
+  .service-paragraphs {
+    font-size: 0.8rem;
+  }
+
+  .contact-button {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.8rem;
+  }
+
+  .cta-section {
+    padding: 2rem 0.8rem;
+    margin-top: 2.5rem;
+  }
+
+  .cta-title {
+    font-size: 1.4rem;
+  }
+
+  .cta-description {
+    font-size: 0.85rem;
+  }
+
+  .cta-button {
+    padding: 0.8rem 1.8rem;
+    font-size: 0.9rem;
+  }
+}

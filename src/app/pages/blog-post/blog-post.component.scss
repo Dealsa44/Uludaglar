@@ -1,0 +1,601 @@
+/* Color Palette Variables (from your styled components) */
+$primary-bg: #0d1b2a;
+$accent-gold: #ffd700;
+$primary-text: #e0e1dd;
+$hover-bg: #415a77;
+$subtle-lines: #1b263b;
+$dropdown-bg: #1b263b;
+$shadow-color: rgba(0, 0, 0, 0.6);
+
+/* --- Blog Post Page Container --- */
+.blog-post-page {
+  background: linear-gradient(145deg, darken($subtle-lines, 5%) 0%, $subtle-lines 100%);
+  padding: 0 2rem 3rem 2rem;
+  margin-top: 6rem; /* Ensures clearance from navbar */
+  margin-bottom: 3rem;
+  border-radius: 12px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 15px 30px $shadow-color, 0 5px 10px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba($accent-gold, 0.15);
+  transition: all 0.3s ease-in-out;
+  animation: fade-in 1s ease-out forwards;
+
+  &:hover {
+    box-shadow: 0 20px 40px $shadow-color, 0 8px 15px rgba(0, 0, 0, 0.4);
+    transform: translateY(-3px);
+  }
+
+  /* Decorative background elements (same as other pages) */
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba($accent-gold, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(40px);
+    z-index: 0;
+    animation: pulse-light 10s infinite alternate;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -50px;
+    right: -50px;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, rgba($hover-bg, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(30px);
+    z-index: 0;
+    animation: pulse-light-reverse 8s infinite alternate;
+  }
+}
+
+/* Keyframe Animations (copied from your styled component) */
+@keyframes fade-in {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-light {
+  0% { transform: scale(1); opacity: 0.7; }
+  100% { transform: scale(1.2); opacity: 0.9; }
+}
+
+@keyframes pulse-light-reverse {
+  0% { transform: scale(1.2); opacity: 0.9; }
+  100% { transform: scale(1); opacity: 0.7; }
+}
+
+/* --- Blog Post Container Layout --- */
+.blog-post-container {
+  display: grid;
+  grid-template-columns: 1fr; /* Stack on small screens */
+  gap: 3.5rem;
+  padding: 3rem 2rem 0 2rem; /* Inner padding for content within the blog post page */
+  position: relative;
+  z-index: 1;
+
+  @media (min-width: 992px) {
+    grid-template-columns: 2.5fr 1fr; /* Main content on left, sidebar on right */
+    gap: 4rem;
+  }
+}
+
+/* --- Blog Post Content Section --- */
+.blog-post-content {
+  background-color: $primary-bg;
+  padding: 2.5rem;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba($subtle-lines, 0.6);
+  position: relative;
+  z-index: 1;
+}
+
+.post-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.8rem;
+  color: $accent-gold;
+  margin-bottom: 1.5rem;
+  font-weight: 800;
+  line-height: 1.3;
+  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
+  text-align: center; /* Center the post title */
+
+  &::after { /* Underline for the post title */
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(to right, transparent 0%, $accent-gold 50%, transparent 100%);
+    border-radius: 2px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+    margin: 1rem auto 0 auto;
+  }
+}
+
+.post-image {
+  width: 100%;
+  max-height: 450px; /* Adjust height for a hero image effect */
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 2.5rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  filter: brightness(0.85);
+}
+
+.post-section {
+  margin-bottom: 2rem; /* Space between sections */
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+    color: lighten($accent-gold, 10%);
+    margin-bottom: 1rem;
+    font-weight: 700;
+    line-height: 1.3;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba($subtle-lines, 0.5);
+    padding-bottom: 0.5rem;
+  }
+
+  p {
+    font-size: 1rem;
+    color: $primary-text;
+    line-height: 1.7;
+    margin-bottom: 1em; /* Space between paragraphs */
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+/* --- Post Navigation --- */
+.post-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px dashed rgba($subtle-lines, 0.5);
+  flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+  gap: 1.5rem; /* Space between buttons when wrapped */
+}
+
+.nav-button {
+  background-color: lighten($primary-bg, 5%);
+  color: $primary-text;
+  border: 1px solid rgba($subtle-lines, 0.8);
+  padding: 0.9rem 1.8rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  text-decoration: none; /* Remove underline for links */
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-grow: 1; /* Allow buttons to grow to fill space */
+  justify-content: center; /* Center text within buttons */
+  text-align: center; /* Ensure text alignment for longer titles */
+
+  &:hover {
+    background-color: $hover-bg;
+    color: $accent-gold;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.4);
+  }
+
+  &.previous {
+    justify-content: flex-start; /* Align text to start for previous button */
+    padding-left: 0.9rem; /* Adjust padding for arrow */
+  }
+
+  &.next {
+    justify-content: flex-end; /* Align text to end for next button */
+    padding-right: 0.9rem; /* Adjust padding for arrow */
+  }
+}
+
+/* --- Blog Sidebar (same as blog.component.scss) --- */
+/* Copy and paste the .blog-sidebar styles from blog.component.scss here */
+.blog-sidebar {
+  background-color: $primary-bg;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba($subtle-lines, 0.6);
+  position: relative;
+  z-index: 1;
+}
+
+.sidebar-section {
+  margin-bottom: 2.5rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.6rem;
+    color: $accent-gold;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    line-height: 1.3;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+    border-bottom: 2px solid rgba($accent-gold, 0.3);
+    padding-bottom: 0.8rem;
+  }
+}
+
+.latest-post {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.2rem;
+  background-color: lighten($primary-bg, 5%);
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba($subtle-lines, 0.4);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+
+  &:hover {
+    background-color: $hover-bg;
+    transform: translateX(5px);
+  }
+
+  .latest-post-image {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-right: 1rem;
+    flex-shrink: 0;
+    filter: brightness(0.9);
+    transition: filter 0.3s ease;
+
+    &:hover {
+      filter: brightness(1.1);
+    }
+  }
+
+  a {
+    font-size: 1rem;
+    color: $primary-text;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: $accent-gold;
+      text-decoration: underline;
+    }
+  }
+}
+
+.contact-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  background-color: lighten($primary-bg, 5%);
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba($subtle-lines, 0.4);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+
+  &:hover {
+    background-color: $hover-bg;
+    transform: translateX(5px);
+  }
+
+  .contact-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 0.8rem;
+    filter: drop-shadow(0 0 5px rgba($accent-gold, 0.5));
+    flex-shrink: 0;
+  }
+
+  span {
+    font-size: 0.95rem;
+    color: $primary-text;
+  }
+}
+
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 992px) {
+  .blog-post-page {
+    margin-top: 5rem;
+    padding: 0 1.5rem 2.5rem 1.5rem;
+  }
+
+  .blog-post-container {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding: 2.5rem 1.5rem 0 1.5rem;
+  }
+
+  .blog-post-content {
+    padding: 2rem;
+  }
+
+  .post-title {
+    font-size: 2.2rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .post-image {
+    max-height: 350px;
+    margin-bottom: 2rem;
+  }
+
+  .post-section {
+    margin-bottom: 1.5rem;
+
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 0.8rem;
+    }
+
+    p {
+      font-size: 0.95rem;
+    }
+  }
+
+  .post-navigation {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    gap: 1rem;
+  }
+
+  .nav-button {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  /* Sidebar adjustments from blog.component.scss */
+  .blog-sidebar {
+    padding: 1.8rem;
+  }
+
+  .sidebar-section {
+    margin-bottom: 2rem;
+
+    h3 {
+      font-size: 1.4rem;
+      margin-bottom: 1.2rem;
+    }
+  }
+
+  .latest-post {
+    padding: 0.7rem 0.9rem;
+
+    .latest-post-image {
+      width: 50px;
+      height: 50px;
+      margin-right: 0.8rem;
+    }
+
+    a {
+      font-size: 0.95rem;
+    }
+  }
+
+  .contact-info {
+    padding: 0.7rem 0.9rem;
+
+    .contact-icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    span {
+      font-size: 0.9rem;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .blog-post-page {
+    margin-top: 4rem;
+    padding: 0 1rem 2rem 1rem;
+    border-radius: 8px;
+  }
+
+  .blog-post-container {
+    gap: 2.5rem;
+    padding: 2rem 1rem 0 1rem;
+  }
+
+  .blog-post-content {
+    padding: 1.8rem;
+  }
+
+  .post-title {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .post-image {
+    max-height: 280px;
+    margin-bottom: 1.8rem;
+  }
+
+  .post-section {
+    margin-bottom: 1.2rem;
+
+    h2 {
+      font-size: 1.3rem;
+      margin-bottom: 0.8rem;
+    }
+
+    p {
+      font-size: 0.9rem;
+    }
+  }
+
+  .post-navigation {
+    margin-top: 2rem;
+    padding-top: 1.2rem;
+    gap: 0.8rem;
+    flex-direction: column; /* Stack buttons vertically on small screens */
+  }
+
+  .nav-button {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.9rem;
+    width: 100%; /* Make buttons full width when stacked */
+  }
+
+  /* Sidebar adjustments from blog.component.scss */
+  .blog-sidebar {
+    padding: 1.5rem;
+  }
+
+  .sidebar-section {
+    margin-bottom: 1.5rem;
+
+    h3 {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+  }
+
+  .latest-post {
+    padding: 0.6rem 0.8rem;
+    margin-bottom: 0.8rem;
+
+    .latest-post-image {
+      width: 40px;
+      height: 40px;
+      margin-right: 0.7rem;
+    }
+
+    a {
+      font-size: 0.9rem;
+    }
+  }
+
+  .contact-info {
+    padding: 0.6rem 0.8rem;
+    margin-bottom: 0.8rem;
+
+    .contact-icon {
+      width: 18px;
+      height: 18px;
+    }
+
+    span {
+      font-size: 0.85rem;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .blog-post-page {
+    margin-top: 3rem;
+    padding: 0 0.8rem 1.5rem 0.8rem;
+  }
+
+  .blog-post-container {
+    gap: 2rem;
+    padding: 1.5rem 0.8rem 0 0.8rem;
+  }
+
+  .blog-post-content {
+    padding: 1.5rem;
+  }
+
+  .post-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .post-image {
+    max-height: 200px;
+    margin-bottom: 1.5rem;
+  }
+
+  .post-section {
+    margin-bottom: 1rem;
+
+    h2 {
+      font-size: 1.1rem;
+      margin-bottom: 0.6rem;
+    }
+
+    p {
+      font-size: 0.85rem;
+    }
+  }
+
+  .post-navigation {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    gap: 0.6rem;
+  }
+
+  .nav-button {
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  /* Sidebar adjustments from blog.component.scss */
+  .blog-sidebar {
+    padding: 1.2rem;
+  }
+
+  .sidebar-section {
+    margin-bottom: 1.2rem;
+
+    h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.8rem;
+    }
+  }
+
+  .latest-post {
+    padding: 0.5rem 0.7rem;
+    margin-bottom: 0.6rem;
+
+    .latest-post-image {
+      width: 35px;
+      height: 35px;
+      margin-right: 0.6rem;
+    }
+
+    a {
+      font-size: 0.85rem;
+    }
+  }
+
+  .contact-info {
+    padding: 0.5rem 0.7rem;
+    margin-bottom: 0.6rem;
+
+    .contact-icon {
+      width: 16px;
+      height: 16px;
+    }
+
+    span {
+      font-size: 0.8rem;
+    }
+  }
+}

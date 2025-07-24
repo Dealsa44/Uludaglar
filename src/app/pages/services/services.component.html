@@ -1,0 +1,107 @@
+<div class="services-page">
+  <section class="hero-section">
+    <div class="page-header-background">
+      <h1 class="page-title">{{ getTranslatedText(servicesData.title) }}</h1>
+      <div class="header-underline"></div>
+    </div>
+
+    <div class="hero-content-wrapper">
+      <div class="features-section">
+        <img
+          [src]="servicesData.heroSection.svg"
+          alt="Home Icon"
+          class="main-icon"
+        />
+        <h2 class="features-title">
+          {{ getTranslatedText(servicesData.heroSection.title) }}
+        </h2>
+
+        <div class="features-list">
+          <div
+            *ngFor="let feature of servicesData.heroSection.features"
+            class="feature-item"
+          >
+            <img [src]="feature.svg" alt="Feature Icon" class="feature-icon" />
+            <p class="feature-text">{{ getTranslatedText(feature.text) }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-section">
+        <div
+          *ngFor="let item of servicesData.heroSection.gallery"
+          class="gallery-item"
+          (click)="navigateToBlogPost(item.title)"
+        >
+          <img
+            [src]="item.image"
+            alt="{{ getTranslatedText(item.title) }}"
+            class="gallery-image"
+          />
+          <div class="gallery-overlay">
+            <h3 class="gallery-title">{{ getTranslatedText(item.title) }}</h3>
+            <div class="gallery-actions">
+              <span class="read-more">{{
+                getTranslatedText(item.readMore)
+              }}</span>
+              <img [src]="item.playIcon" alt="Play Icon" class="play-icon" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="other-services">
+    <h2 class="section-title">
+      {{ getTranslatedText(servicesData.otherServices.title) }}
+    </h2>
+    <div class="section-underline"></div>
+
+    <div class="services-grid">
+      <div
+        *ngFor="let service of servicesData.otherServices.services"
+        class="service-card"
+      >
+        <div class="service-image-container">
+          <img
+            [src]="service.image"
+            alt="{{ getTranslatedText(service.title) }}"
+            class="service-image"
+          />
+        </div>
+        <div class="service-content">
+          <h3 class="service-title-card">
+            {{ getTranslatedText(service.title) }}
+          </h3>
+          <div class="service-paragraphs">
+            <p *ngFor="let paragraph of service.content">
+              {{ getTranslatedText(paragraph) }}
+            </p>
+          </div>
+          <button
+            class="contact-button"
+            [routerLink]="['/', currentLanguageCode, 'contact']"
+          >
+            {{ getTranslatedText(service.buttonText) }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <h2 class="cta-title">
+      {{ getTranslatedText(servicesData.ctaSection.title) }}
+    </h2>
+    <p class="cta-description">
+      {{ getTranslatedText(servicesData.ctaSection.description) }}
+    </p>
+    <button
+      class="cta-button"
+      [routerLink]="['/', currentLanguageCode, 'contact']"
+    >
+      {{ getTranslatedText(servicesData.ctaSection.buttonText) }}
+    </button>
+  </section>
+</div>

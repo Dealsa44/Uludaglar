@@ -1,0 +1,26 @@
+<div class="vision-mission-page">
+  <div class="page-header-background">
+    <h1 class="page-title">{{ getTranslatedText(vmData.title) }}</h1>
+    <div class="header-underline"></div>
+  </div>
+
+  <div class="content-sections-wrapper">
+    <section class="vision-section">
+      <div class="section-icon-container">
+        <i class="fas fa-eye section-icon"></i> 
+      </div>
+      <h2 class="section-title">{{ getTranslatedText(vmData.content.vision.title) }}</h2>
+      <p class="section-content">{{ getTranslatedText(vmData.content.vision.text) }}</p>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <section class="mission-section">
+      <div class="section-icon-container">
+        <i class="fas fa-bullseye section-icon"></i> 
+      </div>
+      <h2 class="section-title">{{ getTranslatedText(vmData.content.mission.title) }}</h2>
+      <p class="section-content">{{ getTranslatedText(vmData.content.mission.text) }}</p>
+    </section>
+  </div>
+</div>

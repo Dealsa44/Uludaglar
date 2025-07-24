@@ -1,5 +1,5 @@
 /*=============================================
-=            Variable Declarations            =
+=          Variable Declarations            =
 =============================================*/
 
 // Color Palette
@@ -12,8 +12,8 @@ $dropdown-bg: #1b263b;
 $shadow-color: rgba(0, 0, 0, 0.4);
 
 // Fonts
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-$primary-font: 'Poppins', sans-serif;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+$primary-font: "Poppins", sans-serif;
 
 // Transitions & Animations
 $fast-transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -29,7 +29,7 @@ $border-radius-small: 8px;
 /*=====  End of Variable Declarations  ======*/
 
 /*=============================================
-=            Base Navbar Styling              =
+=          Base Navbar Styling              =
 =============================================*/
 
 .navbar {
@@ -60,7 +60,7 @@ $border-radius-small: 8px;
 /*=====  End of Base Navbar Styling  ======*/
 
 /*=============================================
-=                 Logo Styling                =
+=          Logo Styling                     =
 =============================================*/
 
 .navbar-brand {
@@ -90,7 +90,16 @@ $border-radius-small: 8px;
   position: relative;
   cursor: pointer;
 
-  > span {
+  // Reset default anchor tag styling if it's a direct child of nav-link
+  > a {
+    color: inherit;
+    text-decoration: none;
+    display: block; // Ensures the whole area is clickable
+  }
+
+  // Target both the <span> directly inside .nav-link AND <span> inside <a>
+  > span,
+  > a > span {
     color: $primary-text;
     font-weight: 500;
     font-size: 1rem;
@@ -99,9 +108,11 @@ $border-radius-small: 8px;
     padding-bottom: 8px;
     position: relative;
     transition: color 0.3s ease;
+    // Add display block to span to correctly apply padding-bottom and ::after positioning
+    display: block;
 
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       bottom: 0;
       left: 0;
@@ -112,7 +123,18 @@ $border-radius-small: 8px;
     }
   }
 
-  &:hover > span {
+  // Active state for main navigation links and dropdown parents
+  > a.active > span,
+  > span.active { /* Added span.active for dropdown parents */
+    color: $accent-gold;
+    &::after {
+      width: 100%;
+    }
+  }
+
+  // Apply hover effect to both direct <span> and <span> inside <a>
+  &:hover > span,
+  &:hover > a > span {
     color: $accent-gold;
     &::after {
       width: 100%;
@@ -123,7 +145,7 @@ $border-radius-small: 8px;
 /*=====  End of Navigation Links Styling  ======*/
 
 /*=============================================
-=              Dropdown Menu Styling          =
+=          Dropdown Menu Styling            =
 =============================================*/
 
 .dropdown {
@@ -147,7 +169,7 @@ $border-radius-small: 8px;
 
   // Add invisible bridge to prevent gap issues
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: -0.5rem;
     left: 0;
@@ -167,6 +189,7 @@ $border-radius-small: 8px;
       transform: translateX(-50%) scaleY(1);
     }
 
+    // Keep the parent <span> highlighted even if it's not an <a> tag directly
     > span {
       color: $accent-gold;
       &::after {
@@ -186,6 +209,7 @@ $border-radius-small: 8px;
 }
 
 // Keep parent highlighted when hovering dropdown
+// This rule is somewhat redundant with the one inside .nav-link:hover but good for clarity
 .nav-link:hover > span {
   color: $accent-gold;
   &::after {
@@ -196,15 +220,22 @@ $border-radius-small: 8px;
 .dropdown-item {
   display: block;
   padding: 0.8rem 1.8rem;
-  color: $primary-text;
-  text-decoration: none;
+  color: $primary-text !important; /* Ensure the primary text color is applied */
+  text-decoration: none; /* Remove underline */
   transition: $fast-transition;
   white-space: nowrap;
   font-size: 0.95rem;
 
+  // Active state for dropdown items
+  &.active {
+    background-color: $hover-bg;
+    color: $accent-gold !important; /* Ensure the accent gold color on hover */
+    transform: translateX(5px);
+  }
+
   &:hover {
     background-color: $hover-bg;
-    color: $accent-gold;
+    color: $accent-gold !important; /* Ensure the accent gold color on hover */
     transform: translateX(5px);
   }
 
@@ -221,7 +252,7 @@ $border-radius-small: 8px;
 /*=====  End of Dropdown Menu Styling  ======*/
 
 /*=============================================
-=            Right Controls Styling           =
+=          Right Controls Styling             =
 =============================================*/
 
 .right-controls {
@@ -233,7 +264,7 @@ $border-radius-small: 8px;
 /*=====  End of Right Controls Styling  ======*/
 
 /*=============================================
-=            Hamburger Menu Styling           =
+=          Hamburger Menu Styling             =
 =============================================*/
 
 .hamburger {
@@ -273,7 +304,7 @@ $border-radius-small: 8px;
 /*=====  End of Hamburger Menu Styling  ======*/
 
 /*=============================================
-=            Mobile Navigation Styling        =
+=          Mobile Navigation Styling          =
 =============================================*/
 
 .mobile-nav {
@@ -290,25 +321,43 @@ $border-radius-small: 8px;
   box-shadow: -5px 0 15px $shadow-color;
   z-index: 1005;
   overflow-y: auto;
-  
+
   &.active {
     right: 0;
   }
-  
+
   .mobile-nav-item {
     width: 100%;
     text-align: left;
     padding: 1.5rem 2rem;
     border-bottom: 1px solid $subtle-lines;
 
-    > span {
+    // Apply styles to both <span> and <a> > <span> in mobile nav
+    > span,
+    > a > span {
       font-size: 1.1rem;
       display: block;
       width: 100%;
+      color: $primary-text; // Ensure color for mobile nav items
+      // Remove or adjust ::after if it's not desired in mobile menu
+      &::after {
+        content: none; // Or set width: 0; height: 0;
+      }
     }
+
+    // Active state for mobile links
+    > a.active > span,
+    > span.active { /* Added for mobile dropdown parents */
+      color: $accent-gold;
+    }
+
 
     &:hover {
       background-color: $hover-bg;
+      > span,
+      > a > span {
+        color: $accent-gold; // Ensure hover color for mobile nav items
+      }
     }
   }
 }
@@ -326,9 +375,17 @@ $border-radius-small: 8px;
   }
 
   .dropdown-item {
+    color: $primary-text !important; // Apply primary text color here too
     padding: 1rem 1.5rem;
     font-size: 0.9rem;
     border-bottom: 1px solid $subtle-lines;
+
+    // Active state for mobile dropdown items
+    &.active {
+      transform: translateX(10px);
+      background-color: $hover-bg;
+      color: $accent-gold !important;
+    }
 
     &:last-child {
       border-bottom: none;
@@ -337,6 +394,7 @@ $border-radius-small: 8px;
     &:hover {
       transform: translateX(10px);
       background-color: $hover-bg;
+      color: $accent-gold !important; // Ensure accent gold on hover for mobile
     }
   }
 }
@@ -367,7 +425,7 @@ $border-radius-small: 8px;
 /*=====  End of Mobile Navigation Styling  ======*/
 
 /*=============================================
-=            Language Switcher Styling        =
+=          Language Switcher Styling          =
 =============================================*/
 
 .language-toggle {
@@ -414,7 +472,7 @@ $border-radius-small: 8px;
 /*=====  End of Language Switcher Styling  ======*/
 
 /*=============================================
-=            Responsive Design                =
+=          Responsive Design                =
 =============================================*/
 
 /*
@@ -436,7 +494,7 @@ $border-radius-small: 8px;
   .navbar {
     padding: $mobile-padding;
   }
-  
+
   .nav-links {
     display: none;
   }
@@ -477,7 +535,7 @@ $border-radius-small: 8px;
 
     .flag-icon {
       margin-right: 0;
-      width: 28px;      
+      width: 28px;
       height: 28px;
     }
   }
@@ -495,7 +553,7 @@ $border-radius-small: 8px;
   .navbar {
     padding: 0.8rem 1rem;
   }
-  
+
   .navbar-brand .logo {
     height: 40px;
   }
@@ -503,12 +561,12 @@ $border-radius-small: 8px;
   .right-controls {
     gap: 0.5rem;
   }
-  
+
   .language-toggle {
     width: 45px;
     height: 45px;
     min-width: 45px;
-    
+
     .flag-icon {
       width: 24px;
       height: 24px;

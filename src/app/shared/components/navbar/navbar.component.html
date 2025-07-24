@@ -1,43 +1,80 @@
-<nav class="navbar"> 
-  <!-- Logo / Brand -->
+<nav class="navbar">
   <div class="navbar-brand">
-    <img src="assets/imgs/navbar/logo" alt="Uludağlar Logo" class="logo" />
+    <a [routerLink]="['/', currentLanguageCode]">
+      <img src="assets/imgs/navbar/logo.png" alt="Uludağlar Logo" class="logo" />
+    </a>
   </div>
 
-  <!-- Navigation Links (Desktop) -->
   <div class="nav-links">
     <div
       *ngFor="let item of regularNavItems"
       class="nav-link"
       [class.has-dropdown]="hasDropdown(item)"
     >
-      <span>{{ getNavItemTitle(item) }}</span>
+      <a
+        *ngIf="!item.isLanguageToggle && !hasDropdown(item) && !isSocialResponsibilityLink(item)"
+        [routerLink]="['/', currentLanguageCode, item.route]"
+        (click)="closeMobileMenu()"
+        [routerLinkActive]="['active']"
+      >
+        <span>{{ getNavItemTitle(item) }}</span>
+      </a>
+
+      <a
+        *ngIf="isSocialResponsibilityLink(item)"
+        href="http://burs.uludaglar.com/"
+        target="_blank"
+        (click)="closeMobileMenu()"
+      >
+        <span>{{ getNavItemTitle(item) }}</span>
+      </a>
+
+      <span *ngIf="item.isLanguageToggle" (click)="toggleLanguage()">
+        {{ getNavItemTitle(item) }}
+      </span>
+
+      <span
+        *ngIf="hasDropdown(item) && !item.isLanguageToggle"
+        [class.active]="isDropdownParentActive(item)"
+      >
+        {{ getNavItemTitle(item) }}
+      </span>
 
       <div class="dropdown" *ngIf="hasDropdown(item)">
-        <a *ngFor="let dropItem of getDropdownItems(item)" class="dropdown-item">
+        <a
+          *ngFor="let dropItem of getDropdownItems(item)"
+          class="dropdown-item"
+          [routerLink]="['/', currentLanguageCode, dropItem.route]"
+          (click)="closeMobileMenu()"
+          [routerLinkActive]="['active']"
+        >
           {{ dropItem.title[currentLanguageIndex] }}
         </a>
       </div>
     </div>
   </div>
 
-  <!-- Right Side Controls (Language + Hamburger) -->
   <div class="right-controls">
-    <!-- Language Switcher -->
     <button class="language-toggle" (click)="toggleLanguage()">
-      <img [src]="getOtherLanguageFlag()" class="flag-icon" alt="Language Flag" />
+      <img
+        [src]="getOtherLanguageFlag()"
+        class="flag-icon"
+        alt="Language Flag"
+      />
       <span class="lang-text">{{ getOtherLanguageText() }}</span>
     </button>
 
-    <!-- Hamburger Menu (Mobile Only) -->
-    <button class="hamburger" (click)="toggleMobileMenu()" [class.active]="isMobileMenuOpen">
+    <button
+      class="hamburger"
+      (click)="toggleMobileMenu()"
+      [class.active]="isMobileMenuOpen"
+    >
       <span class="bar"></span>
       <span class="bar"></span>
       <span class="bar"></span>
     </button>
   </div>
 
-  <!-- Mobile Navigation Menu -->
   <div class="mobile-nav" [class.active]="isMobileMenuOpen">
     <div
       *ngFor="let item of regularNavItems"
@@ -46,16 +83,56 @@
       (mouseenter)="openMobileDropdown(item)"
       (mouseleave)="closeMobileDropdown(item)"
     >
-      <span>{{ getNavItemTitle(item) }}</span>
-      
-      <div class="mobile-dropdown" *ngIf="hasDropdown(item)" [class.active]="item.mobileDropdownOpen">
-        <a *ngFor="let dropItem of getDropdownItems(item)" class="dropdown-item">
+      <a
+        *ngIf="!item.isLanguageToggle && !hasDropdown(item) && !isSocialResponsibilityLink(item)"
+        [routerLink]="['/', currentLanguageCode, item.route]"
+        (click)="closeMobileMenu()"
+        [routerLinkActive]="['active']"
+      >
+        <span>{{ getNavItemTitle(item) }}</span>
+      </a>
+
+      <a
+        *ngIf="isSocialResponsibilityLink(item)"
+        href="http://burs.uludaglar.com/"
+        target="_blank"
+        (click)="closeMobileMenu()"
+      >
+        <span>{{ getNavItemTitle(item) }}</span>
+      </a>
+
+      <span *ngIf="item.isLanguageToggle" (click)="toggleLanguage()">
+        {{ getNavItemTitle(item) }}
+      </span>
+
+      <span
+        *ngIf="hasDropdown(item) && !item.isLanguageToggle"
+        [class.active]="isDropdownParentActive(item)"
+      >
+        {{ getNavItemTitle(item) }}
+      </span>
+
+      <div
+        class="mobile-dropdown"
+        *ngIf="hasDropdown(item)"
+        [class.active]="item.mobileDropdownOpen"
+      >
+        <a
+          *ngFor="let dropItem of getDropdownItems(item)"
+          class="dropdown-item"
+          [routerLink]="['/', currentLanguageCode, dropItem.route]"
+          (click)="closeMobileMenu()"
+          [routerLinkActive]="['active']"
+        >
           {{ dropItem.title[currentLanguageIndex] }}
         </a>
       </div>
     </div>
   </div>
 
-  <!-- Mobile Menu Overlay -->
-  <div class="mobile-overlay" [class.active]="isMobileMenuOpen" (click)="closeMobileMenu()"></div>
+  <div
+    class="mobile-overlay"
+    [class.active]="isMobileMenuOpen"
+    (click)="closeMobileMenu()"
+  ></div>
 </nav>

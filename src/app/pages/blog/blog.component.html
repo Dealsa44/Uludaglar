@@ -1,0 +1,81 @@
+<div class="blog-page">
+  <div class="blog-container">
+    <div class="blog-posts">
+      <h1 class="page-title">{{ getTranslatedText(blogData.title) }}</h1>
+
+      <div class="posts-grid">
+        <div *ngFor="let post of getPaginatedPosts()" class="post-card">
+          <img
+            [src]="post.image"
+            [alt]="getTranslatedText(post.title)"
+            class="post-image"
+          />
+          <div class="post-content">
+            <h2>{{ getTranslatedText(post.title) }}</h2>
+            <p>{{ getFirstContentText(post) }}</p>
+            <button
+              [routerLink]="['/', currentLanguageIndex, 'blog', post.id]"
+              class="read-more-button"
+            >
+              {{ getTranslatedText(["Devamını Oku", "Read More"]) }}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="pagination">
+        <button
+          *ngIf="currentPage > 1"
+          (click)="changePage(currentPage - 1)"
+          class="page-arrow"
+        >
+          &lt;
+        </button>
+
+        <button
+          *ngFor="let page of [].constructor(getTotalPages()); let i = index"
+          (click)="changePage(i + 1)"
+          [class.active]="currentPage === i + 1"
+          class="page-number"
+        >
+          {{ i + 1 }}
+        </button>
+
+        <button
+          *ngIf="currentPage < getTotalPages()"
+          (click)="changePage(currentPage + 1)"
+          class="page-arrow"
+        >
+          &gt;
+        </button>
+      </div>
+    </div>
+
+    <div class="blog-sidebar">
+      <div class="sidebar-section">
+        <h3>{{ getTranslatedText(blogData.sidebar.latestPostsTitle) }}</h3>
+        <div *ngFor="let post of getLatestPosts()" class="latest-post">
+          <img
+            [src]="post.image"
+            [alt]="getTranslatedText(post.title)"
+            class="latest-post-image"
+          />
+          <a [routerLink]="['/', currentLanguageIndex, 'blog', post.id]">
+            {{ getTranslatedText(post.title) }}
+          </a>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <h3>{{ getTranslatedText(blogData.sidebar.communicationTitle) }}</h3>
+        <div
+          *ngFor="let info of blogData.sidebar.contactInfo"
+          class="contact-info"
+        >
+          <img [src]="info.icon" alt="Contact Icon" class="contact-icon" />
+          <span>{{ getTranslatedText(info.text) }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,84 @@
+<div class="contact-page">
+  <div class="page-header-background">
+    <h1 class="page-title">{{ getTranslatedText(contactData.title) }}</h1>
+    <div class="header-underline"></div>
+  </div>
+
+  <div class="content-wrapper">
+    <div class="branches-section">
+      <div *ngFor="let branch of contactData.branches; let i = index" class="branch-card">
+        <h2 class="branch-title">{{ getTranslatedText(branch.name) }}</h2>
+        
+        <div class="contact-info-grid">
+          <div *ngFor="let info of branch.contactInfo" class="contact-info-item">
+            <a [href]="info.action" class="contact-link" [attr.aria-label]="info.type + ': ' + getTranslatedText(info.value)">
+              <img [src]="info.icon" [alt]="info.type" class="contact-icon">
+              <span class="contact-value-text">{{ getTranslatedText(info.value) }}</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="map-container">
+          <iframe 
+            [src]="branch.mapUrl | safeUrl" 
+            width="100%" 
+            height="400" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="{{ getTranslatedText(branch.name) }} Location">
+          </iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form-section">
+      <h2 class="form-title">{{ getTranslatedText(contactData.form.title) }}</h2>
+      <p class="form-description">{{ getTranslatedText(contactData.form.description) }}</p>
+      
+      <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form">
+        <div *ngFor="let field of contactData.form.fields" class="form-group">
+          <label [for]="field.name" class="form-label">{{ getTranslatedText(field.label) }}<span *ngIf="field.required" class="required-star">*</span></label>
+          <textarea 
+            *ngIf="field.type === 'textarea'" 
+            [id]="field.name" 
+            [formControlName]="field.name"
+            [required]="field.required"
+            [placeholder]="getTranslatedText(field.label) + (field.required ? ' *' : '')"
+            class="form-control"
+          ></textarea>
+          <input 
+            *ngIf="field.type !== 'textarea'" 
+            [type]="field.type || 'text'" 
+            [id]="field.name" 
+            [formControlName]="field.name"
+            [required]="field.required"
+            [placeholder]="getTranslatedText(field.label) + (field.required ? ' *' : '')"
+            class="form-control"
+          >
+          <div *ngIf="contactForm.get(field.name)?.invalid && (contactForm.get(field.name)?.dirty || contactForm.get(field.name)?.touched)" class="error-message">
+            <ng-container *ngIf="contactForm.get(field.name)?.errors?.['required']">
+                {{ getTranslatedText(['Bu alan zorunludur', 'This field is required']) }}
+            </ng-container>
+            <ng-container *ngIf="contactForm.get(field.name)?.errors?.['email']">
+                {{ getTranslatedText(['Geçerli bir email adresi giriniz', 'Please enter a valid email address']) }}
+            </ng-container>
+          </div>
+        </div>
+        
+        <div class="form-group checkbox-group">
+          <input type="checkbox" id="kvkk" formControlName="kvkk" class="form-checkbox">
+          <label for="kvkk" class="checkbox-label">{{ getTranslatedText(contactData.form.kvkkText) }}<span class="required-star">*</span></label>
+          <div *ngIf="contactForm.get('kvkk')?.invalid && (contactForm.get('kvkk')?.dirty || contactForm.get('kvkk')?.touched)" class="error-message">
+            {{ getTranslatedText(['Onay vermelisiniz', 'You must approve']) }}
+          </div>
+        </div>
+        
+        <button type="submit" class="submit-btn" [disabled]="contactForm.invalid">
+          {{ getTranslatedText(contactData.form.submitText) }}
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,221 @@
+<div class="home-page">
+  <section class="hero-slider-section">
+    <div class="slider-container">
+      <img
+        [src]="homeData.heroSlider.images[currentSlideIndex]"
+        [alt]="'Slider Image ' + (currentSlideIndex + 1)"
+        class="slider-image"
+        (click)="navigateToServices()"
+      />
+
+      <div class="slider-controls">
+        <button class="slider-arrow prev" (click)="prevSlide()">
+          &#10094;
+        </button>
+        <button class="slider-arrow next" (click)="nextSlide()">
+          &#10095;
+        </button>
+      </div>
+
+      <div class="slider-dots">
+        <span
+          *ngFor="let image of homeData.heroSlider.images; let i = index"
+          class="dot"
+          [class.active]="currentSlideIndex === i"
+          (click)="goToSlide(i)"
+        ></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="find-property-section">
+    <div class="find-property-content">
+      <h2 class="section-heading">
+        {{ getTranslatedText(homeData.findProperty.heading) }}
+      </h2>
+      <button
+        class="consult-expert-button"
+        [routerLink]="['/', currentLanguageCode, 'contact']"
+      >
+        <img
+          [src]="homeData.findProperty.buttonIcon"
+          alt="Consult Expert Icon"
+          class="button-icon"
+        />
+        {{ getTranslatedText(homeData.findProperty.buttonText) }}
+      </button>
+    </div>
+    <div class="property-types-grid">
+      <div
+        *ngFor="let type of homeData.findProperty.propertyTypes"
+        class="property-type-item"
+      >
+        <img
+          [src]="type.icon"
+          [alt]="getTranslatedText(type.name)"
+          class="property-type-icon"
+        />
+        <p class="property-type-name">{{ getTranslatedText(type.name) }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="why-choose-us-section">
+    <h2 class="section-heading">
+      {{ getTranslatedText(homeData.whyChooseUs.heading) }}
+    </h2>
+    <div class="articles-grid">
+      <div
+        *ngFor="let article of homeData.whyChooseUs.articles"
+        class="article-item"
+      >
+        <img
+          [src]="article.icon"
+          [alt]="getTranslatedText(article.text)"
+          class="article-icon"
+        />
+        <p class="article-text">{{ getTranslatedText(article.text) }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="youtube-videos-section">
+    <h2 class="section-heading">
+      {{ getTranslatedText(homeData.youtubeVideos.heading) }}
+    </h2>
+    <div class="video-grid">
+      <div
+        *ngFor="
+          let videoUrl of homeData.youtubeVideos.videoLinks;
+          trackBy: trackVideo
+        "
+        class="video-wrapper"
+      >
+        <iframe
+          [src]="getSafeYouTubeUrl(videoUrl)"
+          frameborder="0"
+          allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          title="YouTube video player"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+
+  <section class="home-blog-section">
+    <h2 class="section-heading">
+      {{ getTranslatedText(homeData.blogSection.heading) }}
+    </h2>
+    <p class="blog-description">
+      {{ getTranslatedText(homeData.blogSection.description) }}
+    </p>
+    <div class="blog-posts-preview">
+      <div *ngFor="let post of randomBlogPosts" class="blog-preview-card">
+        <img
+          [src]="post.image"
+          [alt]="getTranslatedText(post.title)"
+          class="blog-preview-image"
+        />
+        <div class="blog-preview-content">
+          <h3 class="blog-preview-title">
+            {{ getTranslatedText(post.title) }}
+          </h3>
+          <p class="blog-preview-text">{{ getFirstContentText(post) }}</p>
+          <button
+            class="read-more-button"
+            (click)="navigateToBlogPost(post.id)"
+          >
+            {{ getTranslatedText(["Devamını Oku", "Read More"]) }}
+          </button>
+        </div>
+      </div>
+    </div>
+    <button class="see-all-blogs-button" (click)="navigateToBlogPage()">
+      {{ getTranslatedText(homeData.blogSection.seeAllButton) }}
+    </button>
+  </section>
+
+  <section class="founders-section">
+    <h2 class="section-heading">
+      {{ getTranslatedText(homeData.founders.heading) }}
+    </h2>
+    <div class="founders-grid">
+      <div
+        *ngFor="let founder of homeData.founders.members; let i = index"
+        class="founder-card"
+        (mouseenter)="onFounderHover(i)"
+        (mouseleave)="onFounderLeave()"
+      >
+        <img
+          [src]="founder.image"
+          [alt]="getTranslatedText(founder.name)"
+          class="founder-image"
+        />
+        <div class="founder-text-info">
+          <h3 class="founder-name">{{ getTranslatedText(founder.name) }}</h3>
+          <p class="founder-position">
+            {{ getTranslatedText(founder.position) }}
+          </p>
+        </div>
+        <div
+          class="founder-info-detail"
+          [class.active]="hoveredFounderIndex === i"
+        >
+          <p class="founder-bio">{{ getTranslatedText(founder.info) }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials-section">
+    <h2 class="section-heading">
+      {{ getTranslatedText(homeData.testimonials.heading) }}
+    </h2>
+    <div class="testimonials-container">
+      <div
+        *ngFor="let review of homeData.testimonials.reviews"
+        class="testimonial-card"
+      >
+        <p class="testimonial-text">{{ getTranslatedText(review.text) }}</p>
+        <p class="testimonial-author">
+          <small>{{ getTranslatedText(["tarafından", "by"]) }}</small>
+          <strong>{{ getTranslatedText(review.author) }}</strong>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="partners-section">
+    <h2 class="section-heading">
+      {{ getTranslatedText(homeData.partners.heading) }}
+    </h2>
+    <div class="partners-carousel">
+      <div class="partners-track">
+        <img
+          *ngFor="let partnerImg of homeData.partners.images"
+          [src]="partnerImg"
+          alt="Partner Logo"
+          class="partner-logo"
+        />
+        <img
+          *ngFor="let partnerImg of homeData.partners.images"
+          [src]="partnerImg"
+          alt="Partner Logo"
+          class="partner-logo"
+        />
+        <img
+          *ngFor="let partnerImg of homeData.partners.images"
+          [src]="partnerImg"
+          alt="Partner Logo"
+          class="partner-logo"
+        />
+        <img
+          *ngFor="let partnerImg of homeData.partners.images"
+          [src]="partnerImg"
+          alt="Partner Logo"
+          class="partner-logo"
+        />
+      </div>
+    </div>
+  </section>
+</div>

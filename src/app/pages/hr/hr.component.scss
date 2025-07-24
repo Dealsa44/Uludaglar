@@ -1,0 +1,548 @@
+/* Color Palette Variables */
+$primary-bg: #0d1b2a;
+$accent-gold: #ffd700;
+$primary-text: #e0e1dd;
+$hover-bg: #415a77;
+$subtle-lines: #1b263b;
+$dropdown-bg: #1b263b;
+$shadow-color: rgba(0, 0, 0, 0.6); // Slightly darker shadow for more depth
+
+/* Global Resets and Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  line-height: 1.6;
+  font-family: 'Montserrat', sans-serif; // A more modern font choice
+  background-color: #08111a; // Even darker background for contrast
+  color: $primary-text;
+}
+
+/* --- HR Page Container --- */
+.hr-page {
+  background: linear-gradient(145deg, darken($subtle-lines, 5%) 0%, $subtle-lines 100%); // More complex background
+  padding: 3.5rem 2rem 2rem 2rem; // Increased top padding
+  margin-top: 6rem; // Significantly increased top margin to clear navbar
+  margin-bottom: 3rem; // Consistent bottom margin
+  border-radius: 12px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 15px 30px $shadow-color, 0 5px 10px rgba(0, 0, 0, 0.3); // Deeper shadows
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba($accent-gold, 0.15); // Subtle border
+  transition: all 0.3s ease-in-out; // Smooth transitions
+
+  &:hover {
+    box-shadow: 0 20px 40px $shadow-color, 0 8px 15px rgba(0, 0, 0, 0.4);
+    transform: translateY(-3px);
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba($accent-gold, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(40px);
+    z-index: 0;
+    animation: pulse-light 10s infinite alternate;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -50px;
+    right: -50px;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, rgba($hover-bg, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(30px);
+    z-index: 0;
+    animation: pulse-light-reverse 8s infinite alternate;
+  }
+}
+
+@keyframes pulse-light {
+  0% { transform: scale(1); opacity: 0.7; }
+  100% { transform: scale(1.2); opacity: 0.9; }
+}
+
+@keyframes pulse-light-reverse {
+  0% { transform: scale(1.2); opacity: 0.9; }
+  100% { transform: scale(1); opacity: 0.7; }
+}
+
+/* --- Header Section --- */
+.hr-header-background {
+  background: linear-gradient(160deg, $primary-bg 0%, darken($primary-bg, 5%) 100%);
+  padding: 2.5rem 2rem;
+  margin: -3.5rem -2rem 3rem -2rem; // Adjust to stretch
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1; // Ensure it's above pseudo-elements of hr-page
+  box-shadow: inset 0 -8px 15px rgba(0, 0, 0, 0.2); // Inner shadow for depth
+
+  &::before { // Top-left subtle glow
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, rgba($accent-gold, 0.05) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(25px);
+  }
+}
+
+.hr-heading {
+  font-family: 'Playfair Display', serif; // More elegant font for heading
+  font-size: 3.5rem;
+  color: $accent-gold;
+  margin-bottom: 0.8rem;
+  text-transform: capitalize;
+  letter-spacing: 3px;
+  font-weight: 800;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.6), 0 0 15px rgba($accent-gold, 0.3);
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: lighten($accent-gold, 10%);
+  }
+}
+
+.hr-header-underline {
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(to right, transparent 0%, $accent-gold 50%, transparent 100%);
+  border-radius: 2px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+/* --- Image Section --- */
+.hr-image-container {
+  width: 100%;
+  max-height: 450px;
+  overflow: hidden;
+  border-radius: 10px;
+  margin-bottom: 3.5rem;
+  position: relative;
+  box-shadow: 0 10px 20px $shadow-color, 0 3px 6px rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba($accent-gold, 0.3);
+  transform: translateZ(0); // For better 3D transforms
+  transition: all 0.4s ease-in-out;
+
+  &:hover {
+    transform: translateY(-5px) scale(1.005);
+    box-shadow: 0 18px 35px $shadow-color, 0 6px 12px rgba(0, 0, 0, 0.4);
+  }
+}
+
+.hr-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.9) saturate(1.1); // Subtle image enhancement
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); // Smoother transition
+
+  &:hover {
+    transform: scale(1.07);
+    filter: brightness(1) saturate(1.2);
+  }
+}
+
+.hr-image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba($subtle-lines, 0.8) 0%, transparent 50%, rgba($subtle-lines, 0.7) 100%);
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+
+  &:hover {
+    opacity: 0.5;
+  }
+}
+
+/* --- Content Wrapper --- */
+.hr-content-wrapper {
+  background-color: $primary-bg; // Main content block background
+  padding: 3.5rem;
+  border-radius: 10px;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5), 0 5px 15px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba($accent-gold, 0.25);
+  position: relative;
+  z-index: 1; // Ensure it's above hr-page pseudo-elements
+}
+
+/* --- Intro Section --- */
+.hr-intro-section {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px dashed rgba($subtle-lines, 0.5); // A subtle separator
+  position: relative;
+
+  &::before {
+    content: '“';
+    font-family: 'Playfair Display', serif;
+    font-size: 8rem;
+    color: rgba($accent-gold, 0.1);
+    position: absolute;
+    top: -20px;
+    left: 20px;
+    z-index: 0;
+  }
+  &::after {
+    content: '”';
+    font-family: 'Playfair Display', serif;
+    font-size: 8rem;
+    color: rgba($accent-gold, 0.1);
+    position: absolute;
+    bottom: -60px;
+    right: 20px;
+    z-index: 0;
+  }
+}
+
+.hr-intro-paragraph {
+  font-size: 1.35rem;
+  line-height: 1.9;
+  font-weight: 400;
+  color: lighten($primary-text, 8%);
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* --- Main Content Area --- */
+.hr-content {
+  p {
+    margin-bottom: 1.5rem;
+    text-align: justify;
+    line-height: 1.75;
+    font-size: 1.05rem;
+    color: $primary-text;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: lighten($primary-text, 5%);
+    }
+  }
+
+  .hr-section-heading {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.7rem;
+    color: $accent-gold;
+    font-weight: 700;
+    margin-top: 3.5rem;
+    margin-bottom: 1.8rem;
+    display: block;
+    text-align: center;
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding-bottom: 0.8rem;
+    border-bottom: 2px solid rgba($accent-gold, 0.3);
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+
+    &::before, &::after {
+      content: '';
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background-color: $accent-gold;
+      border-radius: 50%;
+      top: calc(100% - 7px);
+      box-shadow: 0 0 10px rgba($accent-gold, 0.6);
+    }
+    &::before { left: calc(50% - 30px); }
+    &::after { right: calc(50% - 30px); }
+  }
+
+  .hr-list-item {
+    padding-left: 2.5rem;
+    position: relative;
+    margin-bottom: 0.8rem;
+    font-size: 1rem;
+    color: lighten($primary-text, 3%);
+
+    &::before {
+      content: '✔'; // More engaging bullet point
+      font-family: 'Font Awesome 5 Free'; // Requires Font Awesome or similar icon font
+      font-weight: 900;
+      color: $accent-gold;
+      position: absolute;
+      left: 0.8rem;
+      top: 0.1rem;
+      font-size: 1.1rem;
+      text-shadow: 0 0 5px rgba($accent-gold, 0.4);
+    }
+
+    &:hover {
+      color: $primary-text;
+      transform: translateX(5px);
+      transition: transform 0.2s ease;
+    }
+  }
+
+  .hr-note-paragraph {
+    font-style: italic;
+    color: lighten($primary-text, 15%);
+    text-align: center;
+    margin-top: 2.5rem;
+    padding: 1rem 0;
+    border-top: 1px dashed rgba($subtle-lines, 0.4);
+    border-bottom: 1px dashed rgba($subtle-lines, 0.4);
+    background-color: lighten($primary-bg, 3%);
+    border-radius: 5px;
+    font-size: 0.95rem;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: lighten($primary-bg, 5%);
+    }
+  }
+
+  // Specific style for the final contact line
+  p:last-of-type {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: $accent-gold;
+    text-align: center;
+    margin-top: 3rem;
+    text-shadow: 0 0 10px rgba($accent-gold, 0.5);
+    animation: bounce-in 1s ease-out forwards;
+    cursor: pointer;
+
+    &:hover {
+      color: lighten($accent-gold, 15%);
+      text-decoration: underline;
+    }
+  }
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 992px) {
+  .hr-page {
+    margin-top: 5rem;
+    padding: 3rem 1.5rem 1.5rem 1.5rem;
+  }
+
+  .hr-header-background {
+    margin: -3rem -1.5rem 2.5rem -1.5rem;
+    padding: 2rem 1.5rem;
+  }
+
+  .hr-heading {
+    font-size: 2.8rem;
+  }
+
+  .hr-image-container {
+    max-height: 350px;
+    margin-bottom: 3rem;
+  }
+
+  .hr-content-wrapper {
+    padding: 2.5rem;
+  }
+
+  .hr-intro-paragraph {
+    font-size: 1.2rem;
+  }
+
+  .hr-content p {
+    font-size: 1rem;
+  }
+
+  .hr-content .hr-section-heading {
+    font-size: 1.5rem;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .hr-content .hr-list-item {
+    font-size: 0.95rem;
+  }
+
+  .hr-content p:last-of-type {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hr-page {
+    margin-top: 4rem;
+    padding: 2.5rem 1rem 1rem 1rem;
+    border-radius: 8px;
+  }
+
+  .hr-header-background {
+    margin: -2.5rem -1rem 2rem -1rem;
+    padding: 1.8rem 1rem;
+  }
+
+  .hr-heading {
+    font-size: 2.2rem;
+    letter-spacing: 2px;
+  }
+
+  .hr-header-underline {
+    width: 60px;
+  }
+
+  .hr-image-container {
+    max-height: 280px;
+    margin-bottom: 2.5rem;
+  }
+
+  .hr-content-wrapper {
+    padding: 2rem;
+  }
+
+  .hr-intro-section::before, .hr-intro-section::after {
+    font-size: 6rem;
+    opacity: 0.08;
+  }
+
+  .hr-intro-paragraph {
+    font-size: 1.1rem;
+  }
+
+  .hr-content p {
+    font-size: 0.95rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .hr-content .hr-section-heading {
+    font-size: 1.3rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: 1px;
+    padding-bottom: 0.6rem;
+  }
+  .hr-content .hr-section-heading::before, .hr-content .hr-section-heading::after {
+    width: 12px;
+    height: 12px;
+  }
+
+  .hr-content .hr-list-item {
+    padding-left: 2rem;
+    font-size: 0.9rem;
+  }
+
+  .hr-content .hr-list-item::before {
+    left: 0.5rem;
+    font-size: 1rem;
+  }
+
+  .hr-content .hr-note-paragraph {
+    margin-top: 2rem;
+    font-size: 0.9rem;
+  }
+
+  .hr-content p:last-of-type {
+    font-size: 1.2rem;
+    margin-top: 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hr-page {
+    margin-top: 3rem;
+    padding: 1.5rem 0.8rem 0.8rem 0.8rem;
+  }
+
+  .hr-header-background {
+    margin: -1.5rem -0.8rem 1.5rem -0.8rem;
+    padding: 1.2rem 0.8rem;
+  }
+
+  .hr-heading {
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+  }
+
+  .hr-image-container {
+    max-height: 200px;
+    margin-bottom: 2rem;
+  }
+
+  .hr-content-wrapper {
+    padding: 1.5rem;
+  }
+
+  .hr-intro-section::before, .hr-intro-section::after {
+    font-size: 4rem;
+    top: -10px;
+    opacity: 0.05;
+  }
+
+  .hr-intro-paragraph {
+    font-size: 1rem;
+  }
+
+  .hr-content p {
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+  }
+
+  .hr-content .hr-section-heading {
+    font-size: 1.1rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    letter-spacing: 0.5px;
+    padding-bottom: 0.5rem;
+  }
+  .hr-content .hr-section-heading::before, .hr-content .hr-section-heading::after {
+    width: 10px;
+    height: 10px;
+  }
+
+  .hr-content .hr-list-item {
+    padding-left: 1.8rem;
+    font-size: 0.8rem;
+  }
+
+  .hr-content .hr-list-item::before {
+    left: 0.4rem;
+    font-size: 0.9rem;
+  }
+
+  .hr-content .hr-note-paragraph {
+    margin-top: 1.5rem;
+    font-size: 0.8rem;
+    padding: 0.8rem 0;
+  }
+
+  .hr-content p:last-of-type {
+    font-size: 1rem;
+    margin-top: 2rem;
+  }
+}
+
+/* Animations */
+@keyframes bounce-in {
+  0% { transform: scale(0.8); opacity: 0; }
+  60% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); }
+}
