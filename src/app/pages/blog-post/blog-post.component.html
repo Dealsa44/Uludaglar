@@ -2,25 +2,27 @@
   <div class="blog-post-container">
     <div class="blog-post-content">
       <h1 class="post-title">{{ getTranslatedText(post.title) }}</h1>
-      <img [src]="post.image" [alt]="getTranslatedText(post.title)" class="post-image">
-      
+      <img [src]="post.image" [alt]="getTranslatedText(post.title)" class="post-image" />
+
       <div *ngFor="let section of post.content" class="post-section">
         <h2>{{ getTranslatedText(section.heading) }}</h2>
         <p *ngFor="let paragraph of section.text">{{ getTranslatedText(paragraph) }}</p>
       </div>
 
       <div class="post-navigation">
-        <button 
+        <button
           *ngIf="previousPost"
-          [routerLink]="['/', currentLanguageIndex, 'blog', previousPost.id]"
-          class="nav-button previous">
+          [routerLink]="['/', currentLanguageCode, 'blog', previousPost.id]"
+          class="nav-button previous"
+        >
           &lt; {{ getTranslatedText(previousPost.title) }}
         </button>
-        
-        <button 
+
+        <button
           *ngIf="nextPost"
-          [routerLink]="['/', currentLanguageIndex, 'blog', nextPost.id]"
-          class="nav-button next">
+          [routerLink]="['/', currentLanguageCode, 'blog', nextPost.id]"
+          class="nav-button next"
+        >
           {{ getTranslatedText(nextPost.title) }} &gt;
         </button>
       </div>
@@ -35,7 +37,7 @@
             [alt]="getTranslatedText(post.title)"
             class="latest-post-image"
           />
-          <a [routerLink]="['/', currentLanguageIndex, 'blog', post.id]">
+          <a [routerLink]="['/', currentLanguageCode, 'blog', post.id]">
             {{ getTranslatedText(post.title) }}
           </a>
         </div>
@@ -43,13 +45,26 @@
 
       <div class="sidebar-section">
         <h3>{{ getTranslatedText(blogData.sidebar.communicationTitle) }}</h3>
-        <div
-          *ngFor="let info of blogData.sidebar.contactInfo"
-          class="contact-info"
-        >
-          <img [src]="info.icon" alt="Contact Icon" class="contact-icon" />
-          <span>{{ getTranslatedText(info.text) }}</span>
-        </div>
+        <ng-container *ngFor="let info of blogData.sidebar.contactInfo">
+          <a
+            class="contact-info"
+            [href]="
+              info.type === 'address'
+                ? getMapLink(getTranslatedText(info.text))
+                : info.type === 'phone'
+                  ? 'tel:' + getTranslatedText(info.text)
+                  : info.type === 'email'
+                    ? 'mailto:' + getTranslatedText(info.text)
+                    : null
+            "
+            [target]="info.type === 'address' ? '_blank' : '_self'"
+            [style.cursor]="info.type === 'plain' ? 'default' : 'pointer'"
+            rel="noopener noreferrer"
+          >
+            <img [src]="info.icon" alt="Contact Icon" class="contact-icon" />
+            <span>{{ getTranslatedText(info.text) }}</span>
+          </a>
+        </ng-container>
       </div>
     </div>
   </div>

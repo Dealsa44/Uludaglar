@@ -1,37 +1,36 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { footerMocks } from '../../../core/mocks/footermocks';
+import { footerMocks } from '../../../core/mocks/footermocks'; // This will be updated
 import { LanguageService } from '../../../core/services/language.service';
 import { Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Router } from '@angular/router'; // Import RouterModule and Router
-import { blogMocks } from '../../../core/mocks/blogmocks'; // Import blogMocks
+import { RouterModule, Router } from '@angular/router';
+import { blogMocks } from '../../../core/mocks/blogmocks';
 
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [CommonModule, RouterModule], // Add RouterModule here
+  imports: [CommonModule, RouterModule],
   templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.scss']
+  styleUrls: ['./footer.component.scss'],
 })
 export class FooterComponent implements OnInit, OnDestroy {
   footerData = footerMocks;
   currentLanguageIndex = 0;
   private languageSub!: Subscription;
-  blogData = blogMocks; // Make blogMocks available in the component
-  randomPopularPosts: any[] = []; // New property to store random popular posts
+  blogData = blogMocks;
+  randomPopularPosts: any[] = [];
 
   constructor(
     private languageService: LanguageService,
-    private router: Router // Inject Router
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.currentLanguageIndex = this.languageService.getCurrentLanguage();
     this.languageSub = this.languageService.currentLanguage$.subscribe(
-      index => this.currentLanguageIndex = index
+      (index) => (this.currentLanguageIndex = index)
     );
 
-    // Populate random popular posts on init
     this.setRandomPopularPosts();
   }
 
@@ -43,24 +42,19 @@ export class FooterComponent implements OnInit, OnDestroy {
     return Array.isArray(text) ? text[this.currentLanguageIndex] : text;
   }
 
-  // Method to get a random subset of blog posts, similar to your blog component
   setRandomPopularPosts(): void {
-    const allPosts = [...this.blogData.posts]; // Create a shallow copy
-    // Shuffle the array
+    const allPosts = [...this.blogData.posts];
     for (let i = allPosts.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      [allPosts[i], allPosts[j]] = [allPosts[j], allPosts[i]]; // ES6 swap
+      [allPosts[i], allPosts[j]] = [allPosts[j], allPosts[i]];
     }
-    // Take the first 5 random posts (or however many you want for popular posts)
     this.randomPopularPosts = allPosts.slice(0, 5);
   }
 
-  // Helper to get the current language code for routing
   get currentLanguageCode(): string {
     return this.languageService.getCurrentLanguageCode();
   }
 
-  // Method to navigate to a specific blog post
   navigateToBlogPost(postId: number): void {
     this.router.navigate(['/', this.currentLanguageCode, 'blog', postId]);
   }

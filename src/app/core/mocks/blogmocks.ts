@@ -2322,21 +2322,25 @@ export const blogMocks = {
       {
         icon: 'assets/imgs/blog/location.svg',
         text: [
-          'Demetevler 401. Cadde No: 10/C Yenimahalle/ANKARA/Türkiye',
-          'Demetevler 401st Street No: 10/C Yenimahalle/ANKARA/Turkey',
+          'Demetevler, 401. Cd. 10/C, 06200 Yenimahalle/Ankara, Türkiye',
+          'Demetevler, 401st St. No: 10/C, 06200 Yenimahalle/Ankara, Turkey',
         ],
+        type: 'address',
       },
       {
         icon: 'assets/imgs/blog/phone.svg',
         text: ['0(312) 335 55 28', '0(312) 335 55 28'],
+        type: 'phone',
       },
       {
         icon: 'assets/imgs/blog/phone.svg',
         text: ['+90(312) 345 90 66', '+90(312) 345 90 66'],
+        type: 'phone',
       },
       {
         icon: 'assets/imgs/blog/email.svg',
         text: ['emlak@uludaglar.com', 'emlak@uludaglar.com'],
+        type: 'email',
       },
     ],
   },

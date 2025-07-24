@@ -16,46 +16,41 @@
         {{ getTranslatedText(footerData.centralBranch.title) }}
       </h3>
       <address class="footer-address">
-        <p>
-          <a
-            [href]="footerData.centralBranch.mapUrl"
-            target="_blank"
-            class="contact-link"
-          >
-            <img
-              src="assets/icons/location.svg"
-              alt="Location Icon"
-              class="address-icon"
-            />
-            {{ getTranslatedText(footerData.centralBranch.address) }}
-          </a>
-        </p>
-        <p>
-          <a
-            [href]="'tel:' + footerData.centralBranch.phone"
-            class="contact-link"
-          >
-            <img
-              src="assets/icons/phone.svg"
-              alt="Phone Icon"
-              class="address-icon"
-            />
-            {{ footerData.centralBranch.phone }}
-          </a>
-        </p>
-        <p>
-          <a
-            [href]="'mailto:' + footerData.centralBranch.email"
-            class="contact-link"
-          >
-            <img
-              src="assets/icons/mail.svg"
-              alt="Mail Icon"
-              class="address-icon"
-            />
-            {{ footerData.centralBranch.email }}
-          </a>
-        </p>
+        <a
+          [href]="footerData.centralBranch.mapUrl"
+          target="_blank"
+          class="contact-link"
+          rel="noopener noreferrer"
+        >
+          <img
+            src="assets/icons/location.svg"
+            alt="Location Icon"
+            class="address-icon"
+          />
+          <span>{{ getTranslatedText(footerData.centralBranch.address) }}</span>
+        </a>
+        <a
+          [href]="'tel:' + footerData.centralBranch.phone"
+          class="contact-link"
+        >
+          <img
+            src="assets/icons/phone.svg"
+            alt="Phone Icon"
+            class="address-icon"
+          />
+          <span>{{ footerData.centralBranch.phone }}</span>
+        </a>
+        <a
+          [href]="'mailto:' + footerData.centralBranch.email"
+          class="contact-link"
+        >
+          <img
+            src="assets/icons/mail.svg"
+            alt="Mail Icon"
+            class="address-icon"
+          />
+          <span>{{ footerData.centralBranch.email }}</span>
+        </a>
       </address>
     </div>
 
@@ -64,46 +59,43 @@
         {{ getTranslatedText(footerData.eskisehirBranch.title) }}
       </h3>
       <address class="footer-address">
-        <p>
-          <a
-            [href]="footerData.eskisehirBranch.mapUrl"
-            target="_blank"
-            class="contact-link"
-          >
-            <img
-              src="assets/icons/location.svg"
-              alt="Location Icon"
-              class="address-icon"
-            />
-            {{ getTranslatedText(footerData.eskisehirBranch.address) }}
-          </a>
-        </p>
-        <p>
-          <a
-            [href]="'tel:' + footerData.eskisehirBranch.phone"
-            class="contact-link"
-          >
-            <img
-              src="assets/icons/phone.svg"
-              alt="Phone Icon"
-              class="address-icon"
-            />
-            {{ footerData.eskisehirBranch.phone }}
-          </a>
-        </p>
-        <p>
-          <a
-            [href]="'mailto:' + footerData.eskisehirBranch.email"
-            class="contact-link"
-          >
-            <img
-              src="assets/icons/mail.svg"
-              alt="Mail Icon"
-              class="address-icon"
-            />
-            {{ footerData.eskisehirBranch.email }}
-          </a>
-        </p>
+        <a
+          [href]="footerData.eskisehirBranch.mapUrl"
+          target="_blank"
+          class="contact-link"
+          rel="noopener noreferrer"
+        >
+          <img
+            src="assets/icons/location.svg"
+            alt="Location Icon"
+            class="address-icon"
+          />
+          <span>{{
+            getTranslatedText(footerData.eskisehirBranch.address)
+          }}</span>
+        </a>
+        <a
+          [href]="'tel:' + footerData.eskisehirBranch.phone"
+          class="contact-link"
+        >
+          <img
+            src="assets/icons/phone.svg"
+            alt="Phone Icon"
+            class="address-icon"
+          />
+          <span>{{ footerData.eskisehirBranch.phone }}</span>
+        </a>
+        <a
+          [href]="'mailto:' + footerData.eskisehirBranch.email"
+          class="contact-link"
+        >
+          <img
+            src="assets/icons/mail.svg"
+            alt="Mail Icon"
+            class="address-icon"
+          />
+          <span>{{ footerData.eskisehirBranch.email }}</span>
+        </a>
       </address>
     </div>
 
@@ -125,9 +117,8 @@
     <div class="footer-bottom-column">
       <p>
         © Uludağlar Gayrimenkul ®
-        {{
-          getTranslatedText(["Tüm Hakları Saklıdır", "All Rights Reserved"])
-        }}.
+        {{ getTranslatedText(["Tüm Hakları Saklıdır", "All Rights Reserved"]) }}
+        .
       </p>
       <p>
         {{
@@ -152,6 +143,8 @@
         <a
           *ngFor="let social of footerData.socialMedia.links"
           [href]="social.url"
+          target="_blank"
+          rel="noopener noreferrer"
           class="social-icon"
         >
           <img

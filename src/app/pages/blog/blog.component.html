@@ -29,7 +29,7 @@
           (click)="changePage(currentPage - 1)"
           class="page-arrow"
         >
-          &lt;
+          <
         </button>
 
         <button
@@ -46,7 +46,7 @@
           (click)="changePage(currentPage + 1)"
           class="page-arrow"
         >
-          &gt;
+          >
         </button>
       </div>
     </div>
@@ -68,13 +68,26 @@
 
       <div class="sidebar-section">
         <h3>{{ getTranslatedText(blogData.sidebar.communicationTitle) }}</h3>
-        <div
-          *ngFor="let info of blogData.sidebar.contactInfo"
-          class="contact-info"
-        >
-          <img [src]="info.icon" alt="Contact Icon" class="contact-icon" />
-          <span>{{ getTranslatedText(info.text) }}</span>
-        </div>
+        <ng-container *ngFor="let info of blogData.sidebar.contactInfo">
+          <a
+            class="contact-info"
+            [href]="
+              info.type === 'address'
+                ? getMapLink(getTranslatedText(info.text))
+                : info.type === 'phone'
+                ? 'tel:' + getTranslatedText(info.text)
+                : info.type === 'email'
+                ? 'mailto:' + getTranslatedText(info.text)
+                : null
+            "
+            [target]="info.type === 'address' ? '_blank' : '_self'"
+            [style.cursor]="info.type === 'plain' ? 'default' : 'pointer'"
+            rel="noopener noreferrer"
+          >
+            <img [src]="info.icon" alt="Contact Icon" class="contact-icon" />
+            <span>{{ getTranslatedText(info.text) }}</span>
+          </a>
+        </ng-container>
       </div>
     </div>
   </div>

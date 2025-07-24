@@ -1,5 +1,5 @@
 /*=============================================
-=            Variable Declarations            =
+=            Variable Declarations            =
 =============================================*/
 
 // Color Palette
@@ -12,8 +12,8 @@ $dropdown-bg: #1b263b; /* Reused from navbar, but could be specific for footer i
 $shadow-color: rgba(0, 0, 0, 0.4);
 
 // Fonts
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-$primary-font: 'Poppins', sans-serif;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+$primary-font: "Poppins", sans-serif;
 
 // Transitions & Animations
 $fast-transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -24,10 +24,10 @@ $footer-padding-tablet: 2rem 3rem;
 $footer-padding-mobile: 1.5rem 1.5rem;
 $border-radius-small: 8px; /* Reused from navbar */
 
-/*=====  End of Variable Declarations  ======*/
+/*=====  End of Variable Declarations  ======*/
 
 /*=============================================
-=            Footer Base Styling              =
+=            Footer Base Styling              =
 =============================================*/
 
 .footer {
@@ -38,10 +38,10 @@ $border-radius-small: 8px; /* Reused from navbar */
   border-top: 1px solid $subtle-lines;
 }
 
-/*=====  End of Footer Base Styling  ======*/
+/*=====  End of Footer Base Styling  ======*/
 
 /*=============================================
-=            Footer Top Section (4 Columns)   =
+=            Footer Top Section (4 Columns)   =
 =============================================*/
 
 .footer-top {
@@ -63,7 +63,7 @@ $border-radius-small: 8px; /* Reused from navbar */
     padding-bottom: 0.5rem;
 
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       left: 0;
       bottom: 0;
@@ -92,7 +92,7 @@ $border-radius-small: 8px; /* Reused from navbar */
         padding-left: 1rem; /* Space for the arrow */
 
         &::before {
-          content: '›'; /* Simple arrow or bullet */
+          content: "›"; /* Simple arrow or bullet */
           position: absolute;
           left: 0;
           top: 50%;
@@ -112,27 +112,38 @@ $border-radius-small: 8px; /* Reused from navbar */
   .footer-address {
     font-style: normal; /* Override default address italic style */
     font-size: 0.95rem;
-    line-height: 1.6; /* Spacing for address lines */
+    // Removed the 'p' selector here as the <a> directly wraps the content now
+    // p { margin-bottom: 0.5rem; }
 
-    p {
-      margin-bottom: 0.5rem;
-      // We are moving the display: flex and align-items: center to .contact-link
-    }
-
+    // This now targets the <a> tag directly
     .contact-link {
-      color: lighten($primary-text, 10%); /* Slightly lighter text for address details */
+      color: lighten(
+        $primary-text,
+        10%
+      ); /* Slightly lighter text for address details */
       text-decoration: none;
       display: flex; /* Enable flexbox for icon and text alignment */
       align-items: center; /* Vertically align items */
       transition: $fast-transition; /* Add transition for hover effect */
+      margin-bottom: 0.5rem; /* Apply space between these links directly */
+
+      &:last-child {
+        margin-bottom: 0;
+      }
 
       &:hover {
         color: $accent-gold; /* Change text color on hover */
         transform: translateX(5px); /* Subtle slide effect on hover */
 
         .address-icon {
-          filter: brightness(0) saturate(100%) invert(80%) sepia(90%) saturate(1000%) hue-rotate(350deg) brightness(100%) contrast(100%); /* Maintain gold color or adjust as desired on hover */
+          filter: brightness(0) saturate(100%) invert(80%) sepia(90%)
+            saturate(1000%) hue-rotate(350deg) brightness(100%) contrast(100%); /* Keep gold color on hover */
         }
+      }
+
+      span {
+        /* Style for the text inside the a tag */
+        line-height: 1.6;
       }
     }
 
@@ -140,16 +151,18 @@ $border-radius-small: 8px; /* Reused from navbar */
       width: 18px; /* Size for icons */
       height: 18px;
       margin-right: 0.7rem; /* Space between icon and text */
-      filter: brightness(0) saturate(100%) invert(80%) sepia(90%) saturate(1000%) hue-rotate(350deg) brightness(100%) contrast(100%); /* Gold color for icons */
+      filter: brightness(0) saturate(100%) invert(80%) sepia(90%)
+        saturate(1000%) hue-rotate(350deg) brightness(100%) contrast(100%); /* Gold color for icons */
       transition: $fast-transition; /* Add transition for hover effect */
+      flex-shrink: 0; /* Prevent icon from shrinking */
     }
   }
 }
 
-/*=====  End of Footer Top Section  ======*/
+/*=====  End of Footer Top Section  ======*/
 
 /*=============================================
-=            Footer Bottom Section (3 Columns) =
+=            Footer Bottom Section (3 Columns) =
 =============================================*/
 
 .footer-bottom {
@@ -184,7 +197,8 @@ $border-radius-small: 8px; /* Reused from navbar */
 .footer-logo {
   height: 60px; /* Adjust logo size */
   width: auto;
-  filter: brightness(0) saturate(100%) invert(98%) sepia(2%) saturate(2462%) hue-rotate(189deg) brightness(115%) contrast(100%); /* Adjust to primary-text color if original is dark */
+  filter: brightness(0) saturate(100%) invert(98%) sepia(2%) saturate(2462%)
+    hue-rotate(189deg) brightness(115%) contrast(100%); /* Adjust to primary-text color if original is dark */
   transition: $fast-transition;
 
   &:hover {
@@ -202,6 +216,7 @@ $border-radius-small: 8px; /* Reused from navbar */
   gap: 0.8rem; /* Space between social icons */
 
   .social-icon {
+    // This is now the <a> tag
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -214,23 +229,26 @@ $border-radius-small: 8px; /* Reused from navbar */
     img {
       width: 22px;
       height: 22px;
-      filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7469%) hue-rotate(289deg) brightness(116%) contrast(100%); /* Make icons white */
+      filter: brightness(0) saturate(100%) invert(100%) sepia(0%)
+        saturate(7469%) hue-rotate(289deg) brightness(116%) contrast(100%); /* Make icons white */
     }
 
     &:hover {
       background-color: $accent-gold; /* Gold background on hover */
       transform: translateY(-3px); /* Subtle lift effect */
       img {
-        filter: brightness(0) saturate(100%) invert(6%) sepia(16%) saturate(6747%) hue-rotate(193deg) brightness(97%) contrast(103%); /* Make icons dark when hovered */
+        // Updated filter to make the icon almost black on gold hover
+        filter: brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(0%)
+          hue-rotate(0deg) brightness(0%) contrast(100%);
       }
     }
   }
 }
 
-/*=====  End of Footer Bottom Section  ======*/
+/*=====  End of Footer Bottom Section  ======*/
 
 /*=============================================
-=            Responsive Design                =
+=            Responsive Design                =
 =============================================*/
 
 /* Tablet View: Stack columns 2x2, then 1x1 if needed */
@@ -287,16 +305,13 @@ $border-radius-small: 8px; /* Reused from navbar */
 
     .footer-links li a {
       padding-left: 0; /* Remove left padding */
-      text-align: center; /* Center the links */
+      // Text align is handled by parent .footer-column text-align: center;
       &::before {
         display: none; /* Hide arrow on mobile */
       }
     }
-    .footer-address p {
-        text-align: center; // This targets the <p> elements
-    }
     .footer-address .contact-link {
-        justify-content: center; /* Center content when icons are present on mobile */
+      justify-content: center; /* Center content when icons are present on mobile */
     }
   }
 
@@ -317,7 +332,8 @@ $border-radius-small: 8px; /* Reused from navbar */
   }
 
   .footer-links li a,
-  .footer-address .contact-link { // Target the contact-link here
+  .footer-address .contact-link {
+    // Target the contact-link here
     font-size: 0.9rem;
   }
 
@@ -331,4 +347,4 @@ $border-radius-small: 8px; /* Reused from navbar */
   }
 }
 
-/*=====  End of Responsive Design  ======*/
+/*=====  End of Responsive Design  ======*/

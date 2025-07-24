@@ -9,7 +9,11 @@ $shadow-color: rgba(0, 0, 0, 0.6);
 
 /* --- Blog Page Container --- */
 .blog-page {
-  background: linear-gradient(145deg, darken($subtle-lines, 5%) 0%, $subtle-lines 100%);
+  background: linear-gradient(
+    145deg,
+    darken($subtle-lines, 5%) 0%,
+    $subtle-lines 100%
+  );
   padding: 0 2rem 3rem 2rem;
   margin-top: 6rem; /* Ensures clearance from navbar */
   margin-bottom: 3rem;
@@ -31,13 +35,17 @@ $shadow-color: rgba(0, 0, 0, 0.6);
 
   /* Decorative background elements (same as Services page) */
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: -50px;
     left: -50px;
     width: 200px;
     height: 200px;
-    background: radial-gradient(circle, rgba($accent-gold, 0.1) 0%, transparent 70%);
+    background: radial-gradient(
+      circle,
+      rgba($accent-gold, 0.1) 0%,
+      transparent 70%
+    );
     border-radius: 50%;
     filter: blur(40px);
     z-index: 0;
@@ -45,13 +53,17 @@ $shadow-color: rgba(0, 0, 0, 0.6);
   }
 
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: -50px;
     right: -50px;
     width: 150px;
     height: 150px;
-    background: radial-gradient(circle, rgba($hover-bg, 0.15) 0%, transparent 70%);
+    background: radial-gradient(
+      circle,
+      rgba($hover-bg, 0.15) 0%,
+      transparent 70%
+    );
     border-radius: 50%;
     filter: blur(30px);
     z-index: 0;
@@ -61,18 +73,36 @@ $shadow-color: rgba(0, 0, 0, 0.6);
 
 /* Keyframe Animations (copied from your styled component) */
 @keyframes fade-in {
-  0% { opacity: 0; transform: translateY(20px); }
-  100% { opacity: 1; transform: translateY(0); }
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes pulse-light {
-  0% { transform: scale(1); opacity: 0.7; }
-  100% { transform: scale(1.2); opacity: 0.9; }
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1.2);
+    opacity: 0.9;
+  }
 }
 
 @keyframes pulse-light-reverse {
-  0% { transform: scale(1.2); opacity: 0.9; }
-  100% { transform: scale(1); opacity: 0.7; }
+  0% {
+    transform: scale(1.2);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
 }
 
 /* --- Blog Container Layout --- */
@@ -93,7 +123,7 @@ $shadow-color: rgba(0, 0, 0, 0.6);
 
 /* --- Page Title (consistent with Services page header) --- */
 .page-title {
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
   font-size: 3.5rem;
   color: $accent-gold;
   margin-bottom: 2.5rem;
@@ -109,18 +139,23 @@ $shadow-color: rgba(0, 0, 0, 0.6);
     color: lighten($accent-gold, 10%);
   }
 
-  &::after { /* Underline for the main title */
-    content: '';
+  &::after {
+    /* Underline for the main title */
+    content: "";
     display: block;
     width: 100px;
     height: 4px;
-    background: linear-gradient(to right, transparent 0%, $accent-gold 50%, transparent 100%);
+    background: linear-gradient(
+      to right,
+      transparent 0%,
+      $accent-gold 50%,
+      transparent 100%
+    );
     border-radius: 2px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
     margin: 1rem auto 0 auto;
   }
 }
-
 
 /* --- Blog Posts Section --- */
 .blog-posts {
@@ -130,7 +165,10 @@ $shadow-color: rgba(0, 0, 0, 0.6);
 
 .posts-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid for posts */
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(280px, 1fr)
+  ); /* Responsive grid for posts */
   gap: 2.5rem;
   margin-bottom: 3rem;
 }
@@ -198,7 +236,8 @@ $shadow-color: rgba(0, 0, 0, 0.6);
   font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease,
+    box-shadow 0.3s ease;
   box-shadow: 0 3px 10px rgba($accent-gold, 0.4);
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -235,7 +274,8 @@ $shadow-color: rgba(0, 0, 0, 0.6);
   cursor: pointer;
   font-size: 1rem;
   font-weight: 500;
-  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease,
+    box-shadow 0.3s ease;
 
   &:hover:not(.active) {
     background-color: $hover-bg;
@@ -273,7 +313,7 @@ $shadow-color: rgba(0, 0, 0, 0.6);
   }
 
   h3 {
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-size: 1.6rem;
     color: $accent-gold;
     margin-bottom: 1.5rem;
@@ -331,6 +371,7 @@ $shadow-color: rgba(0, 0, 0, 0.6);
 }
 
 .contact-info {
+  /* This is now the <a> tag itself in the HTML */
   display: flex;
   align-items: center;
   margin-bottom: 1rem;
@@ -340,11 +381,19 @@ $shadow-color: rgba(0, 0, 0, 0.6);
   box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.3);
   border: 1px solid rgba($subtle-lines, 0.4);
   transition: background-color 0.3s ease, transform 0.2s ease;
+  cursor: pointer; /* Pointer for the entire clickable area */
+
+  /* Remove default link styling */
+  color: $primary-text; /* Ensure text color is inherited/set here */
+  text-decoration: none; /* Remove underline */
 
   &:hover {
     background-color: $hover-bg;
     transform: translateX(5px);
   }
+
+  /* No specific :hover styles for the <a> tag itself here,
+     as the parent .contact-info handles the visual feedback */
 
   .contact-icon {
     width: 24px;
@@ -356,10 +405,9 @@ $shadow-color: rgba(0, 0, 0, 0.6);
 
   span {
     font-size: 0.95rem;
-    color: $primary-text;
+    color: $primary-text; /* Ensure the text color within the <span> is also correct */
   }
 }
-
 
 /* --- Responsive Adjustments --- */
 @media (max-width: 992px) {

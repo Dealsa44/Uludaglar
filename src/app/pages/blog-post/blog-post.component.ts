@@ -10,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './blog-post.component.html',
-  styleUrls: ['./blog-post.component.scss']
+  styleUrls: ['./blog-post.component.scss'],
 })
 export class BlogPostComponent implements OnInit {
   blogData = blogMocks;
@@ -28,18 +28,24 @@ export class BlogPostComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentLanguageIndex = this.languageService.getCurrentLanguage();
-    this.languageService.currentLanguage$.subscribe(index => {
+    this.languageService.currentLanguage$.subscribe((index) => {
       this.currentLanguageIndex = index;
     });
 
-    this.route.params.subscribe(params => {
+    this.route.params.subscribe((params) => {
       this.postId = +params['id'];
-      this.post = this.blogData.posts.find(p => p.id === this.postId);
-      
-      const currentIndex = this.blogData.posts.findIndex(p => p.id === this.postId);
+      this.post = this.blogData.posts.find((p) => p.id === this.postId);
+
+      const currentIndex = this.blogData.posts.findIndex((p) => p.id === this.postId);
       this.previousPost = currentIndex > 0 ? this.blogData.posts[currentIndex - 1] : null;
-      this.nextPost = currentIndex < this.blogData.posts.length - 1 ? this.blogData.posts[currentIndex + 1] : null;
+      this.nextPost =
+        currentIndex < this.blogData.posts.length - 1 ? this.blogData.posts[currentIndex + 1] : null;
     });
+  }
+
+  // New getter to provide the language code to the template
+  get currentLanguageCode(): string {
+    return this.languageService.getCurrentLanguageCode();
   }
 
   getTranslatedText(text: string | string[]): string {
@@ -61,6 +67,17 @@ export class BlogPostComponent implements OnInit {
     if (post.content && post.content.length > 0 && post.content[0].text) {
       return this.getTranslatedText(post.content[0].text);
     }
-    return ''; 
+    return '';
+  }
+
+  /**
+   * Generates a Google Maps link for a given address.
+   * Encodes the address for use in a URL.
+   * @param address The address to generate the map link for.
+   * @returns A Google Maps URL.
+   */
+  getMapLink(address: string): string {
+    // Make sure the base URL is correct based on your previous request
+    return `https://www.google.com/maps/place/Uluda%C4%9Flar+Property+(Real+Estate)/@39.968399,32.788303,16z/data=!4m6!3m5!1s0x14d3494264b3eedf:0x26f74fd2eb78d61b!8m2!3d39.968355!4d32.7866965!16s%2Fg%2F1w6049nc?hl=en-US&entry=ttu${encodeURIComponent(address)}`;
   }
 }

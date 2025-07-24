@@ -71,4 +71,15 @@ export class BlogComponent implements OnInit {
     }
     return '';
   }
+
+  /**
+   * Generates a Google Maps link for a given address.
+   * Encodes the address for use in a URL.
+   * @param address The address to generate the map link for.
+   * @returns A Google Maps URL.
+   */
+  getMapLink(address: string): string {
+    // Changed the base URL as requested
+    return `https://www.google.com/maps/place/Uluda%C4%9Flar+Property+(Real+Estate)/@39.968399,32.788303,16z/data=!4m6!3m5!1s0x14d3494264b3eedf:0x26f74fd2eb78d61b!8m2!3d39.968355!4d32.7866965!16s%2Fg%2F1w6049nc?hl=en-US&entry=ttu?q=${encodeURIComponent(address)}`;
+  }
 }
