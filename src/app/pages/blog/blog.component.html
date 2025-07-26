@@ -6,6 +6,7 @@
       <div class="posts-grid">
         <div *ngFor="let post of getPaginatedPosts()" class="post-card">
           <img
+            loading="lazy"
             [src]="post.image"
             [alt]="getTranslatedText(post.title)"
             class="post-image"
@@ -56,6 +57,7 @@
         <h3>{{ getTranslatedText(blogData.sidebar.latestPostsTitle) }}</h3>
         <div *ngFor="let post of getLatestPosts()" class="latest-post">
           <img
+            loading="lazy"
             [src]="post.image"
             [alt]="getTranslatedText(post.title)"
             class="latest-post-image"
@@ -84,7 +86,12 @@
             [style.cursor]="info.type === 'plain' ? 'default' : 'pointer'"
             rel="noopener noreferrer"
           >
-            <img [src]="info.icon" alt="Contact Icon" class="contact-icon" />
+            <img
+              [src]="info.icon"
+              loading="lazy"
+              alt="Contact Icon"
+              class="contact-icon"
+            />
             <span>{{ getTranslatedText(info.text) }}</span>
           </a>
         </ng-container>

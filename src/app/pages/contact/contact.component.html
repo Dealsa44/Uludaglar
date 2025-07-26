@@ -24,7 +24,12 @@
                 info.type + ': ' + getTranslatedText(info.value)
               "
             >
-              <img [src]="info.icon" [alt]="info.type" class="contact-icon" />
+              <img
+                [src]="info.icon"
+                loading="lazy"
+                [alt]="info.type"
+                class="contact-icon"
+              />
               <span class="contact-value-text">{{
                 getTranslatedText(info.value)
               }}</span>

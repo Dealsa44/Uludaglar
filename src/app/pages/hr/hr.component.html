@@ -5,24 +5,45 @@
   </div>
 
   <div class="hr-image-container">
-    <img [src]="hrData.image" alt="{{ getTranslatedText(hrData.heading) }}" class="hr-image">
+    <img
+      [src]="hrData.image"
+      loading="lazy"
+      alt="{{ getTranslatedText(hrData.heading) }}"
+      class="hr-image"
+    />
     <div class="hr-image-overlay"></div>
   </div>
 
   <div class="hr-content-wrapper">
     <div class="hr-intro-section">
-      <p class="hr-intro-paragraph">{{ hrData.content[currentLanguageIndex][0] }}</p>
+      <p class="hr-intro-paragraph">
+        {{ hrData.content[currentLanguageIndex][0] }}
+      </p>
     </div>
     <div class="hr-content">
-      <ng-container *ngFor="let paragraph of hrData.content[currentLanguageIndex]; let i = index">
-        <p *ngIf="i > 0"
+      <ng-container
+        *ngFor="
+          let paragraph of hrData.content[currentLanguageIndex];
+          let i = index
+        "
+      >
+        <p
+          *ngIf="i > 0"
           [ngClass]="{
             'hr-section-heading': isSectionHeading(paragraph),
             'hr-note-paragraph': paragraph.includes('Not:'),
-            'hr-list-item': isListItem(i, paragraph) && !isSectionHeading(paragraph) && !paragraph.includes('Not:')
-          }">
-          <ng-container *ngIf="isCallUsLetsTalkSection(paragraph); else regularParagraph">
-            <a (click)="navigateToContact()" class="hr-call-us-link">{{ paragraph }}</a>
+            'hr-list-item':
+              isListItem(i, paragraph) &&
+              !isSectionHeading(paragraph) &&
+              !paragraph.includes('Not:')
+          }"
+        >
+          <ng-container
+            *ngIf="isCallUsLetsTalkSection(paragraph); else regularParagraph"
+          >
+            <a (click)="navigateToContact()" class="hr-call-us-link">{{
+              paragraph
+            }}</a>
           </ng-container>
           <ng-template #regularParagraph>
             {{ paragraph }}

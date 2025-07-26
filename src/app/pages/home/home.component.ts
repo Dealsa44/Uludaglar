@@ -3,6 +3,7 @@ import {
   OnInit,
   OnDestroy,
   ChangeDetectionStrategy,
+  ChangeDetectorRef, // Import ChangeDetectorRef
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
@@ -18,7 +19,7 @@ import { Subscription, interval } from 'rxjs';
   imports: [CommonModule, RouterModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush, // Keep OnPush for performance
 })
 export class HomeComponent implements OnInit, OnDestroy {
   homeData = homeMocks;
@@ -51,13 +52,18 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(
     private languageService: LanguageService,
     private router: Router,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private cdr: ChangeDetectorRef // Inject ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
     this.currentLanguageIndex = this.languageService.getCurrentLanguage();
     this.languageSub = this.languageService.currentLanguage$.subscribe(
-      (index) => (this.currentLanguageIndex = index)
+      (index) => {
+        this.currentLanguageIndex = index;
+        // IMPORTANT: Trigger change detection manually because of OnPush strategy
+        this.cdr.markForCheck();
+      }
     );
 
     this.startSlider();
@@ -124,6 +130,7 @@ export class HomeComponent implements OnInit, OnDestroy {
           return acc;
         }, {} as Record<string, string>)
       ).toString();
+      // Corrected URL: ensure it starts with 'https://' for YouTube embeds
       const safeUrl = `https://www.youtube.com/embed/${videoId}?${params}`;
       this.videoUrlCache.set(
         url,

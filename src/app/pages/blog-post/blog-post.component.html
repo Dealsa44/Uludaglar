@@ -2,11 +2,18 @@
   <div class="blog-post-container">
     <div class="blog-post-content">
       <h1 class="post-title">{{ getTranslatedText(post.title) }}</h1>
-      <img [src]="post.image" [alt]="getTranslatedText(post.title)" class="post-image" />
+      <img
+        loading="lazy"
+        [src]="post.image"
+        [alt]="getTranslatedText(post.title)"
+        class="post-image"
+      />
 
       <div *ngFor="let section of post.content" class="post-section">
         <h2>{{ getTranslatedText(section.heading) }}</h2>
-        <p *ngFor="let paragraph of section.text">{{ getTranslatedText(paragraph) }}</p>
+        <p *ngFor="let paragraph of section.text">
+          {{ getTranslatedText(paragraph) }}
+        </p>
       </div>
 
       <div class="post-navigation">
@@ -33,6 +40,7 @@
         <h3>{{ getTranslatedText(blogData.sidebar.latestPostsTitle) }}</h3>
         <div *ngFor="let post of getLatestPosts()" class="latest-post">
           <img
+            loading="lazy"
             [src]="post.image"
             [alt]="getTranslatedText(post.title)"
             class="latest-post-image"
@@ -52,16 +60,21 @@
               info.type === 'address'
                 ? getMapLink(getTranslatedText(info.text))
                 : info.type === 'phone'
-                  ? 'tel:' + getTranslatedText(info.text)
-                  : info.type === 'email'
-                    ? 'mailto:' + getTranslatedText(info.text)
-                    : null
+                ? 'tel:' + getTranslatedText(info.text)
+                : info.type === 'email'
+                ? 'mailto:' + getTranslatedText(info.text)
+                : null
             "
             [target]="info.type === 'address' ? '_blank' : '_self'"
             [style.cursor]="info.type === 'plain' ? 'default' : 'pointer'"
             rel="noopener noreferrer"
           >
-            <img [src]="info.icon" alt="Contact Icon" class="contact-icon" />
+            <img
+              [src]="info.icon"
+              loading="lazy"
+              alt="Contact Icon"
+              class="contact-icon"
+            />
             <span>{{ getTranslatedText(info.text) }}</span>
           </a>
         </ng-container>

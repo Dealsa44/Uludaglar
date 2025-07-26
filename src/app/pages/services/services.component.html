@@ -8,6 +8,7 @@
     <div class="hero-content-wrapper">
       <div class="features-section">
         <img
+          loading="lazy"
           [src]="servicesData.heroSection.svg"
           alt="Home Icon"
           class="main-icon"
@@ -21,7 +22,12 @@
             *ngFor="let feature of servicesData.heroSection.features"
             class="feature-item"
           >
-            <img [src]="feature.svg" alt="Feature Icon" class="feature-icon" />
+            <img
+              [src]="feature.svg"
+              loading="lazy"
+              alt="Feature Icon"
+              class="feature-icon"
+            />
             <p class="feature-text">{{ getTranslatedText(feature.text) }}</p>
           </div>
         </div>
@@ -34,6 +40,7 @@
           (click)="navigateToBlogPost(item.title)"
         >
           <img
+            loading="lazy"
             [src]="item.image"
             alt="{{ getTranslatedText(item.title) }}"
             class="gallery-image"
@@ -44,7 +51,12 @@
               <span class="read-more">{{
                 getTranslatedText(item.readMore)
               }}</span>
-              <img [src]="item.playIcon" alt="Play Icon" class="play-icon" />
+              <img
+                [src]="item.playIcon"
+                loading="lazy"
+                alt="Play Icon"
+                class="play-icon"
+              />
             </div>
           </div>
         </div>
@@ -65,6 +77,7 @@
       >
         <div class="service-image-container">
           <img
+            loading="lazy"
             [src]="service.image"
             alt="{{ getTranslatedText(service.title) }}"
             class="service-image"

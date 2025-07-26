@@ -2,6 +2,7 @@
   <section class="hero-slider-section">
     <div class="slider-container">
       <img
+        loading="lazy"
         [src]="homeData.heroSlider.images[currentSlideIndex]"
         [alt]="'Slider Image ' + (currentSlideIndex + 1)"
         class="slider-image"
@@ -38,6 +39,7 @@
         [routerLink]="['/', currentLanguageCode, 'contact']"
       >
         <img
+          loading="lazy"
           [src]="homeData.findProperty.buttonIcon"
           alt="Consult Expert Icon"
           class="button-icon"
@@ -51,6 +53,7 @@
         class="property-type-item"
       >
         <img
+        loading="lazy"
           [src]="type.icon"
           [alt]="getTranslatedText(type.name)"
           class="property-type-icon"
@@ -70,6 +73,7 @@
         class="article-item"
       >
         <img
+        loading="lazy"
           [src]="article.icon"
           [alt]="getTranslatedText(article.text)"
           class="article-icon"
@@ -112,6 +116,7 @@
     <div class="blog-posts-preview">
       <div *ngFor="let post of randomBlogPosts" class="blog-preview-card">
         <img
+        loading="lazy"
           [src]="post.image"
           [alt]="getTranslatedText(post.title)"
           class="blog-preview-image"
@@ -147,6 +152,7 @@
         (mouseleave)="onFounderLeave()"
       >
         <img
+        loading="lazy"
           [src]="founder.image"
           [alt]="getTranslatedText(founder.name)"
           class="founder-image"
@@ -192,24 +198,28 @@
     <div class="partners-carousel">
       <div class="partners-track">
         <img
+        loading="lazy"
           *ngFor="let partnerImg of homeData.partners.images"
           [src]="partnerImg"
           alt="Partner Logo"
           class="partner-logo"
         />
         <img
+        loading="lazy"
           *ngFor="let partnerImg of homeData.partners.images"
           [src]="partnerImg"
           alt="Partner Logo"
           class="partner-logo"
         />
         <img
+        loading="lazy"
           *ngFor="let partnerImg of homeData.partners.images"
           [src]="partnerImg"
           alt="Partner Logo"
           class="partner-logo"
         />
         <img
+        loading="lazy"
           *ngFor="let partnerImg of homeData.partners.images"
           [src]="partnerImg"
           alt="Partner Logo"
