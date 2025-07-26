@@ -4,8 +4,8 @@ export const blogMocks = {
     {
       id: 1,
       title: [
-        'ARSA SATIMDA DİKKAT EDİLECEK HUSUSLAR',
-        'IMPORTANT POINTS IN LAND SALES',
+        'Arsa Satimda Dikkat Edilecek Hususlar',
+        'Important Points In Land Sales',
       ],
       image: 'assets/imgs/blog/pic1.jpg',
       excerpt: ['Alıcının Kimliği', "Buyer's Identity"],
