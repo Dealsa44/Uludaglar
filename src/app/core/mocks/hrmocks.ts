@@ -1,6 +1,6 @@
 export const hrMocks = {
   heading: ['İnsan Kaynakları', 'Human Resources'],
-  image: 'assets/imgs/humanresources/pic1.jpeg',
+  image: '/assets/imgs/humanresources/pic1.jpeg',
   content: [
     [
       'Yeni fırsatlara yükselen bir bölgede ve modern bir ofiste, güçlü bir kurumsal çatı altında, profesyonel, tecrübeli ve donanımlı bir ekiple başlangıç yapın. Gayrimenkul danışmanı olarak %60 lehinize olacak şekilde kazanç paylaşımı modeliyle bizimle çalışmak ister misiniz?',

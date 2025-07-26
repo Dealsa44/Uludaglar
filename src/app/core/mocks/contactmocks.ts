@@ -6,19 +6,19 @@ export const contactMocks = {
       contactInfo: [
         {
           type: 'phone',
-          icon: 'assets/imgs/contactus/telephone.svg',
+          icon: '/assets/imgs/contactus/telephone.svg',
           value: '+90 312 335 55 28',
           action: 'tel:+903123355528',
         },
         {
           type: 'email',
-          icon: 'assets/imgs/contactus/e-mail.svg',
+          icon: '/assets/imgs/contactus/e-mail.svg',
           value: 'emlak@uludaglar.com',
           action: 'mailto:emlak@uludaglar.com',
         },
         {
           type: 'address',
-          icon: 'assets/imgs/contactus/address.svg',
+          icon: '/assets/imgs/contactus/address.svg',
           value: [
             'Demetevler, 401. Cd. 10/C, 06200 Yenimahalle/Ankara, Türkiye',
             'Demetevler, 401st St. No: 10/C, 06200 Yenimahalle/Ankara, Turkey',
@@ -35,19 +35,19 @@ export const contactMocks = {
       contactInfo: [
         {
           type: 'phone',
-          icon: 'assets/imgs/contactus/telephone.svg',
+          icon: '/assets/imgs/contactus/telephone.svg',
           value: '+90 312 504 06 06',
           action: 'tel:+903125040606',
         },
         {
           type: 'email',
-          icon: 'assets/imgs/contactus/e-mail.svg',
+          icon: '/assets/imgs/contactus/e-mail.svg',
           value: 'emlak@uludaglar.com',
           action: 'mailto:emlak@uludaglar.com',
         },
         {
           type: 'address',
-          icon: 'assets/imgs/contactus/address.svg',
+          icon: '/assets/imgs/contactus/address.svg',
           value: [
             'Fatih Sultan, 2363. Cd. No: 21, 06790 Etimesgut/Ankara, Türkiye',
             'Fatih Sultan, 2363rd St. No: 21, 06790 Etimesgut/Ankara, Turkey',

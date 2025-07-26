@@ -30,8 +30,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
   ];
 
   languageFlags = [
-    'assets/imgs/navbar/tr.svg',
-    'assets/imgs/navbar/en.svg',
+    '/assets/imgs/navbar/tr.svg',
+    '/assets/imgs/navbar/en.svg',
   ];
 
   constructor(

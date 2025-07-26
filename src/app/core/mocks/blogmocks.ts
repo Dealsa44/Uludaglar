@@ -7,7 +7,7 @@ export const blogMocks = {
         'Arsa Satimda Dikkat Edilecek Hususlar',
         'Important Points In Land Sales',
       ],
-      image: 'assets/imgs/blog/pic1.jpg',
+      image: '/assets/imgs/blog/pic1.jpg',
       excerpt: ['Alıcının Kimliği', "Buyer's Identity"],
       content: [
         {
@@ -59,7 +59,7 @@ export const blogMocks = {
     {
       id: 2,
       title: ['Yatırım Terimler Sözlüğü', 'Investment Terms Dictionary'],
-      image: 'assets/imgs/blog/pic2.jpg',
+      image: '/assets/imgs/blog/pic2.jpg',
       excerpt: ['AÇIĞA ALIŞ', 'SHORT BUYING'],
       content: [
         {
@@ -105,7 +105,7 @@ export const blogMocks = {
     {
       id: 3,
       title: ['Yola Terk Haritaları Nedir?', 'What are Road Abandonment Maps?'],
-      image: 'assets/imgs/blog/pic3.jpg',
+      image: '/assets/imgs/blog/pic3.jpg',
       excerpt: ['Tanım', 'Definition'],
       content: [
         {
@@ -151,7 +151,7 @@ export const blogMocks = {
         'Tevhit (Birleştirme) Nedir?',
         'What is Tevhit (Land Consolidation)?',
       ],
-      image: 'assets/imgs/blog/pic4.jpg',
+      image: '/assets/imgs/blog/pic4.jpg',
       excerpt: ['Tanım', 'Definition'],
       content: [
         {
@@ -190,7 +190,7 @@ export const blogMocks = {
         'Miktar Tashihi (Teknik Hataların Düzeltilmesi) Nasıl Yapılır?',
         'How is Quantity Correction (Technical Error Fix) Performed?',
       ],
-      image: 'assets/imgs/blog/pic5.jpg',
+      image: '/assets/imgs/blog/pic5.jpg',
       excerpt: ['Tanım', 'Definition'],
       content: [
         {
@@ -226,7 +226,7 @@ export const blogMocks = {
     {
       id: 6,
       title: ['Sınırlandırma Haritası Nedir?', 'What is a Boundary Map?'],
-      image: 'assets/imgs/blog/pic6.jpg',
+      image: '/assets/imgs/blog/pic6.jpg',
       excerpt: ['Tanım', 'Definition'],
       content: [
         {
@@ -282,7 +282,7 @@ export const blogMocks = {
         'Parselasyon (İmar Haritaları) Nedir?',
         'What is Parceling (Zoning Maps)?',
       ],
-      image: 'assets/imgs/blog/pic7.jpg',
+      image: '/assets/imgs/blog/pic7.jpg',
       excerpt: ['Tanım', 'Definition'],
       content: [
         {
@@ -325,7 +325,7 @@ export const blogMocks = {
     {
       id: 8,
       title: ['Parselin Yerinde Gösterilmesi', 'On-Site Indication of Parcel'],
-      image: 'assets/imgs/blog/pic8.jpg',
+      image: '/assets/imgs/blog/pic8.jpg',
       excerpt: ['Tanım', 'Definition'],
       content: [
         {
@@ -361,7 +361,7 @@ export const blogMocks = {
     {
       id: 9,
       title: ['Köy Yerleşim Haritaları', 'Village Settlement Maps'],
-      image: 'assets/imgs/blog/pic9.jpg',
+      image: '/assets/imgs/blog/pic9.jpg',
       excerpt: ['Tanım', 'Definition'],
       content: [
         {
@@ -407,7 +407,7 @@ export const blogMocks = {
         'Yoldan İhdas Haritaları',
         'Maps of Road Creation (Yoldan İhdas)',
       ],
-      image: 'assets/imgs/blog/pic10.jpg',
+      image: '/assets/imgs/blog/pic10.jpg',
       excerpt: ['Tanım', 'Definition'],
       content: [
         {
@@ -453,7 +453,7 @@ export const blogMocks = {
         'Kamulaştırma Nedir, Nasıl Yapılır?',
         'What is Expropriation, and How Is It Done?',
       ],
-      image: 'assets/imgs/blog/pic11.jpg',
+      image: '/assets/imgs/blog/pic11.jpg',
       excerpt: ['Tanım', 'Definition'],
       content: [
         {
@@ -509,7 +509,7 @@ export const blogMocks = {
     {
       id: 12,
       title: ['İrtifak Hakkı Nedir?', 'What is an Easement Right?'],
-      image: 'assets/imgs/blog/pic12.jpg',
+      image: '/assets/imgs/blog/pic12.jpg',
       excerpt: ['Tanım', 'Definition'],
       content: [
         {
@@ -548,7 +548,7 @@ export const blogMocks = {
     {
       id: 13,
       title: ['İfraz (Ayırma) Haritaları Nedir?', 'What are Subdivision Maps?'],
-      image: 'assets/imgs/blog/pic13.jpg',
+      image: '/assets/imgs/blog/pic13.jpg',
       excerpt: ['Tanım', 'Definition'],
       content: [
         {
@@ -594,7 +594,7 @@ export const blogMocks = {
     {
       id: 14,
       title: ['Cins Değişikliği Nasıl Yapılır?', 'How is Type Change Done?'],
-      image: 'assets/imgs/blog/pic14.jpg',
+      image: '/assets/imgs/blog/pic14.jpg',
       excerpt: ['Tanım', 'Definition'],
       content: [
         {
@@ -636,7 +636,7 @@ export const blogMocks = {
         'Yer Tespiti (Aplikasyon) Nasıl Yapılır?',
         'How is Site Identification (Application) Done?',
       ],
-      image: 'assets/imgs/blog/pic15.jpg',
+      image: '/assets/imgs/blog/pic15.jpg',
       excerpt: ['Tanım', 'Definition'],
       content: [
         {
@@ -678,7 +678,7 @@ export const blogMocks = {
         'Kadastro Müdürlüklerine Başvuru Nasıl Yapılır?',
         'How to Apply to Cadastre Directorates?',
       ],
-      image: 'assets/imgs/blog/pic16.jpg',
+      image: '/assets/imgs/blog/pic16.jpg',
       excerpt: ['Tanım', 'Definition'],
       content: [
         {
@@ -706,7 +706,7 @@ export const blogMocks = {
         'Kat Karşılığı Arsa Çalışması',
         'Land for Share in Construction Projects',
       ],
-      image: 'assets/imgs/blog/pic17.jpg',
+      image: '/assets/imgs/blog/pic17.jpg',
       excerpt: ['Tanım', 'Definition'],
       content: [
         {
@@ -721,7 +721,7 @@ export const blogMocks = {
     {
       id: 18,
       title: ['Arsa Paylaşım Modeli', 'Land Sharing Model'],
-      image: 'assets/imgs/blog/pic18.jpg',
+      image: '/assets/imgs/blog/pic18.jpg',
       excerpt: ['Tanım', 'Definition'],
       content: [
         {
@@ -736,7 +736,7 @@ export const blogMocks = {
     {
       id: 19,
       title: ['Arsa Alım-Satımı', 'Land Buying and Selling'],
-      image: 'assets/imgs/blog/pic19.jpg',
+      image: '/assets/imgs/blog/pic19.jpg',
       excerpt: ['Tanım', 'Definition'],
       content: [
         {
@@ -751,7 +751,7 @@ export const blogMocks = {
     {
       id: 20,
       title: ['Arsa Ekspertizi Nasıl Yapılır?', 'How is Land Appraisal Done?'],
-      image: 'assets/imgs/blog/pic20.jpg',
+      image: '/assets/imgs/blog/pic20.jpg',
       excerpt: ['Tanım', 'Definition'],
       content: [
         {
@@ -769,7 +769,7 @@ export const blogMocks = {
         'Mülk Kiralarken Dikkat Edilmesi Gerekenler Neler?',
         'What to Consider When Renting a Property?',
       ],
-      image: 'assets/imgs/blog/pic21.jpg',
+      image: '/assets/imgs/blog/pic21.jpg',
       excerpt: ['Taşınmazın Yeri', 'Location of the Property'],
       content: [
         {
@@ -849,7 +849,7 @@ export const blogMocks = {
         'Tapu Takası (Trampa) Nasıl Yapılır?',
         'How is Land Exchange (Barter) Done?',
       ],
-      image: 'assets/imgs/blog/pic22.jpg',
+      image: '/assets/imgs/blog/pic22.jpg',
       excerpt: ['Tanım', 'Definition'],
       content: [
         {
@@ -884,7 +884,7 @@ export const blogMocks = {
         'Tapu Birleştirme (Tevhit) İşlemi Nasıl Yapılır?',
         'How is Land Consolidation (Unification) Done?',
       ],
-      image: 'assets/imgs/blog/pic23.jpg',
+      image: '/assets/imgs/blog/pic23.jpg',
       excerpt: ['Tanım', 'Definition'],
       content: [
         {
@@ -923,7 +923,7 @@ export const blogMocks = {
     {
       id: 24,
       title: ['Tapu İpotek Nasıl Yapılır?', 'How is a Property Mortgage Done?'],
-      image: 'assets/imgs/blog/pic24.jpg',
+      image: '/assets/imgs/blog/pic24.jpg',
       excerpt: ['Tanım', 'Definition'],
       content: [
         {
@@ -992,7 +992,7 @@ export const blogMocks = {
         'Tapu Ayırma (İfraz) İşlemi Nasıl Yapılır?',
         'How is Land Subdivision Done?',
       ],
-      image: 'assets/imgs/blog/pic25.jpg',
+      image: '/assets/imgs/blog/pic25.jpg',
       excerpt: ['Tanım', 'Definition'],
       content: [
         {
@@ -1034,7 +1034,7 @@ export const blogMocks = {
         'İntifa Hakkı (Kullanma, Yararlanma Hakkı)',
         'Usufruct Right (Right of Use and Benefit)',
       ],
-      image: 'assets/imgs/blog/pic26.jpg',
+      image: '/assets/imgs/blog/pic26.jpg',
       excerpt: ['Tanım', 'Definition'],
       content: [
         {
@@ -1076,7 +1076,7 @@ export const blogMocks = {
         'Gayrimenkul Bağışı Nasıl Yapılır?',
         'How to Make a Real Estate Donation?',
       ],
-      image: 'assets/imgs/blog/pic27.jpg',
+      image: '/assets/imgs/blog/pic27.jpg',
       excerpt: ['Tanım', 'Definition'],
       content: [
         {
@@ -1111,7 +1111,7 @@ export const blogMocks = {
         'Miras Taksimi (Dağıtımı) Nasıl Yapılır?',
         'How is Inheritance Distribution Done?',
       ],
-      image: 'assets/imgs/blog/pic28.jpg',
+      image: '/assets/imgs/blog/pic28.jpg',
       excerpt: ['Tanım', 'Definition'],
       content: [
         {
@@ -1160,7 +1160,7 @@ export const blogMocks = {
         'Düzeltme (Tashih) İşlemleri Nasıl Yapılır?',
         'How Are Correction (Rectification) Procedures Done?',
       ],
-      image: 'assets/imgs/blog/pic29.jpg',
+      image: '/assets/imgs/blog/pic29.jpg',
       excerpt: [
         'İstenen Belge ve Bilgiler',
         'Required Documents and Information',
@@ -1222,7 +1222,7 @@ export const blogMocks = {
     {
       id: 30,
       title: ['Ölünceye Kadar Bakma Akdi', 'Lifetime Care Agreement'],
-      image: 'assets/imgs/blog/pic30.jpg',
+      image: '/assets/imgs/blog/pic30.jpg',
       excerpt: ['Tanım', 'Definition'],
       content: [
         {
@@ -1257,7 +1257,7 @@ export const blogMocks = {
         'Gayrimenkul Satışı Nasıl Yapılır?',
         'How is Real Estate Sale Done?',
       ],
-      image: 'assets/imgs/blog/pic31.jpg',
+      image: '/assets/imgs/blog/pic31.jpg',
       excerpt: ['Tanım', 'Definition'],
       content: [
         {
@@ -1296,7 +1296,7 @@ export const blogMocks = {
     {
       id: 32,
       title: ['Kat Mülkiyeti Nedir?', 'What is Condominium Ownership?'],
-      image: 'assets/imgs/blog/pic32.jpg',
+      image: '/assets/imgs/blog/pic32.jpg',
       excerpt: ['Tanım', 'Definition'],
       content: [
         {
@@ -1328,7 +1328,7 @@ export const blogMocks = {
     {
       id: 33,
       title: ['Taşınmaz Cins Değişikliği', 'Immovable Property Type Change'],
-      image: 'assets/imgs/blog/pic33.jpg',
+      image: '/assets/imgs/blog/pic33.jpg',
       excerpt: ['Tanım', 'Definition'],
       content: [
         {
@@ -1367,7 +1367,7 @@ export const blogMocks = {
     {
       id: 34,
       title: ['Kat İrtifakı', 'Floor Easement'],
-      image: 'assets/imgs/blog/pic34.jpg',
+      image: '/assets/imgs/blog/pic34.jpg',
       excerpt: ['Tanım', 'Definition'],
       content: [
         {
@@ -1402,7 +1402,7 @@ export const blogMocks = {
         'Tapu Sicil Müdürlüklerine Başvuru Şekli',
         'Application Procedure for Land Registry Directorates',
       ],
-      image: 'assets/imgs/blog/pic35.jpg',
+      image: '/assets/imgs/blog/pic35.jpg',
       excerpt: ['Tanım', 'Definition'],
       content: [
         {
@@ -1440,7 +1440,7 @@ export const blogMocks = {
     {
       id: 36,
       title: ['Emlak Terimler Sözlüğü', 'Real Estate Terms Glossary'],
-      image: 'assets/imgs/blog/pic36.jpg',
+      image: '/assets/imgs/blog/pic36.jpg',
       excerpt: ['Tanım', 'Definition'],
       content: [
         {
@@ -2301,7 +2301,7 @@ export const blogMocks = {
     {
       id: 37,
       title: ['Burs Başvurusu', 'Scholarship Application'],
-      image: 'assets/imgs/blog/pic37.jpg',
+      image: '/assets/imgs/blog/pic37.jpg',
       excerpt: ['Sayfa', 'Page'],
       content: [
         {
@@ -2320,7 +2320,7 @@ export const blogMocks = {
     communicationTitle: ['İletişim', 'Communication'],
     contactInfo: [
       {
-        icon: 'assets/imgs/blog/location.svg',
+        icon: '/assets/imgs/blog/location.svg',
         text: [
           'Demetevler, 401. Cd. 10/C, 06200 Yenimahalle/Ankara, Türkiye',
           'Demetevler, 401st St. No: 10/C, 06200 Yenimahalle/Ankara, Turkey',
@@ -2328,17 +2328,17 @@ export const blogMocks = {
         type: 'address',
       },
       {
-        icon: 'assets/imgs/blog/phone.svg',
+        icon: '/assets/imgs/blog/phone.svg',
         text: ['0(312) 335 55 28', '0(312) 335 55 28'],
         type: 'phone',
       },
       {
-        icon: 'assets/imgs/blog/phone.svg',
+        icon: '/assets/imgs/blog/phone.svg',
         text: ['+90(312) 345 90 66', '+90(312) 345 90 66'],
         type: 'phone',
       },
       {
-        icon: 'assets/imgs/blog/email.svg',
+        icon: '/assets/imgs/blog/email.svg',
         text: ['emlak@uludaglar.com', 'emlak@uludaglar.com'],
         type: 'email',
       },

@@ -75,7 +75,7 @@
     <h2 class="section-heading">{{ getTranslatedText(aboutUsData.whyUs.heading) }}</h2>
     <div class="articles-grid">
       <div *ngFor="let article of aboutUsData.whyUs.articles" class="article-card">
-        <img [src]="'assets/imgs/aboutus/' + article.icon + '.svg'" [alt]="getTranslatedText(article.title)" class="article-icon">
+        <img [src]="'/assets/imgs/aboutus/' + article.icon + '.svg'" [alt]="getTranslatedText(article.title)" class="article-icon">
         <h3>{{ getTranslatedText(article.title) }}</h3>
       </div>
     </div>
