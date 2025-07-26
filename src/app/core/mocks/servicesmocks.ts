@@ -24,25 +24,25 @@ export const servicesMocks = {
     gallery: [
       {
         title: ['Arsa Ekspertizi Nasıl Yapılır?', 'How is Land Appraisal Done?'],
-        image: '/assets/imgs/services/pic1.jpg',
+        image: '/assets/imgs/services/pic1.webp',
         readMore: ['Daha Fazla', 'Read More'],
         playIcon: '/assets/imgs/services/play.svg'
       },
       {
         title: ['Arsa Alım-Satımı', 'Land Buying and Selling'],
-        image: '/assets/imgs/services/pic2.jpg',
+        image: '/assets/imgs/services/pic2.webp',
         readMore: ['Daha Fazla', 'Read More'],
         playIcon: '/assets/imgs/services/play.svg'
       },
       {
         title: ['Kat Karşılığı Arsa Çalışması', 'Land for Floor Space'],
-        image: '/assets/imgs/services/pic3.jpg',
+        image: '/assets/imgs/services/pic3.webp',
         readMore: ['Daha Fazla', 'Read More'],
         playIcon: '/assets/imgs/services/play.svg'
       },
       {
         title: ['Arsa Paylaşım Modeli', 'Land Sharing Model'],
-        image: '/assets/imgs/services/pic4.jpg',
+        image: '/assets/imgs/services/pic4.webp',
         readMore: ['Daha Fazla', 'Read More'],
         playIcon: '/assets/imgs/services/play.svg'
       }
@@ -53,7 +53,7 @@ export const servicesMocks = {
     services: [
       {
         title: ['Arsa Alım Satımı', 'Land Buying and Selling'],
-        image: '/assets/imgs/services/pic5.jpg',
+        image: '/assets/imgs/services/pic5.webp',
         content: [
           [
             'Herkes yaptığı tasarruflar ile gerçekleştirdiği yatırımlarının kısa sürede değerlenmesini ister. Bu konuda birçok çeşitli yatırım araçları bulunmaktadır. Örnek vermek gerekirse altın, döviz, mevduat çeşitleri, borsa, tahvil/bono gibi değerli kağıtlar ve günümüzde giderek kontrolsüz bir şekilde yaygınlaşmış olan ve manipülatif hareketlere karşı düşük dirençli kripto paralardan söz edilebilir.',
@@ -88,7 +88,7 @@ export const servicesMocks = {
       },
       {
         title: ['Lüks Konut Proje ve Konut Satışı', 'Luxury Housing Projects and Housing Sales'],
-        image: '/assets/imgs/services/pic6.jpg',
+        image: '/assets/imgs/services/pic6.webp',
         content: [
           [
             'Firmamız Ümitköy, Beytepe, İncek, Beysukent, Angora, Alacaatlı, Çayolu, Dodurga, Fatih Sultan, Yaşamkent, Batıkent Çakırlar ve Eryaman Göksu Bölgelerinde her biri kendi bölgelerinde uzmanlaşmış gayrimenkul profosyenellerimizle Proje ve Konut Satışı Hizmeti vermektedir.',
@@ -99,7 +99,7 @@ export const servicesMocks = {
       },
       {
         title: ['İşyeri Alım Satımı', 'Workplace Buying and Selling'],
-        image: '/assets/imgs/services/pic7.jpg',
+        image: '/assets/imgs/services/pic7.webp',
         content: [
           [
             'Firmamız Ümitköy, Beytepe, İncek, Beysukent, Angora, Alacaatlı, Çayolu, Dodurga, Fatih Sultan, Yaşamkent, Balgat, Çukurambar, Batıkent ve Eryaman bölgelerinde her biri kendi bölgelerinde uzmanlaşmış gayrimenkul profosyenellerimizle işyeri Alım satımına Kısa Sürede Kesin Çözümler Üretmektedir.',
@@ -110,7 +110,7 @@ export const servicesMocks = {
       },
       {
         title: ['Fabrika Satışı', 'Factory Sales'],
-        image: '/assets/imgs/services/pic8.jpg',
+        image: '/assets/imgs/services/pic8.webp',
         content: [
           [
             'Firmamız Anadolu Organize Sanayi, Ostim Organize Sanayi, Aso 1.ci Organize sanayi bölgesi, Ankara sanayi Odası 2.ci ve 3.cü Organize bölgelerinde ve Ankara ivedik Organize bölgelerinde Taleplerinize Kısa Sürede ve kesin çözüm Üretmektedir.',
@@ -121,7 +121,7 @@ export const servicesMocks = {
       },
       {
         title: ['Villa Alım Satımı', 'Villa Buying and Selling'],
-        image: '/assets/imgs/services/pic9.jpg',
+        image: '/assets/imgs/services/pic9.webp',
         content: [
           [
             'Firmamız Ümitköy, Beytepe, İncek, Beysukent, Angora, Alacaatlı, Çayolu bölgelerinde villa alım ve satım taleplerinize Kısa Sürede ve Kesin Çözüm Üretmektedir.',
@@ -132,7 +132,7 @@ export const servicesMocks = {
       },
       {
         title: ['Hobi Bahçesi', 'Hobby Garden'],
-        image: '/assets/imgs/services/pic10.jpg',
+        image: '/assets/imgs/services/pic10.webp',
         content: [
           [
             'Müşterilerimizden aldığımız ön talepler doğrultusunda müşterilerimizin belirlediği bölgelerde imarlı parseller üzerinde Hobi bahçesi projelerini kısa sürede gerçekleştirmekteyiz',

@@ -3,12 +3,12 @@
 export const homeMocks = {
   heroSlider: {
     images: [
-      '/assets/imgs/home/pic1.png',
-      '/assets/imgs/home/pic2.png',
-      '/assets/imgs/home/pic3.png',
-      '/assets/imgs/home/pic4.png',
-      '/assets/imgs/home/pic5.png',
-      '/assets/imgs/home/pic6.png',
+      '/assets/imgs/home/pic1.webp',
+      '/assets/imgs/home/pic2.webp',
+      '/assets/imgs/home/pic3.webp',
+      '/assets/imgs/home/pic4.webp',
+      '/assets/imgs/home/pic5.webp',
+      '/assets/imgs/home/pic6.webp',
     ],
   },
   findProperty: {
@@ -102,7 +102,7 @@ export const homeMocks = {
           '1935 Amasya doğumluyum. Zahirecilikle başlayan ticaret hayatıma, market işletmeciliği ve kuyumculuk ile devam ettim, 1985 yılında Uludağlar Gayrimenkul ltd. Şirketini kurarak ticari hayatıma devam etmekteyim.',
           'I was born in Amasya in 1935. I continued my business life, which started with grain trade, with market management and jewelry, and I have been continuing my commercial life by establishing Uludağlar Real Estate Ltd. in 1985.',
         ],
-        image: '/assets/imgs/home/person.png', // Placeholder image
+        image: '/assets/imgs/home/person.webp', // Placeholder image
       },
       {
         name: ['Münir Uludağ', 'Munir Uludag'],
@@ -111,7 +111,7 @@ export const homeMocks = {
           '1956 Amasya doğumluyum Kuyumcu işletmeciliği ve mermer üretimi alanlarında faaliyet gerçekleştirdim. 1990 yılından itibaren günümüze kadar Gayrimenkul sektöründe hizmet vermekteyim.',
           'I was born in Amasya in 1956. I have carried out activities in the fields of jewelry management and marble production. I have been serving in the real estate sector since 1990.',
         ],
-        image: '/assets/imgs/home/person.png',
+        image: '/assets/imgs/home/person.webp',
       },
       {
         name: ['Metin Uludağ', 'Metin Uludag'],
@@ -120,7 +120,7 @@ export const homeMocks = {
           '1961 Amasya Doğumluyum. 1984 yılından 1989 yılına kadar market işletmeciliği yaptım. 1990 yılından 1992 yılına kadar kuyumcu işletmeciliği yaptım. 1992 yılından günümüze kadar gayrimenkul sektöründe İstanbul yolu üzerinde birçok konumda hizmet vermekteyim.',
           'I was born in Amasya in 1961. I managed a market from 1984 to 1989. I managed a jewelry store from 1990 to 1992. Since 1992, I have been serving in the real estate sector in many locations on the Istanbul road.',
         ],
-        image: '/assets/imgs/home/person.png',
+        image: '/assets/imgs/home/person.webp',
       },
       {
         name: ['Mustafa Uludağ', 'Mustafa Uludag'],
@@ -129,7 +129,7 @@ export const homeMocks = {
           '1967 Amasya doğumluyum. Muğla işletme mezunuyum. S.P.K lisanslı gayrimenkul değerleme uzmanıyım. Mali müşavirim. Yerel yönetimler alanında yüksek lisans yaptım.',
           "I was born in Amasya in 1967. I am a graduate of Muğla Business. I am an SPK licensed real estate appraisal expert. I am a financial advisor. I have a master's degree in local governments.",
         ],
-        image: '/assets/imgs/home/person.png',
+        image: '/assets/imgs/home/person.webp',
       },
     ],
   },
@@ -162,10 +162,10 @@ export const homeMocks = {
   partners: {
     heading: ['Ortaklarımız', 'Our Partners'],
     images: [
-      '/assets/imgs/home/partner1.jpg',
-      '/assets/imgs/home/partner2.jpg',
-      '/assets/imgs/home/partner3.jpg',
-      '/assets/imgs/home/partner4.jpg',
+      '/assets/imgs/home/partner1.webp',
+      '/assets/imgs/home/partner2.webp',
+      '/assets/imgs/home/partner3.webp',
+      '/assets/imgs/home/partner4.webp',
     ],
   },
 };
