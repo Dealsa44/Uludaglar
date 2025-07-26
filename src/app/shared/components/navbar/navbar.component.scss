@@ -1,5 +1,7 @@
+@use "sass:color";
+
 /*=============================================
-=          Variable Declarations            =
+=            Variable Declarations            =
 =============================================*/
 
 // Color Palette
@@ -29,7 +31,7 @@ $border-radius-small: 8px;
 /*=====  End of Variable Declarations  ======*/
 
 /*=============================================
-=          Base Navbar Styling              =
+=            Base Navbar Styling            =
 =============================================*/
 
 .navbar {
@@ -54,13 +56,13 @@ $border-radius-small: 8px;
 /* When scrolled */
 .navbar.scrolled {
   height: 60px;
-  background-color: lighten($primary-bg, 5%);
+  background-color: color.adjust($primary-bg, $lightness: 5%);
 }
 
 /*=====  End of Base Navbar Styling  ======*/
 
 /*=============================================
-=          Logo Styling                     =
+=            Logo Styling                     =
 =============================================*/
 
 .navbar-brand {
@@ -77,7 +79,7 @@ $border-radius-small: 8px;
 /*=====  End of Logo Styling  ======*/
 
 /*=============================================
-=          Navigation Links Styling           =
+=            Navigation Links Styling         =
 =============================================*/
 
 .nav-links {
@@ -145,7 +147,7 @@ $border-radius-small: 8px;
 /*=====  End of Navigation Links Styling  ======*/
 
 /*=============================================
-=          Dropdown Menu Styling            =
+=            Dropdown Menu Styling            =
 =============================================*/
 
 .dropdown {
@@ -252,7 +254,7 @@ $border-radius-small: 8px;
 /*=====  End of Dropdown Menu Styling  ======*/
 
 /*=============================================
-=          Right Controls Styling             =
+=            Right Controls Styling           =
 =============================================*/
 
 .right-controls {
@@ -264,7 +266,7 @@ $border-radius-small: 8px;
 /*=====  End of Right Controls Styling  ======*/
 
 /*=============================================
-=          Hamburger Menu Styling             =
+=            Hamburger Menu Styling           =
 =============================================*/
 
 .hamburger {
@@ -304,7 +306,7 @@ $border-radius-small: 8px;
 /*=====  End of Hamburger Menu Styling  ======*/
 
 /*=============================================
-=          Mobile Navigation Styling          =
+=            Mobile Navigation Styling        =
 =============================================*/
 
 .mobile-nav {
@@ -366,7 +368,7 @@ $border-radius-small: 8px;
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.3s ease;
-  background-color: darken($primary-bg, 3%);
+  background-color: color.adjust($primary-bg, $lightness: -3%);
   margin-top: 1rem;
   border-radius: $border-radius-small;
 
@@ -425,7 +427,7 @@ $border-radius-small: 8px;
 /*=====  End of Mobile Navigation Styling  ======*/
 
 /*=============================================
-=          Language Switcher Styling          =
+=            Language Switcher Styling        =
 =============================================*/
 
 .language-toggle {
@@ -472,7 +474,7 @@ $border-radius-small: 8px;
 /*=====  End of Language Switcher Styling  ======*/
 
 /*=============================================
-=          Responsive Design                =
+=            Responsive Design                =
 =============================================*/
 
 /*

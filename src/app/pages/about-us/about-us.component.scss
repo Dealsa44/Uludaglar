@@ -1,3 +1,5 @@
+@use "sass:color";
+
 /* src/app/pages/about-us/about-us.component.scss */
 
 /* Color Palette Variables (from your styled component) */
@@ -14,7 +16,7 @@ $form-border: rgba($accent-gold, 0.3);
 .about-us-page {
   max-width: 1400px;
   margin: 6rem auto 3rem auto; /* Ensures clearance from navbar and bottom spacing */
-  background: linear-gradient(145deg, darken($subtle-lines, 5%) 0%, $subtle-lines 100%);
+  background: linear-gradient(145deg, color.adjust($subtle-lines, $lightness: -5%) 0%, $subtle-lines 100%);
   border-radius: 12px;
   box-shadow: 0 15px 30px $shadow-color, 0 5px 10px rgba(0, 0, 0, 0.3);
   overflow: hidden;
@@ -196,7 +198,7 @@ $form-border: rgba($accent-gold, 0.3);
 
   .hero-content {
     /* No need for hero-content as a flex container directly for desktop now,
-       the grid handles the main layout. Revert to simple block if needed. */
+        the grid handles the main layout. Revert to simple block if needed. */
     display: contents; /* Makes children participate directly in the grid layout */
 
     @media (min-width: 992px) {
@@ -233,7 +235,7 @@ $form-border: rgba($accent-gold, 0.3);
     .about-text {
       font-size: 1.1rem; /* Kept original size, but with max-width it won't feel too big */
       line-height: 1.7;
-      color: lighten($primary-text, 5%);
+      color: color.adjust($primary-text, $lightness: 5%);
       margin-bottom: 2rem;
     }
   }
@@ -263,7 +265,7 @@ $form-border: rgba($accent-gold, 0.3);
 
       &:hover {
         transform: translateY(-5px);
-        background-color: lighten($subtle-lines, 5%);
+        background-color: color.adjust($subtle-lines, $lightness: 5%);
       }
 
       h3 {
@@ -306,7 +308,7 @@ $form-border: rgba($accent-gold, 0.3);
 /* --- Contact Form Section & Join Team Section (Forms) --- */
 .contact-form-section,
 .join-team-section {
-  background-color: darken($primary-bg, 2%);
+  background-color: color.adjust($primary-bg, $lightness: -2%);
   padding: 3rem 2rem;
   text-align: center;
 
@@ -321,7 +323,7 @@ $form-border: rgba($accent-gold, 0.3);
   .form-description,
   .unavailable-message {
     font-size: 1.1rem;
-    color: lighten($primary-text, 5%);
+    color: color.adjust($primary-text, $lightness: 5%);
     margin-bottom: 2.5rem;
     max-width: 700px;
     margin-left: auto;
@@ -366,7 +368,7 @@ $form-border: rgba($accent-gold, 0.3);
         padding: 0.9rem 1.2rem;
         border: 1px solid $form-border;
         border-radius: 6px;
-        background-color: darken($subtle-lines, 5%);
+        background-color: color.adjust($subtle-lines, $lightness: -5%);
         color: $primary-text;
         font-size: 1rem;
         transition: border-color 0.3s ease, box-shadow 0.3s ease;
@@ -381,7 +383,7 @@ $form-border: rgba($accent-gold, 0.3);
         }
 
         &::placeholder {
-          color: lighten($primary-text, 20%);
+          color: color.adjust($primary-text, $lightness: 20%);
         }
 
         &.ng-invalid.ng-touched {
@@ -440,7 +442,7 @@ $form-border: rgba($accent-gold, 0.3);
         color: $primary-text;
         border: 1px solid $form-border;
         border-radius: 6px;
-        background-color: darken($subtle-lines, 5%);
+        background-color: color.adjust($subtle-lines, $lightness: -5%);
         cursor: pointer;
         transition: border-color 0.3s ease, box-shadow 0.3s ease;
 
@@ -455,7 +457,7 @@ $form-border: rgba($accent-gold, 0.3);
           transition: background-color 0.3s ease;
 
           &:hover {
-            background-color: lighten($hover-bg, 10%);
+            background-color: color.adjust($hover-bg, $lightness: 10%);
           }
         }
 
@@ -467,7 +469,7 @@ $form-border: rgba($accent-gold, 0.3);
       .file-name-display {
         margin-top: 0.5rem;
         font-size: 0.9rem;
-        color: lighten($primary-text, 10%);
+        color: color.adjust($primary-text, $lightness: 10%);
         text-align: left;
       }
     }
@@ -486,13 +488,13 @@ $form-border: rgba($accent-gold, 0.3);
       margin-top: 1rem;
 
       &:hover:not(:disabled) {
-        background-color: lighten($accent-gold, 10%);
+        background-color: color.adjust($accent-gold, $lightness: 10%);
         transform: translateY(-3px);
         box-shadow: 0 8px 20px rgba($accent-gold, 0.6);
       }
 
       &:disabled {
-        background-color: darken($accent-gold, 20%);
+        background-color: color.adjust($accent-gold, $lightness: -20%);
         cursor: not-allowed;
         opacity: 0.7;
         box-shadow: none;
@@ -597,7 +599,7 @@ $form-border: rgba($accent-gold, 0.3);
 
 /* --- Our Team Section (Similar to Founders Section) --- */
 .our-team-section {
-  background-color: darken($primary-bg, 2%);
+  background-color: color.adjust($primary-bg, $lightness: -2%);
   padding: 3rem 2rem;
 
   .team-members-grid {
@@ -655,7 +657,7 @@ $form-border: rgba($accent-gold, 0.3);
 
     .member-position {
       font-size: 1rem;
-      color: lighten($primary-text, 10%);
+      color: color.adjust($primary-text, $lightness: 10%);
       font-style: italic;
       margin-bottom: 1rem;
     }
@@ -740,7 +742,7 @@ $form-border: rgba($accent-gold, 0.3);
 
     .blog-description {
       font-size: 0.95rem;
-      color: lighten($primary-text, 5%);
+      color: color.adjust($primary-text, $lightness: 5%);
       margin-bottom: 1.5rem;
       flex-grow: 1;
       line-height: 1.6;
@@ -763,7 +765,7 @@ $form-border: rgba($accent-gold, 0.3);
       text-decoration: none; /* Remove underline from link */
 
       &:hover {
-        background-color: lighten($accent-gold, 10%);
+        background-color: color.adjust($accent-gold, $lightness: 10%);
         transform: translateY(-2px);
         box-shadow: 0 5px 12px rgba($accent-gold, 0.6);
       }

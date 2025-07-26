@@ -1,3 +1,5 @@
+@use "sass:color";
+
 /* Color Palette Variables */
 $primary-bg: #0d1b2a;
 $accent-gold: #ffd700;
@@ -23,7 +25,7 @@ body {
 
 /* --- HR Page Container --- */
 .hr-page {
-  background: linear-gradient(145deg, darken($subtle-lines, 5%) 0%, $subtle-lines 100%); // More complex background
+  background: linear-gradient(145deg, color.adjust($subtle-lines, $lightness: -5%) 0%, $subtle-lines 100%); // More complex background
   padding: 3.5rem 2rem 2rem 2rem; // Increased top padding
   margin-top: 6rem; // Significantly increased top margin to clear navbar
   margin-bottom: 3rem; // Consistent bottom margin
@@ -83,7 +85,7 @@ body {
 
 /* --- Header Section --- */
 .hr-header-background {
-  background: linear-gradient(160deg, $primary-bg 0%, darken($primary-bg, 5%) 100%);
+  background: linear-gradient(160deg, $primary-bg 0%, color.adjust($primary-bg, $lightness: -5%) 100%);
   padding: 2.5rem 2rem;
   margin: -3.5rem -2rem 3rem -2rem; // Adjust to stretch
   border-top-left-radius: 10px;
@@ -121,7 +123,7 @@ body {
   transition: color 0.3s ease;
 
   &:hover {
-    color: lighten($accent-gold, 10%);
+    color: color.adjust($accent-gold, $lightness: 10%);
   }
 }
 
@@ -226,7 +228,7 @@ body {
   font-size: 1.35rem;
   line-height: 1.9;
   font-weight: 400;
-  color: lighten($primary-text, 8%);
+  color: color.adjust($primary-text, $lightness: 8%);
   max-width: 900px;
   margin: 0 auto;
   position: relative;
@@ -245,7 +247,7 @@ body {
     transition: color 0.2s ease;
 
     &:hover {
-      color: lighten($primary-text, 5%);
+      color: color.adjust($primary-text, $lightness: 5%);
     }
   }
 
@@ -284,7 +286,7 @@ body {
     position: relative;
     margin-bottom: 0.8rem;
     font-size: 1rem;
-    color: lighten($primary-text, 3%);
+    color: color.adjust($primary-text, $lightness: 3%);
 
     &::before {
       content: '✔'; // More engaging bullet point
@@ -307,19 +309,19 @@ body {
 
   .hr-note-paragraph {
     font-style: italic;
-    color: lighten($primary-text, 15%);
+    color: color.adjust($primary-text, $lightness: 15%);
     text-align: center;
     margin-top: 2.5rem;
     padding: 1rem 0;
     border-top: 1px dashed rgba($subtle-lines, 0.4);
     border-bottom: 1px dashed rgba($subtle-lines, 0.4);
-    background-color: lighten($primary-bg, 3%);
+    background-color: color.adjust($primary-bg, $lightness: 3%);
     border-radius: 5px;
     font-size: 0.95rem;
     transition: background-color 0.3s ease;
 
     &:hover {
-      background-color: lighten($primary-bg, 5%);
+      background-color: color.adjust($primary-bg, $lightness: 5%);
     }
   }
 
@@ -335,7 +337,7 @@ body {
     cursor: pointer;
 
     &:hover {
-      color: lighten($accent-gold, 15%);
+      color: color.adjust($accent-gold, $lightness: 15%);
       text-decoration: underline;
     }
   }

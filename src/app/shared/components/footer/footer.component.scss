@@ -1,3 +1,5 @@
+@use "sass:color";
+
 /*=============================================
 =            Variable Declarations            =
 =============================================*/
@@ -117,10 +119,7 @@ $border-radius-small: 8px; /* Reused from navbar */
 
     // This now targets the <a> tag directly
     .contact-link {
-      color: lighten(
-        $primary-text,
-        10%
-      ); /* Slightly lighter text for address details */
+      color: color.adjust($primary-text, $lightness: 10%); /* Slightly lighter text for address details */
       text-decoration: none;
       display: flex; /* Enable flexbox for icon and text alignment */
       align-items: center; /* Vertically align items */
@@ -179,7 +178,7 @@ $border-radius-small: 8px; /* Reused from navbar */
 
   p {
     font-size: 0.85rem;
-    color: lighten($primary-text, 15%); /* Lighter text for copyright */
+    color: color.adjust($primary-text, $lightness: 15%); /* Lighter text for copyright */
     margin-bottom: 0.3rem;
 
     &:last-child {

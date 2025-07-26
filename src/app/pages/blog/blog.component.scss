@@ -1,3 +1,5 @@
+@use "sass:color";
+
 /* Color Palette Variables (from your styled component) */
 $primary-bg: #0d1b2a;
 $accent-gold: #ffd700;
@@ -11,7 +13,7 @@ $shadow-color: rgba(0, 0, 0, 0.6);
 .blog-page {
   background: linear-gradient(
     145deg,
-    darken($subtle-lines, 5%) 0%,
+    color.adjust($subtle-lines, $lightness: -5%) 0%,
     $subtle-lines 100%
   );
   padding: 0 2rem 3rem 2rem;
@@ -136,7 +138,7 @@ $shadow-color: rgba(0, 0, 0, 0.6);
   margin-top: 2.5rem;
 
   &:hover {
-    color: lighten($accent-gold, 10%);
+    color: color.adjust($accent-gold, $lightness: 10%);
   }
 
   &::after {
@@ -222,7 +224,7 @@ $shadow-color: rgba(0, 0, 0, 0.6);
 
 .post-content p {
   font-size: 0.95rem;
-  color: lighten($primary-text, 5%);
+  color: color.adjust($primary-text, $lightness: 5%);
   margin-bottom: 1.5rem;
   flex-grow: 1; /* Allow excerpt to take available space */
 }
@@ -244,7 +246,7 @@ $shadow-color: rgba(0, 0, 0, 0.6);
   align-self: flex-start; /* Align button to the left */
 
   &:hover {
-    background-color: lighten($accent-gold, 10%);
+    background-color: color.adjust($accent-gold, $lightness: 10%);
     transform: translateY(-2px);
     box-shadow: 0 5px 12px rgba($accent-gold, 0.6);
   }
@@ -266,7 +268,7 @@ $shadow-color: rgba(0, 0, 0, 0.6);
 
 .page-arrow,
 .page-number {
-  background-color: lighten($primary-bg, 5%);
+  background-color: color.adjust($primary-bg, $lightness: 5%);
   color: $primary-text;
   border: 1px solid rgba($subtle-lines, 0.8);
   padding: 0.7rem 1rem;
@@ -329,7 +331,7 @@ $shadow-color: rgba(0, 0, 0, 0.6);
   display: flex;
   align-items: center;
   margin-bottom: 1.2rem;
-  background-color: lighten($primary-bg, 5%);
+  background-color: color.adjust($primary-bg, $lightness: 5%);
   padding: 0.8rem 1rem;
   border-radius: 8px;
   box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.3);
@@ -375,7 +377,7 @@ $shadow-color: rgba(0, 0, 0, 0.6);
   display: flex;
   align-items: center;
   margin-bottom: 1rem;
-  background-color: lighten($primary-bg, 5%);
+  background-color: color.adjust($primary-bg, $lightness: 5%);
   padding: 0.8rem 1rem;
   border-radius: 8px;
   box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.3);
@@ -393,7 +395,7 @@ $shadow-color: rgba(0, 0, 0, 0.6);
   }
 
   /* No specific :hover styles for the <a> tag itself here,
-     as the parent .contact-info handles the visual feedback */
+      as the parent .contact-info handles the visual feedback */
 
   .contact-icon {
     width: 24px;

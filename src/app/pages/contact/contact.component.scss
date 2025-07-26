@@ -1,3 +1,5 @@
+@use "sass:color";
+
 /* Color Palette Variables */
 $primary-bg: #0d1b2a;
 $accent-gold: #ffd700;
@@ -23,7 +25,7 @@ body {
 
 /* --- Contact Page Container --- */
 .contact-page {
-  background: linear-gradient(145deg, darken($subtle-lines, 5%) 0%, $subtle-lines 100%);
+  background: linear-gradient(145deg, color.adjust($subtle-lines, $lightness: -5%) 0%, $subtle-lines 100%);
   padding: 3.5rem 2rem 3rem 2rem;
   margin-top: 6rem; /* Ensures clearance from navbar */
   margin-bottom: 3rem;
@@ -75,23 +77,41 @@ body {
 
 /* Keyframe Animations (re-used) */
 @keyframes fade-in {
-  0% { opacity: 0; transform: translateY(20px); }
-  100% { opacity: 1; transform: translateY(0); }
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes pulse-light {
-  0% { transform: scale(1); opacity: 0.7; }
-  100% { transform: scale(1.2); opacity: 0.9; }
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1.2);
+    opacity: 0.9;
+  }
 }
 
 @keyframes pulse-light-reverse {
-  0% { transform: scale(1.2); opacity: 0.9; }
-  100% { transform: scale(1); opacity: 0.7; }
+  0% {
+    transform: scale(1.2);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
 }
 
 /* --- Page Header Section --- */
 .page-header-background {
-  background: linear-gradient(160deg, $primary-bg 0%, darken($primary-bg, 5%) 100%);
+  background: linear-gradient(160deg, $primary-bg 0%, color.adjust($primary-bg, $lightness: -5%) 100%);
   padding: 2.5rem 2rem;
   margin: -3.5rem -2rem 3rem -2rem; /* Stretches to container edges */
   border-top-left-radius: 10px;
@@ -104,7 +124,8 @@ body {
   z-index: 1;
   box-shadow: inset 0 -8px 15px rgba(0, 0, 0, 0.2);
 
-  &::before { /* Top-left subtle glow */
+  &::before {
+    /* Top-left subtle glow */
     content: '';
     position: absolute;
     top: 0;
@@ -129,7 +150,7 @@ body {
   transition: color 0.3s ease;
 
   &:hover {
-    color: lighten($accent-gold, 10%);
+    color: color.adjust($accent-gold, $lightness: 10%);
   }
 }
 
@@ -177,7 +198,8 @@ body {
     box-shadow: 0 12px 25px rgba(0, 0, 0, 0.7), inset 0 0 20px rgba(0, 0, 0, 0.4);
   }
 
-  &::before { /* Subtle pattern background */
+  &::before {
+    /* Subtle pattern background */
     content: '';
     position: absolute;
     top: 0;
@@ -195,7 +217,7 @@ body {
 .branch-title {
   font-family: 'Montserrat', sans-serif;
   font-size: 2rem;
-  color: lighten($accent-gold, 10%);
+  color: color.adjust($accent-gold, $lightness: 10%);
   margin-bottom: 1.5rem;
   font-weight: 700;
   text-align: center;
@@ -231,7 +253,7 @@ body {
 }
 
 .contact-info-item {
-  background-color: lighten($primary-bg, 3%);
+  background-color: color.adjust($primary-bg, $lightness: 3%);
   padding: 1rem 1.5rem;
   border-radius: 8px;
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
@@ -302,8 +324,14 @@ body {
 }
 
 @keyframes map-fade-in {
-  0% { opacity: 0; transform: scale(0.95); }
-  100% { opacity: 1; transform: scale(1); }
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 /* --- Contact Form Section --- */
@@ -322,7 +350,8 @@ body {
     box-shadow: 0 12px 25px rgba(0, 0, 0, 0.7), inset 0 0 20px rgba(0, 0, 0, 0.4);
   }
 
-  &::before { /* Subtle pattern background */
+  &::before {
+    /* Subtle pattern background */
     content: '';
     position: absolute;
     top: 0;
@@ -363,7 +392,7 @@ body {
 
 .form-description {
   font-size: 1.1rem;
-  color: lighten($primary-text, 5%);
+  color: color.adjust($primary-text, $lightness: 5%);
   text-align: center;
   margin-bottom: 2.5rem;
   max-width: 600px;
@@ -403,7 +432,7 @@ body {
 .form-control {
   width: 100%;
   padding: 1rem 1.2rem;
-  background-color: lighten($primary-bg, 5%);
+  background-color: color.adjust($primary-bg, $lightness: 5%);
   border: 1px solid $subtle-lines;
   border-radius: 6px;
   color: $primary-text;
@@ -415,7 +444,7 @@ body {
     outline: none;
     border-color: $accent-gold;
     box-shadow: 0 0 0 3px rgba($accent-gold, 0.3), inset 0 1px 3px rgba(0, 0, 0, 0.5);
-    background-color: lighten($primary-bg, 8%);
+    background-color: color.adjust($primary-bg, $lightness: 8%);
   }
 
   &::placeholder {
@@ -445,7 +474,7 @@ textarea.form-control {
   height: 20px;
   border: 2px solid $subtle-lines;
   border-radius: 4px;
-  background-color: lighten($primary-bg, 5%);
+  background-color: color.adjust($primary-bg, $lightness: 5%);
   cursor: pointer;
   margin-right: 12px;
   position: relative;
@@ -490,7 +519,7 @@ textarea.form-control {
   transition: color 0.3s ease;
 
   &:hover {
-    color: lighten($primary-text, 10%);
+    color: color.adjust($primary-text, $lightness: 10%);
   }
 }
 
@@ -502,8 +531,14 @@ textarea.form-control {
 }
 
 @keyframes slide-in {
-  0% { opacity: 0; transform: translateY(-5px); }
-  100% { opacity: 1; transform: translateY(0); }
+  0% {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .submit-btn {
@@ -522,7 +557,7 @@ textarea.form-control {
   margin-top: 1.5rem;
 
   &:hover {
-    background-color: lighten($accent-gold, 10%);
+    background-color: color.adjust($accent-gold, $lightness: 10%);
     transform: translateY(-3px) scale(1.02);
     box-shadow: 0 8px 20px rgba($accent-gold, 0.6);
   }
@@ -795,7 +830,8 @@ textarea.form-control {
     min-height: 80px;
   }
 
-  .form-label, .checkbox-label {
+  .form-label,
+  .checkbox-label {
     font-size: 0.85rem;
   }
 

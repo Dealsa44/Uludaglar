@@ -1,3 +1,5 @@
+@use "sass:color";
+
 /* Color Palette Variables (from your styled components) */
 $primary-bg: #0d1b2a;
 $accent-gold: #ffd700;
@@ -9,7 +11,11 @@ $shadow-color: rgba(0, 0, 0, 0.6);
 
 /* --- Blog Post Page Container --- */
 .blog-post-page {
-  background: linear-gradient(145deg, darken($subtle-lines, 5%) 0%, $subtle-lines 100%);
+  background: linear-gradient(
+    145deg,
+    color.adjust($subtle-lines, $lightness: -5%) 0%,
+    $subtle-lines 100%
+  );
   padding: 0 2rem 3rem 2rem;
   margin-top: 6rem; /* Ensures clearance from navbar */
   margin-bottom: 3rem;
@@ -31,13 +37,17 @@ $shadow-color: rgba(0, 0, 0, 0.6);
 
   /* Decorative background elements (same as other pages) */
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: -50px;
     left: -50px;
     width: 200px;
     height: 200px;
-    background: radial-gradient(circle, rgba($accent-gold, 0.1) 0%, transparent 70%);
+    background: radial-gradient(
+      circle,
+      rgba($accent-gold, 0.1) 0%,
+      transparent 70%
+    );
     border-radius: 50%;
     filter: blur(40px);
     z-index: 0;
@@ -45,13 +55,17 @@ $shadow-color: rgba(0, 0, 0, 0.6);
   }
 
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: -50px;
     right: -50px;
     width: 150px;
     height: 150px;
-    background: radial-gradient(circle, rgba($hover-bg, 0.15) 0%, transparent 70%);
+    background: radial-gradient(
+      circle,
+      rgba($hover-bg, 0.15) 0%,
+      transparent 70%
+    );
     border-radius: 50%;
     filter: blur(30px);
     z-index: 0;
@@ -120,7 +134,7 @@ $shadow-color: rgba(0, 0, 0, 0.6);
 }
 
 .post-title {
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
   font-size: 2.8rem;
   color: $accent-gold;
   margin-bottom: 1.5rem;
@@ -131,11 +145,16 @@ $shadow-color: rgba(0, 0, 0, 0.6);
 
   &::after {
     /* Underline for the post title */
-    content: '';
+    content: "";
     display: block;
     width: 80px;
     height: 4px;
-    background: linear-gradient(to right, transparent 0%, $accent-gold 50%, transparent 100%);
+    background: linear-gradient(
+      to right,
+      transparent 0%,
+      $accent-gold 50%,
+      transparent 100%
+    );
     border-radius: 2px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
     margin: 1rem auto 0 auto;
@@ -161,7 +180,7 @@ $shadow-color: rgba(0, 0, 0, 0.6);
 
   h2 {
     font-size: 1.8rem;
-    color: lighten($accent-gold, 10%);
+    color: color.adjust($accent-gold, $lightness: 10%);
     margin-bottom: 1rem;
     font-weight: 700;
     line-height: 1.3;
@@ -194,7 +213,7 @@ $shadow-color: rgba(0, 0, 0, 0.6);
 }
 
 .nav-button {
-  background-color: lighten($primary-bg, 5%);
+  background-color: color.adjust($primary-bg, $lightness: 5%);
   color: $primary-text;
   border: 1px solid rgba($subtle-lines, 0.8);
   padding: 0.9rem 1.8rem;
@@ -202,7 +221,8 @@ $shadow-color: rgba(0, 0, 0, 0.6);
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease,
+    box-shadow 0.3s ease;
   text-decoration: none; /* Remove underline for links */
   display: flex;
   align-items: center;
@@ -248,7 +268,7 @@ $shadow-color: rgba(0, 0, 0, 0.6);
   }
 
   h3 {
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-size: 1.6rem;
     color: $accent-gold;
     margin-bottom: 1.5rem;
@@ -264,7 +284,7 @@ $shadow-color: rgba(0, 0, 0, 0.6);
   display: flex;
   align-items: center;
   margin-bottom: 1.2rem;
-  background-color: lighten($primary-bg, 5%);
+  background-color: color.adjust($primary-bg, $lightness: 5%);
   padding: 0.8rem 1rem;
   border-radius: 8px;
   box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.3);
@@ -310,7 +330,7 @@ $shadow-color: rgba(0, 0, 0, 0.6);
   display: flex;
   align-items: center;
   margin-bottom: 1rem;
-  background-color: lighten($primary-bg, 5%);
+  background-color: color.adjust($primary-bg, $lightness: 5%);
   padding: 0.8rem 1rem;
   border-radius: 8px;
   box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.3);

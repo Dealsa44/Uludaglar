@@ -35,6 +35,7 @@
           [required]="field.required"
           [placeholder]="getTranslatedText(field.label) + (field.required ? ' *' : '')"
           class="form-control"
+          autocomplete="on"
         ></textarea>
         <input
           *ngIf="field.type !== 'textarea'"
@@ -44,6 +45,7 @@
           [required]="field.required"
           [placeholder]="getTranslatedText(field.label) + (field.required ? ' *' : '')"
           class="form-control"
+          autocomplete="on"
         >
         <div *ngIf="contactForm.get(field.name)?.invalid && (contactForm.get(field.name)?.dirty || contactForm.get(field.name)?.touched)" class="error-message">
           <ng-container *ngIf="contactForm.get(field.name)?.errors?.['required']">
@@ -106,6 +108,7 @@
             [required]="field.required"
             [placeholder]="getTranslatedText(field.label) + (field.required ? ' *' : '')"
             class="form-control"
+            autocomplete="on"
           ></textarea>
           <input
             *ngIf="field.type !== 'textarea'"
@@ -115,6 +118,7 @@
             [required]="field.required"
             [placeholder]="getTranslatedText(field.label) + (field.required ? ' *' : '')"
             class="form-control"
+            autocomplete="on"
           >
           <div *ngIf="joinTeamForm.get(field.name)?.invalid && (joinTeamForm.get(field.name)?.dirty || joinTeamForm.get(field.name)?.touched)" class="error-message">
             <ng-container *ngIf="joinTeamForm.get(field.name)?.errors?.['required']">

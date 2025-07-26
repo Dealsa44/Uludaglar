@@ -1,3 +1,5 @@
+@use "sass:color";
+
 /* Color Palette Variables */
 $primary-bg: #0d1b2a;
 $accent-gold: #ffd700;
@@ -23,7 +25,7 @@ body {
 
 /* --- Vision Mission Page Container --- */
 .vision-mission-page {
-  background: linear-gradient(145deg, darken($subtle-lines, 5%) 0%, $subtle-lines 100%);
+  background: linear-gradient(145deg, color.adjust($subtle-lines, $lightness: -5%) 0%, $subtle-lines 100%);
   padding: 3.5rem 2rem 3rem 2rem; /* Consistent padding */
   margin-top: 6rem; /* Ensures clearance from navbar */
   margin-bottom: 3rem; /* Consistent bottom margin */
@@ -91,7 +93,7 @@ body {
 
 /* --- Page Header Section --- */
 .page-header-background {
-  background: linear-gradient(160deg, $primary-bg 0%, darken($primary-bg, 5%) 100%);
+  background: linear-gradient(160deg, $primary-bg 0%, color.adjust($primary-bg, $lightness: -5%) 100%);
   padding: 2.5rem 2rem;
   margin: -3.5rem -2rem 3rem -2rem; /* Stretches to container edges */
   border-top-left-radius: 10px;
@@ -129,7 +131,7 @@ body {
   transition: color 0.3s ease;
 
   &:hover {
-    color: lighten($accent-gold, 10%);
+    color: color.adjust($accent-gold, $lightness: 10%);
   }
 }
 
@@ -216,7 +218,7 @@ body {
 .section-title {
   font-family: 'Montserrat', sans-serif;
   font-size: 2.2rem;
-  color: lighten($accent-gold, 10%); /* Brighter gold for titles */
+  color: color.adjust($accent-gold, $lightness: 10%); /* Brighter gold for titles */
   margin-bottom: 1.2rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -240,7 +242,7 @@ body {
 .section-content {
   font-size: 1.1rem;
   line-height: 1.8;
-  color: lighten($primary-text, 5%);
+  color: color.adjust($primary-text, $lightness: 5%);
   max-width: 750px;
   margin: 0 auto;
   text-align: justify;
