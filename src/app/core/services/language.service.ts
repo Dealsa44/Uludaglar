@@ -1,7 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Router, NavigationExtras } from '@angular/router'; // Import NavigationExtras
-import { Inject, PLATFORM_ID } from '@angular/core';
+import { Router, NavigationExtras } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
@@ -41,7 +40,6 @@ export class LanguageService {
       if (currentUrlSegments.length > 0 && this.languageMap[currentUrlSegments[0]] === undefined) {
         currentUrlSegments[0] = defaultLangCode;
         const correctedUrl = '/' + currentUrlSegments.join('/');
-        // When navigating during initialization, we also want to prevent scroll to top
         const navigationExtras: NavigationExtras = { replaceUrl: true, state: { skipScrollToTop: true } };
         this.router.navigateByUrl(correctedUrl, navigationExtras);
       }
@@ -77,7 +75,6 @@ export class LanguageService {
     const currentUrl = this.router.url;
     const newUrl = this.updateUrlLanguage(currentUrl, langCode);
 
-    // Pass state to skip scroll to top for language changes
     const navigationExtras: NavigationExtras = { state: { skipScrollToTop: true } };
     this.router.navigateByUrl(newUrl, navigationExtras);
   }
@@ -90,5 +87,21 @@ export class LanguageService {
       return '/' + parts.join('/');
     }
     return '/' + langCode + '/' + parts.slice(1).join('/');
+  }
+
+  // --- NEW METHOD ADDED HERE ---
+  /**
+   * Translates text based on the current language index.
+   * If input is an array, it picks the string at the current language index.
+   * If input is a string, it returns it as is (useful for static keys or default values).
+   * @param text The text to translate, either a string or an array of strings [TR, EN, ...].
+   * @returns The translated string.
+   */
+  getTranslatedText(text: string | string[]): string {
+    // We need to use the current value of the BehaviorSubject for translation
+    // or directly expose the currentLanguageIndex.
+    // Let's use the BehaviorSubject's current value for consistency.
+    const languageIndex = this.currentLanguage$.getValue();
+    return Array.isArray(text) ? text[languageIndex] : text;
   }
 }
