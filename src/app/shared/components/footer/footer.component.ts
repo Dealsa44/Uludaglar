@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { footerMocks } from '../../../core/mocks/footermocks'; // This will be updated
+import { footerMocks } from '../../../core/mocks/footermocks';
 import { LanguageService } from '../../../core/services/language.service';
 import { Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
@@ -14,7 +14,7 @@ import { blogMocks } from '../../../core/mocks/blogmocks';
   styleUrls: ['./footer.component.scss'],
 })
 export class FooterComponent implements OnInit, OnDestroy {
-  footerData = footerMocks;
+  footerData: any = footerMocks;
   currentLanguageIndex = 0;
   private languageSub!: Subscription;
   blogData = blogMocks;
@@ -57,5 +57,28 @@ export class FooterComponent implements OnInit, OnDestroy {
 
   navigateToBlogPost(postId: number): void {
     this.router.navigate(['/', this.currentLanguageCode, 'blog', postId]);
+  }
+
+  getGlossaryPostId(): number | null {
+    const glossaryPost = this.blogData.posts.find(
+      (post) =>
+        this.getTranslatedText(post.title) === 'Real Estate Glossary' ||
+        this.getTranslatedText(post.title) === 'Emlak Terimler Sözlüğü'
+    );
+    return glossaryPost ? glossaryPost.id : null;
+  }
+
+  /**
+   * Extracts the filename from a given URL.
+   * @param url The full URL string.
+   * @returns The filename part of the URL, or null if url is null.
+   */
+  getFileNameFromUrl(url: string | null): string | null {
+    if (!url) {
+      return null;
+    }
+    // Get the last part of the URL after the last '/'
+    const parts = url.split('/');
+    return parts[parts.length - 1];
   }
 }

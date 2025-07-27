@@ -1,15 +1,36 @@
+// src/core/mocks/footermocks.ts
 export const footerMocks = {
   usefulLinks: {
     title: ['Yararlı Bağlantılar', 'Useful Links'],
     links: [
-      ['2021 Fiyat Listesi', '2021 Price List'],
-      ['Tahliye Taahhütnamesi', 'Evacuation Undertaking'],
-      ['Satış Vaadi Sözleşmesi', 'Purchase and Sale Agreement'],
-      [
-        'Tapu ve Kadastro Genel Müdürlüğü Döner Sermaye İşlemlerinde Uygulanan Yerel Katsayılar',
-        'Local Coefficients Applied in Revolving Fund Transactions of the General Directorate of Land Registry and Cadastre',
-      ],
-      ['Emlak Terimler Sözlüğü', 'Real Estate Glossary'],
+      {
+        text: ['2021 Fiyat Listesi', '2021 Price List'],
+        url: 'assets/documents/2021-price-list.pdf', // Path changed to include 'assets/'
+        type: 'pdf',
+      },
+      {
+        text: ['Tahliye Taahhütnamesi', 'Evacuation Undertaking'],
+        url: 'assets/documents/evacuation-undertaking.pdf', // Path changed
+        type: 'pdf',
+      },
+      {
+        text: ['Satış Vaadi Sözleşmesi', 'Purchase and Sale Agreement'],
+        url: 'assets/documents/purchase-sale-agreement.pdf', // Path changed
+        type: 'pdf',
+      },
+      {
+        text: [
+          'Tapu ve Kadastro Genel Müdürlüğü Döner Sermaye İşlemlerinde Uygulanan Yerel Katsayılar',
+          'Local Coefficients Applied in Revolving Fund Transactions of the General Directorate of Land Registry and Cadastre',
+        ],
+        url: 'assets/documents/local-coefficients.xlsx', // Path changed
+        type: 'excel',
+      },
+      {
+        text: ['Emlak Terimler Sözlüğü', 'Real Estate Glossary'],
+        url: null,
+        type: 'blog',
+      },
     ],
   },
   centralBranch: {
@@ -20,9 +41,7 @@ export const footerMocks = {
     ],
     phone: '(0312) 335 55 28',
     email: 'emlak@uludaglar.com',
-    // Updated mapUrl
-    mapUrl:
-      'https://www.google.com/maps/place/Uluda%C4%9Flar+Property+(Real+Estate)/@39.968399,32.788303,16z/data=!4m6!3m5!1s0x14d3494264b3eedf:0x26f74fd2eb78d61b!8m2!3d39.968355!4d32.7866965!16s%2Fg%2F1w6049nc?hl=en-US&entry=ttu',
+    mapUrl: 'https://www.google.com/maps/place/Uluda%C4%9Flar+Property+(Real+Estate)/@39.968399,32.788303,16z/data=!4m6!3m5!1s0x14d3494264b3eedf:0x26f74fd2eb78d61b!8m2!3d39.968355!4d32.7866965!16s%2Fg%2F1w6049nc?hl=en-US&entry=ttu',
   },
   eskisehirBranch: {
     title: ['Eskişehir Yolu Şubesi', 'Eskisehir Road Branch'],
@@ -32,15 +51,12 @@ export const footerMocks = {
     ],
     phone: '(0312) 504 06 06',
     email: 'emlak@uludaglar.com',
-    // Updated mapUrl
-    mapUrl:
-      'https://www.google.com/maps/place/Uluda%C4%9Flar+Gayrimenkul+-+Fatih+Sultan+%C5%9Eube/@39.880712,32.65278,17z/data=!4m6!3m5!1s0x14d339fdf761925b:0x683defe0241530d7!8m2!3d39.8807124!4d32.6527799!16s%2Fg%2F11ncbr_9pk?hl=en-US&entry=ttu',
+    mapUrl: 'https://www.google.com/maps/place/Uluda%C4%9Flar+Gayrimenkul+-+Fatih+Sultan+%C5%9Eube/@39.880712,32.65278,17z/data=!4m6!3m5!1s0x14d339fdf761925b:0x683defe0241530d7!8m2!3d39.8807124!4d32.6527799!16s%2Fg%2F11ncbr_9pk?hl=en-US&entry=ttu',
   },
   popularPosts: {
     title: ['Popüler Yazılar', 'Popular Articles'],
   },
   socialMedia: {
-    // Updated social media links
     links: [
       {
         name: 'facebook',

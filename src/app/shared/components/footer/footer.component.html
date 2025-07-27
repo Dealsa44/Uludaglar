@@ -6,7 +6,28 @@
       </h3>
       <ul class="footer-links">
         <li *ngFor="let link of footerData.usefulLinks.links">
-          <a href="#">{{ getTranslatedText(link) }}</a>
+          <a
+            *ngIf="link.type === 'blog'"
+            [routerLink]="['/', currentLanguageCode, 'blog', getGlossaryPostId()]"
+          >
+            {{ getTranslatedText(link.text) }}
+          </a>
+          <a
+            *ngIf="link.type === 'pdf'"
+            [href]="link.url"
+            target="_blank"
+            rel="noopener noreferrer"
+            >{{ getTranslatedText(link.text) }}
+          </a>
+          <a
+            *ngIf="link.type === 'excel'"
+            [href]="link.url"
+            target="_blank"
+            rel="noopener noreferrer"
+            [download]="getFileNameFromUrl(link.url)"
+          >
+            {{ getTranslatedText(link.text) }}
+          </a>
         </li>
       </ul>
     </div>
@@ -124,7 +145,7 @@
         {{
           getTranslatedText([
             "Web sitesi Heypager tarafından hazırlanmıştır.",
-            "Website prepared by Heypager."
+            "Website prepared by Heypager.",
           ])
         }}
       </p>
