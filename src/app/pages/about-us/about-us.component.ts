@@ -3,7 +3,7 @@ import { aboutUsMocks } from '../../core/mocks/about-us.mocks';
 import { blogMocks } from '../../core/mocks/blogmocks';
 import { LanguageService } from '../../core/services/language.service';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common'; // Explicitly import structural directives
+import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { EmailService } from '../../core/services/email.service';
 import { NotificationService } from '../../core/services/notification.service';
@@ -11,15 +11,13 @@ import { NotificationService } from '../../core/services/notification.service';
 @Component({
   selector: 'app-about-us',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink, ],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink],
   templateUrl: './about-us.component.html',
   styleUrls: ['./about-us.component.scss']
 })
 export class AboutUsComponent implements OnInit {
   aboutUsData = aboutUsMocks;
   blogData = { ...blogMocks, posts: blogMocks.posts.slice(0, 4) };
-  // currentLanguageIndex is no longer directly used for translation in component,
-  // but keeping it if other logic depends on it.
   currentLanguageIndex = 0;
   contactForm: FormGroup;
   joinTeamForm: FormGroup;
@@ -28,10 +26,10 @@ export class AboutUsComponent implements OnInit {
   flippedCardIndex: number | null = null;
 
   constructor(
-    public languageService: LanguageService, // Make public to use in template
+    public languageService: LanguageService,
     private fb: FormBuilder,
-    private emailService: EmailService, // Inject EmailService
-    private notificationService: NotificationService // Inject NotificationService
+    private emailService: EmailService,
+    private notificationService: NotificationService
   ) {
     this.contactForm = this.fb.group({
       name: ['', Validators.required],
@@ -48,35 +46,25 @@ export class AboutUsComponent implements OnInit {
       applicantEmail: ['', [Validators.required, Validators.email]],
       applicantPhone: [''],
       applicantMessage: [''],
-      cvFile: [null, Validators.required] // Validator for file presence
+      cvFile: [null, Validators.required]
     });
   }
 
   ngOnInit(): void {
-    // This subscription keeps currentLanguageIndex updated for any other non-translation logic
     this.languageService.currentLanguage$.subscribe(index => {
       this.currentLanguageIndex = index;
     });
   }
 
-  // REMOVE this getTranslatedText method from AboutUsComponent.
-  // It will now be called directly from LanguageService in the template:
-  // {{ languageService.getTranslatedText(...) }}
-  // getTranslatedText(text: string | string[]): string {
-  //   return Array.isArray(text) ? text[this.currentLanguageIndex] : text;
-  // }
-
-  // New method to get the first paragraph of content text for blog posts
   getFirstContentText(content: any[]): string {
     if (content && content.length > 0 && content[0].text && content[0].text.length > 0) {
-      return this.languageService.getTranslatedText(content[0].text[0]); // Use languageService
+      return this.languageService.getTranslatedText(content[0].text[0]);
     }
     return '';
   }
 
-  // Method to get the detailed info for a team member
   getMemberInfo(info: string | string[]): string {
-    return this.languageService.getTranslatedText(info); // Use languageService
+    return this.languageService.getTranslatedText(info);
   }
 
   get currentLanguageCode(): string {
@@ -86,7 +74,7 @@ export class AboutUsComponent implements OnInit {
   onContactFormSubmit(): void {
     if (this.contactForm.valid) {
       const formData = {
-        formType: 'aboutUsContact', // Specific form type for this form
+        formType: 'aboutUsContact',
         name: this.contactForm.value.name,
         surname: this.contactForm.value.surname,
         email: this.contactForm.value.email,
@@ -129,7 +117,7 @@ export class AboutUsComponent implements OnInit {
     if (fileList && fileList.length > 0) {
       this.selectedFile = fileList[0];
       this.joinTeamForm.patchValue({
-        cvFile: this.selectedFile // Temporarily store File object, will send name to backend
+        cvFile: this.selectedFile // Store the File object
       });
       this.joinTeamForm.get('cvFile')?.updateValueAndValidity(); // Recalculate validity for cvFile
     } else {
@@ -142,35 +130,35 @@ export class AboutUsComponent implements OnInit {
   }
 
   onJoinTeamFormSubmit(): void {
-    if (this.joinTeamForm.valid) {
-      // NOTE: Sending files directly via simple JSON POST is not standard.
-      // For a full file upload, you'd typically use FormData and a separate backend endpoint.
-      // Here, we're only sending the file's name to the current backend.
-      const formData = {
-        formType: 'becomeMember', // Specific form type for this form
-        name: this.joinTeamForm.value.applicantName, // Using 'name' for backend consistency
-        surname: this.joinTeamForm.value.applicantSurname, // Using 'surname'
-        email: this.joinTeamForm.value.applicantEmail, // Using 'email'
-        phone: this.joinTeamForm.value.applicantPhone, // Using 'phone'
-        message: this.joinTeamForm.value.applicantMessage, // Using 'message'
-        cvFileName: this.selectedFile ? this.selectedFile.name : 'No file uploaded', // Only send file name
-        kvkk: true // Assuming KVKK is implied by submitting a job application if no explicit checkbox
-      };
+    if (this.joinTeamForm.valid && this.selectedFile) {
+      // Create a FormData object to send both text fields and the file
+      const formData = new FormData();
+      formData.append('formType', 'becomeMember');
+      formData.append('name', this.joinTeamForm.value.applicantName);
+      formData.append('surname', this.joinTeamForm.value.applicantSurname);
+      formData.append('email', this.joinTeamForm.value.applicantEmail);
+      formData.append('phone', this.joinTeamForm.value.applicantPhone || ''); // Phone might be optional
+      formData.append('message', this.joinTeamForm.value.applicantMessage || ''); // Message might be optional
+      formData.append('cvFile', this.selectedFile, this.selectedFile.name); // Append the file with its name
+
+      // Assuming KVKK is implicitly true for a job application form if not explicitly a checkbox
+      // If you need an explicit KVKK checkbox here, add it to your form and append its value
+      formData.append('kvkk', 'true'); // Sending as string 'true' for Flask backend
 
       this.emailService.sendEmail(formData).subscribe({
         next: (response) => {
-          console.log('Join Team Email sent successfully:', response);
+          console.log('Join Team Email with file sent successfully:', response);
           this.notificationService.showNotification(
             ['Başvurunuz başarıyla gönderildi!', 'Your application has been sent successfully!'],
             'success'
           );
           this.joinTeamForm.reset();
-          this.selectedFile = null; // Clear selected file display
-          this.joinTeamForm.get('cvFile')?.setErrors(null); // Clear any file errors
+          this.selectedFile = null;
+          this.joinTeamForm.get('cvFile')?.setErrors(null);
           this.joinTeamForm.get('cvFile')?.markAsUntouched();
         },
         error: (error) => {
-          console.error('Error sending Join Team email:', error);
+          console.error('Error sending Join Team email with file:', error);
           this.notificationService.showNotification(
             ['Başvurunuz gönderilemedi. Lütfen daha sonra tekrar deneyin.', 'Failed to send your application. Please try again later.'],
             'error'
@@ -180,7 +168,7 @@ export class AboutUsComponent implements OnInit {
     } else {
       this.joinTeamForm.markAllAsTouched();
       this.notificationService.showNotification(
-        ['Lütfen tüm gerekli alanları doğru şekilde doldurun.', 'Please fill in all required fields correctly.'],
+        ['Lütfen tüm gerekli alanları doğru şekilde doldurun ve bir CV yükleyin.', 'Please fill in all required fields correctly and upload a CV.'],
         'error'
       );
     }
