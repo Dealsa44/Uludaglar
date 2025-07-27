@@ -1,6 +1,6 @@
-@use "sass:color";
-
 /* src/app/pages/about-us/about-us.component.scss */
+
+@use "sass:color";
 
 /* Color Palette Variables (from your styled component) */
 $primary-bg: #0d1b2a;
@@ -197,8 +197,6 @@ $form-border: rgba($accent-gold, 0.3);
   }
 
   .hero-content {
-    /* No need for hero-content as a flex container directly for desktop now,
-        the grid handles the main layout. Revert to simple block if needed. */
     display: contents; /* Makes children participate directly in the grid layout */
 
     @media (min-width: 992px) {
@@ -597,41 +595,112 @@ $form-border: rgba($accent-gold, 0.3);
   }
 }
 
-/* --- Our Team Section (Similar to Founders Section) --- */
+/* --- Our Team Section --- */
 .our-team-section {
   background-color: color.adjust($primary-bg, $lightness: -2%);
   padding: 3rem 2rem;
 
   .team-members-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Changed to 280px for 4 per line */
     gap: 2.5rem;
     padding: 2rem 0;
+    perspective: 1000px; /* For 3D flip effect */
   }
 
   .team-member-card {
-    background-color: $subtle-lines;
+    background-color: transparent; /* Card itself is transparent, inner takes color */
     border-radius: 10px;
-    overflow: hidden;
+    overflow: hidden; /* Ensures inner content doesn't spill out on hover */
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
     border: 1px solid rgba($accent-gold, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
     position: relative;
-    min-height: 380px; /* Adjusted height for detail info */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    text-align: center;
-    padding: 1.5rem;
+    height: 420px; /* Increased fixed height */
+    will-change: transform; /* Optimize for animation */
+
+    // Disable blue highlight on tap/click
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+    user-select: none;
 
     &:hover {
       transform: translateY(-8px);
       box-shadow: 0 12px 25px rgba(0, 0, 0, 0.6);
     }
 
-    .member-image {
+    .team-member-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.6s;
+      transform-style: preserve-3d; /* Key for 3D flip */
+      border-radius: 10px; /* Inherit border-radius */
+    }
+
+    /* Desktop Hover Effect */
+    @media (hover: hover) and (pointer: fine) {
+      &:hover .team-member-card-inner {
+        transform: rotateY(180deg); /* Flip on hover for desktop */
+      }
+    }
+
+    /* Mobile/Touch Click Effect */
+    // This `flipped` class is toggled by JavaScript on click for touch devices
+    &.flipped .team-member-card-inner {
+      transform: rotateY(180deg); /* Apply flip when 'flipped' class is present */
+    }
+
+
+    .card-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden; /* Hide the back of the element when it is facing away */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start; /* Align content to top */
+      padding: 1.5rem;
+      box-sizing: border-box; /* Include padding in width/height */
+      border-radius: 10px;
+    }
+
+    .card-front {
+      background-color: $subtle-lines;
+      z-index: 2;
+      transform: rotateY(0deg); /* Default state */
+    }
+
+    .card-back {
+      background-color: rgba($primary-bg, 0.85); /* Slightly transparent */
+      backdrop-filter: blur(5px); /* Apply blur */
+      -webkit-backdrop-filter: blur(5px); /* Safari support */
+      transform: rotateY(180deg); /* Initial state is flipped */
+      justify-content: space-between; /* Adjusted to space-between */
+      padding-top: 1.5rem; /* Adjusted padding */
+      padding-bottom: 1.5rem; /* Adjusted padding */
+      position: relative; /* Needed for z-index of image within */
+    }
+
+    .member-image-bg { /* Targeting the new image for background */
+      position: absolute; /* Position the image absolutely */
+      top: 50%;
+      left: 50%;
+      width: 150px; /* Control size of background image */
+      height: 150px;
+      object-fit: cover;
+      border-radius: 50%; /* Keep it circular */
+      transform: translate(-50%, -50%) scale(2); /* Center and scale up to fill more of the background */
+      opacity: 0.15; /* Increased opacity slightly to make it more visible */
+      filter: grayscale(80%) blur(4px); /* Reduced blur and grayscale for more visibility */
+      z-index: 0; /* Behind the text content */
+      transition: opacity 0.5s ease, filter 0.5s ease; /* Smooth transition */
+    }
+
+    .member-image { /* Styles for the main image on the front face */
       width: 150px;
       height: 150px;
       border-radius: 50%;
@@ -639,13 +708,7 @@ $form-border: rgba($accent-gold, 0.3);
       border: 4px solid $accent-gold;
       box-shadow: 0 0 15px rgba($accent-gold, 0.5);
       margin-bottom: 1rem;
-    }
-
-    .member-info {
-      flex-grow: 1; /* Allows it to take available space */
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start; /* Align text to top */
+      transition: transform 0.3s ease;
     }
 
     .member-name {
@@ -653,6 +716,9 @@ $form-border: rgba($accent-gold, 0.3);
       color: $accent-gold;
       font-weight: 700;
       margin-bottom: 0.3rem;
+      line-height: 1.2; /* Tighter line height for names */
+      position: relative; /* Ensure text is above blurred image */
+      z-index: 1;
     }
 
     .member-position {
@@ -660,23 +726,27 @@ $form-border: rgba($accent-gold, 0.3);
       color: color.adjust($primary-text, $lightness: 10%);
       font-style: italic;
       margin-bottom: 1rem;
+      line-height: 1.2; /* Tighter line height for positions */
+      position: relative; /* Ensure text is above blurred image */
+      z-index: 1;
     }
 
     .member-detail-info {
       font-size: 0.95rem;
       color: $primary-text;
       line-height: 1.6;
-      text-align: justify;
-      opacity: 0; /* Hidden by default */
-      max-height: 0;
-      overflow: hidden;
-      transition: opacity 0.5s ease, max-height 0.5s ease;
-      padding: 0 0.5rem; /* Add horizontal padding for text */
-    }
-
-    &:hover .member-detail-info {
-      opacity: 1;
-      max-height: 150px; /* Sufficient height for content, adjust as needed */
+      text-align: center; /* Center text to avoid "widows" */
+      padding: 0 0.8rem; /* Add horizontal padding for text */
+      hyphens: auto; /* Allow hyphenation for better word breaking */
+      word-wrap: break-word; /* Ensure long words wrap */
+      margin-top: auto;
+      margin-bottom: auto;
+      flex-grow: 1; /* Allow it to take up available space */
+      display: flex; /* Use flex to center content within itself */
+      align-items: center; /* Vertically center content if short */
+      justify-content: center; /* Horizontally center content */
+      position: relative; /* Ensure text is above blurred image */
+      z-index: 1;
     }
   }
 }
@@ -821,19 +891,27 @@ $form-border: rgba($accent-gold, 0.3);
   }
 
   .why-us-section .articles-grid,
-  .our-team-section .team-members-grid,
   .blog-posts-section .blogs-grid {
     grid-template-columns: 1fr; /* Stack on small screens */
   }
 
-  .team-member-card {
-    min-height: auto; /* Allow height to adjust for content */
+  /* --- Mobile Specific Styles for Our Team Section --- */
+  .our-team-section .team-members-grid {
+    grid-template-columns: 1fr; /* Stack on small screens (now also allowing flip) */
   }
 
-  .member-detail-info {
-    max-height: fit-content !important; /* Always show content on small screens */
-    opacity: 1 !important;
-    padding: 1rem 0.5rem;
+  .our-team-section .team-member-card {
+    height: 480px; /* Increased height further for mobile to ensure content fits */
+    cursor: pointer; /* Ensure cursor indicates hoverable */
+
+    .card-back {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+
+    .member-name, .member-position {
+        margin-bottom: 0.5rem;
+    }
   }
 }
 

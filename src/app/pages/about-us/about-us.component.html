@@ -81,19 +81,34 @@
     </div>
   </section>
 
-  <section class="our-team-section section-container">
-    <h2 class="section-heading">{{ getTranslatedText(aboutUsData.team.heading) }}</h2>
-    <div class="team-members-grid">
-      <div *ngFor="let member of aboutUsData.team.members" class="team-member-card">
-        <img [src]="member.image" [alt]="getTranslatedText(member.name)" class="member-image">
-        <div class="member-info">
+ <section class="our-team-section section-container">
+  <h2 class="section-heading">{{ getTranslatedText(aboutUsData.team.heading) }}</h2>
+  <div class="team-members-grid">
+    <div
+      class="team-member-card"
+      *ngFor="let member of aboutUsData.team.members; let i = index"
+      (click)="toggleCardFlip(i)"
+      [class.flipped]="isCardFlipped(i)"
+    >
+      <div class="team-member-card-inner">
+        <div class="card-face card-front">
+          <img [src]="member.image" class="member-image" [alt]="getTranslatedText(member.name)" />
           <h3 class="member-name">{{ getTranslatedText(member.name) }}</h3>
           <p class="member-position">{{ getTranslatedText(member.position) }}</p>
-          <p class="member-detail-info">{{ getTranslatedText(member.info) }}</p>
+        </div>
+
+        <div class="card-face card-back">
+          <img [src]="member.image" class="member-image-bg" [alt]="getTranslatedText(member.name)" />
+          <h3 class="member-name">{{ getTranslatedText(member.name) }}</h3>
+          <p class="member-position">{{ getTranslatedText(member.position) }}</p>
+          <p class="member-detail-info">
+            {{ getMemberInfo(member.info) }}
+          </p>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
   <section class="join-team-section section-container">
     <h2 class="section-heading">{{ getTranslatedText(aboutUsData.joinTeamForm.heading) }}</h2>

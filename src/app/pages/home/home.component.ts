@@ -3,7 +3,7 @@ import {
   OnInit,
   OnDestroy,
   ChangeDetectionStrategy,
-  ChangeDetectorRef, // Import ChangeDetectorRef
+  ChangeDetectorRef,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
@@ -19,7 +19,7 @@ import { Subscription, interval } from 'rxjs';
   imports: [CommonModule, RouterModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush, // Keep OnPush for performance
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent implements OnInit, OnDestroy {
   homeData = homeMocks;
@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   // Slider properties
   currentSlideIndex = 0;
-  private sliderInterval: any;
+  private sliderInterval: any; // Use `any` for setInterval return type
 
   // Blog section properties
   randomBlogPosts: any[] = [];
@@ -53,7 +53,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     private languageService: LanguageService,
     private router: Router,
     private sanitizer: DomSanitizer,
-    private cdr: ChangeDetectorRef // Inject ChangeDetectorRef
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -61,18 +61,17 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.languageSub = this.languageService.currentLanguage$.subscribe(
       (index) => {
         this.currentLanguageIndex = index;
-        // IMPORTANT: Trigger change detection manually because of OnPush strategy
-        this.cdr.markForCheck();
+        this.cdr.markForCheck(); // Trigger change detection manually
       }
     );
 
-    this.startSlider();
+    this.startSlider(); // Start the automatic slider
     this.setRandomBlogPosts();
   }
 
   ngOnDestroy(): void {
     this.languageSub?.unsubscribe();
-    this.stopSlider();
+    this.stopSlider(); // Clear interval on component destruction
   }
 
   getTranslatedText(text: string | string[]): string {
@@ -85,10 +84,11 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   // --- Slider Logic ---
   startSlider(): void {
-    this.stopSlider();
+    this.stopSlider(); // Clear any existing interval before starting a new one
     this.sliderInterval = setInterval(() => {
       this.nextSlide();
-    }, 5000);
+      this.cdr.markForCheck(); // Mark for check after slide change for OnPush
+    }, 5000); // 5 seconds
   }
 
   stopSlider(): void {
@@ -99,18 +99,24 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   goToSlide(index: number): void {
     this.currentSlideIndex = index;
-    this.startSlider();
+    this.startSlider(); // Reset the timer when a dot is clicked
+    this.cdr.markForCheck(); // Mark for check after slide change
   }
 
   nextSlide(): void {
     this.currentSlideIndex =
       (this.currentSlideIndex + 1) % this.homeData.heroSlider.images.length;
+    // No need to call startSlider() here if it's called on user interaction (dots, arrows)
+    // and automatically by the interval.
+    this.cdr.markForCheck(); // Mark for check after slide change
   }
 
   prevSlide(): void {
     this.currentSlideIndex =
       (this.currentSlideIndex - 1 + this.homeData.heroSlider.images.length) %
       this.homeData.heroSlider.images.length;
+    this.startSlider(); // Reset the timer when an arrow is clicked
+    this.cdr.markForCheck(); // Mark for check after slide change
   }
 
   navigateToServices(): void {
@@ -121,17 +127,13 @@ export class HomeComponent implements OnInit, OnDestroy {
   getSafeYouTubeUrl(url: string): SafeResourceUrl {
     if (!this.videoUrlCache.has(url)) {
       const videoId = this.extractYouTubeId(url);
-      const params = new URLSearchParams(
-        Object.entries({
-          ...this.youtubePlayerParams,
-          origin: window.location.origin,
-        }).reduce((acc, [key, value]) => {
+      // Ensure correct YouTube embed URL format
+      const safeUrl = `https://www.youtube.com/embed/${videoId}?${new URLSearchParams(
+        Object.entries(this.youtubePlayerParams).reduce((acc, [key, value]) => {
           acc[key] = String(value);
           return acc;
         }, {} as Record<string, string>)
-      ).toString();
-      // Corrected URL: ensure it starts with 'https://' for YouTube embeds
-      const safeUrl = `https://www.youtube.com/embed/${videoId}?${params}`;
+      ).toString()}`;
       this.videoUrlCache.set(
         url,
         this.sanitizer.bypassSecurityTrustResourceUrl(safeUrl)
@@ -159,6 +161,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       [allPosts[i], allPosts[j]] = [allPosts[j], allPosts[i]];
     }
     this.randomBlogPosts = allPosts.slice(0, 3);
+    this.cdr.markForCheck(); // Mark for check after updating blog posts
   }
 
   navigateToBlogPost(postId: number): void {
@@ -179,9 +182,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   // --- Founder Section Hover Logic ---
   onFounderHover(index: number): void {
     this.hoveredFounderIndex = index;
+    this.cdr.markForCheck(); // Mark for check on hover change
   }
 
   onFounderLeave(): void {
     this.hoveredFounderIndex = null;
+    this.cdr.markForCheck(); // Mark for check on hover change
   }
 }

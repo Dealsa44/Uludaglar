@@ -1,7 +1,7 @@
 // src/app/about-us/about-us.component.ts
 import { Component, OnInit } from '@angular/core';
 import { aboutUsMocks } from '../../core/mocks/about-us.mocks';
-import { blogMocks } from '../../core/mocks/blogmocks'; // Make sure this path is correct
+import { blogMocks } from '../../core/mocks/blogmocks';
 import { LanguageService } from '../../core/services/language.service';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -16,12 +16,13 @@ import { RouterLink } from '@angular/router';
 })
 export class AboutUsComponent implements OnInit {
   aboutUsData = aboutUsMocks;
-  // Limit to the first 4 blog posts
-  blogData = { ...blogMocks, posts: blogMocks.posts.slice(0, 4) }; // Use spread to keep other blogMocks properties if any
+  blogData = { ...blogMocks, posts: blogMocks.posts.slice(0, 4) };
   currentLanguageIndex = 0;
   contactForm: FormGroup;
   joinTeamForm: FormGroup;
   selectedFile: File | null = null;
+
+  flippedCardIndex: number | null = null; // To track the flipped team member card
 
   constructor(
     public languageService: LanguageService,
@@ -57,12 +58,19 @@ export class AboutUsComponent implements OnInit {
     return Array.isArray(text) ? text[this.currentLanguageIndex] : text;
   }
 
-  // New method to get the first paragraph of content text
+  // New method to get the first paragraph of content text (re-added for blog posts)
   getFirstContentText(content: any[]): string {
     if (content && content.length > 0 && content[0].text && content[0].text.length > 0) {
-      return this.getTranslatedText(content[0].text[0]); // Get the first text item of the first content block
+      // Assuming the blog post content is structured as an array of objects,
+      // where each object has a 'text' property which is an array of strings.
+      return this.getTranslatedText(content[0].text[0]);
     }
     return ''; // Return empty string if no content is found
+  }
+
+  // Method to get the detailed info for a team member (from your mocks 'info' property)
+  getMemberInfo(info: string | string[]): string {
+    return this.getTranslatedText(info);
   }
 
   get currentLanguageCode(): string {
@@ -121,5 +129,17 @@ export class AboutUsComponent implements OnInit {
     } else {
       this.joinTeamForm.markAllAsTouched();
     }
+  }
+
+  toggleCardFlip(index: number): void {
+    if (this.flippedCardIndex === index) {
+      this.flippedCardIndex = null;
+    } else {
+      this.flippedCardIndex = index;
+    }
+  }
+
+  isCardFlipped(index: number): boolean {
+    return this.flippedCardIndex === index;
   }
 }
