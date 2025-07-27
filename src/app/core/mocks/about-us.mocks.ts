@@ -202,6 +202,10 @@ export const aboutUsMocks = {
       },
     ],
     cvUploadLabel: ['CV Yükle', 'Upload CV'],
+     kvkkText: [
+      'İsim, soyisim, mail adresi ve telefon gibi kişisel verilerimizn Uludağlar Gayrimenkul tarafından tutulmasını ve gerekli durumlarda benimle iletişime geçilmesini onaylıyorum',
+      'I approve that my personal data such as name, surname, email address and phone number are kept by Uludağlar Real Estate and I can be contacted when necessary',
+    ],
     submitText: ['Başvuruyu Gönder', 'Submit Application'],
   },
   blogs: {

@@ -1,20 +1,34 @@
 <div class="about-us-page">
   <section class="page-header-background">
-    <h1 class="page-title">{{ languageService.getTranslatedText(aboutUsData.pageHeader.title) }}</h1>
+    <h1 class="page-title">
+      {{ languageService.getTranslatedText(aboutUsData.pageHeader.title) }}
+    </h1>
     <div class="header-underline"></div>
   </section>
 
   <section class="about-us-hero section-container">
     <div class="hero-content">
       <div class="text-content">
-        <h2 class="section-heading">{{ languageService.getTranslatedText(aboutUsData.hero.heading) }}</h2>
-        <p class="about-text">{{ languageService.getTranslatedText(aboutUsData.hero.text) }}</p>
+        <h2 class="section-heading">
+          {{ languageService.getTranslatedText(aboutUsData.hero.heading) }}
+        </h2>
+        <p class="about-text">
+          {{ languageService.getTranslatedText(aboutUsData.hero.text) }}
+        </p>
       </div>
       <div class="image-content">
-        <div *ngFor="let office of aboutUsData.hero.offices" class="office-block">
+        <div
+          *ngFor="let office of aboutUsData.hero.offices"
+          class="office-block"
+        >
           <h3>{{ languageService.getTranslatedText(office.name) }}</h3>
           <div class="office-images">
-            <img *ngFor="let img of office.images" [src]="img" [alt]="languageService.getTranslatedText(office.name)" class="office-image">
+            <img
+              *ngFor="let img of office.images"
+              [src]="img"
+              [alt]="languageService.getTranslatedText(office.name)"
+              class="office-image"
+            />
           </div>
         </div>
       </div>
@@ -22,18 +36,37 @@
   </section>
 
   <section class="contact-form-section section-container">
-    <h2 class="form-title">{{ languageService.getTranslatedText(aboutUsData.contactForm.title) }}</h2>
-    <p class="form-description">{{ languageService.getTranslatedText(aboutUsData.contactForm.description) }}</p>
+    <h2 class="form-title">
+      {{ languageService.getTranslatedText(aboutUsData.contactForm.title) }}
+    </h2>
+    <p class="form-description">
+      {{
+        languageService.getTranslatedText(aboutUsData.contactForm.description)
+      }}
+    </p>
 
-    <form [formGroup]="contactForm" (ngSubmit)="onContactFormSubmit()" class="contact-form">
-      <div *ngFor="let field of aboutUsData.contactForm.fields" class="form-group">
-        <label [for]="field.name" class="form-label">{{ languageService.getTranslatedText(field.label) }}<span *ngIf="field.required" class="required-star">*</span></label>
+    <form
+      [formGroup]="contactForm"
+      (ngSubmit)="onContactFormSubmit()"
+      class="contact-form"
+    >
+      <div
+        *ngFor="let field of aboutUsData.contactForm.fields"
+        class="form-group"
+      >
+        <label [for]="field.name" class="form-label"
+          >{{ languageService.getTranslatedText(field.label)
+          }}<span *ngIf="field.required" class="required-star">*</span></label
+        >
         <textarea
           *ngIf="field.type === 'textarea'"
           [id]="field.name"
           [formControlName]="field.name"
           [required]="field.required"
-          [placeholder]="languageService.getTranslatedText(field.label) + (field.required ? ' *' : '')"
+          [placeholder]="
+            languageService.getTranslatedText(field.label) +
+            (field.required ? ' *' : '')
+          "
           class="form-control"
           autocomplete="on"
         ></textarea>
@@ -43,46 +76,101 @@
           [id]="field.name"
           [formControlName]="field.name"
           [required]="field.required"
-          [placeholder]="languageService.getTranslatedText(field.label) + (field.required ? ' *' : '')"
+          [placeholder]="
+            languageService.getTranslatedText(field.label) +
+            (field.required ? ' *' : '')
+          "
           class="form-control"
           autocomplete="on"
+        />
+        <div
+          *ngIf="
+            contactForm.get(field.name)?.invalid &&
+            (contactForm.get(field.name)?.dirty ||
+              contactForm.get(field.name)?.touched)
+          "
+          class="error-message"
         >
-        <div *ngIf="contactForm.get(field.name)?.invalid && (contactForm.get(field.name)?.dirty || contactForm.get(field.name)?.touched)" class="error-message">
-          <ng-container *ngIf="contactForm.get(field.name)?.errors?.['required']">
-            {{ languageService.getTranslatedText(['Bu alan zorunludur', 'This field is required']) }}
+          <ng-container
+            *ngIf="contactForm.get(field.name)?.errors?.['required']"
+          >
+            {{
+              languageService.getTranslatedText([
+                "Bu alan zorunludur",
+                "This field is required"
+              ])
+            }}
           </ng-container>
           <ng-container *ngIf="contactForm.get(field.name)?.errors?.['email']">
-            {{ languageService.getTranslatedText(['Geçerli bir email adresi giriniz', 'Please enter a valid email address']) }}
+            {{
+              languageService.getTranslatedText([
+                "Geçerli bir email adresi giriniz",
+                "Please enter a valid email address"
+              ])
+            }}
           </ng-container>
         </div>
       </div>
 
       <div class="form-group checkbox-group">
-        <input type="checkbox" id="kvkk" formControlName="kvkk" class="form-checkbox">
-        <label for="kvkk" class="checkbox-label">{{ languageService.getTranslatedText(aboutUsData.contactForm.kvkkText) }}<span class="required-star">*</span></label>
-        <div *ngIf="contactForm.get('kvkk')?.invalid && (contactForm.get('kvkk')?.dirty || contactForm.get('kvkk')?.touched)" class="error-message">
-          {{ languageService.getTranslatedText(['Onay vermelisiniz', 'You must approve']) }}
+        <input
+          type="checkbox"
+          id="kvkk"
+          formControlName="kvkk"
+          class="form-checkbox"
+        />
+        <label for="kvkk" class="checkbox-label"
+          >{{
+            languageService.getTranslatedText(aboutUsData.contactForm.kvkkText)
+          }}<span class="required-star">*</span></label
+        >
+        <div
+          *ngIf="
+            contactForm.get('kvkk')?.invalid &&
+            (contactForm.get('kvkk')?.dirty || contactForm.get('kvkk')?.touched)
+          "
+          class="error-message"
+        >
+          {{
+            languageService.getTranslatedText([
+              "Onay vermelisiniz",
+              "You must approve"
+            ])
+          }}
         </div>
       </div>
 
       <button type="submit" class="submit-btn" [disabled]="contactForm.invalid">
-        {{ languageService.getTranslatedText(aboutUsData.contactForm.submitText) }}
+        {{
+          languageService.getTranslatedText(aboutUsData.contactForm.submitText)
+        }}
       </button>
     </form>
   </section>
 
   <section class="why-us-section section-container">
-    <h2 class="section-heading">{{ languageService.getTranslatedText(aboutUsData.whyUs.heading) }}</h2>
+    <h2 class="section-heading">
+      {{ languageService.getTranslatedText(aboutUsData.whyUs.heading) }}
+    </h2>
     <div class="articles-grid">
-      <div *ngFor="let article of aboutUsData.whyUs.articles" class="article-card">
-        <img [src]="'/assets/imgs/aboutus/' + article.icon + '.svg'" [alt]="languageService.getTranslatedText(article.title)" class="article-icon">
+      <div
+        *ngFor="let article of aboutUsData.whyUs.articles"
+        class="article-card"
+      >
+        <img
+          [src]="'/assets/imgs/aboutus/' + article.icon + '.svg'"
+          [alt]="languageService.getTranslatedText(article.title)"
+          class="article-icon"
+        />
         <h3>{{ languageService.getTranslatedText(article.title) }}</h3>
       </div>
     </div>
   </section>
 
   <section class="our-team-section section-container">
-    <h2 class="section-heading">{{ languageService.getTranslatedText(aboutUsData.team.heading) }}</h2>
+    <h2 class="section-heading">
+      {{ languageService.getTranslatedText(aboutUsData.team.heading) }}
+    </h2>
     <div class="team-members-grid">
       <div
         class="team-member-card"
@@ -92,17 +180,34 @@
       >
         <div class="team-member-card-inner">
           <div class="card-face card-front">
-            <img [src]="member.image" class="member-image" [alt]="languageService.getTranslatedText(member.name)" />
-            <h3 class="member-name">{{ languageService.getTranslatedText(member.name) }}</h3>
-            <p class="member-position">{{ languageService.getTranslatedText(member.position) }}</p>
+            <img
+              [src]="member.image"
+              class="member-image"
+              [alt]="languageService.getTranslatedText(member.name)"
+            />
+            <h3 class="member-name">
+              {{ languageService.getTranslatedText(member.name) }}
+            </h3>
+            <p class="member-position">
+              {{ languageService.getTranslatedText(member.position) }}
+            </p>
           </div>
 
           <div class="card-face card-back">
-            <img [src]="member.image" class="member-image-bg" [alt]="languageService.getTranslatedText(member.name)" />
-            <h3 class="member-name">{{ languageService.getTranslatedText(member.name) }}</h3>
-            <p class="member-position">{{ languageService.getTranslatedText(member.position) }}</p>
+            <img
+              [src]="member.image"
+              class="member-image-bg"
+              [alt]="languageService.getTranslatedText(member.name)"
+            />
+            <h3 class="member-name">
+              {{ languageService.getTranslatedText(member.name) }}
+            </h3>
+            <p class="member-position">
+              {{ languageService.getTranslatedText(member.position) }}
+            </p>
             <p class="member-detail-info">
-              {{ getMemberInfo(member.info) }} </p>
+              {{ getMemberInfo(member.info) }}
+            </p>
           </div>
         </div>
       </div>
@@ -110,17 +215,32 @@
   </section>
 
   <section class="join-team-section section-container">
-    <h2 class="section-heading">{{ languageService.getTranslatedText(aboutUsData.joinTeamForm.heading) }}</h2>
+    <h2 class="section-heading">
+      {{ languageService.getTranslatedText(aboutUsData.joinTeamForm.heading) }}
+    </h2>
     <div *ngIf="aboutUsData.joinTeamForm.available; else unavailableForm">
-      <form [formGroup]="joinTeamForm" (ngSubmit)="onJoinTeamFormSubmit()" class="join-team-form">
-        <div *ngFor="let field of aboutUsData.joinTeamForm.fields" class="form-group">
-          <label [for]="field.name" class="form-label">{{ languageService.getTranslatedText(field.label) }}<span *ngIf="field.required" class="required-star">*</span></label>
+      <form
+        [formGroup]="joinTeamForm"
+        (ngSubmit)="onJoinTeamFormSubmit()"
+        class="join-team-form"
+      >
+        <div
+          *ngFor="let field of aboutUsData.joinTeamForm.fields"
+          class="form-group"
+        >
+          <label [for]="field.name" class="form-label"
+            >{{ languageService.getTranslatedText(field.label)
+            }}<span *ngIf="field.required" class="required-star">*</span></label
+          >
           <textarea
             *ngIf="field.type === 'textarea'"
             [id]="field.name"
             [formControlName]="field.name"
             [required]="field.required"
-            [placeholder]="languageService.getTranslatedText(field.label) + (field.required ? ' *' : '')"
+            [placeholder]="
+              languageService.getTranslatedText(field.label) +
+              (field.required ? ' *' : '')
+            "
             class="form-control"
             autocomplete="on"
           ></textarea>
@@ -130,51 +250,166 @@
             [id]="field.name"
             [formControlName]="field.name"
             [required]="field.required"
-            [placeholder]="languageService.getTranslatedText(field.label) + (field.required ? ' *' : '')"
+            [placeholder]="
+              languageService.getTranslatedText(field.label) +
+              (field.required ? ' *' : '')
+            "
             class="form-control"
             autocomplete="on"
+          />
+          <div
+            *ngIf="
+              joinTeamForm.get(field.name)?.invalid &&
+              (joinTeamForm.get(field.name)?.dirty ||
+                joinTeamForm.get(field.name)?.touched)
+            "
+            class="error-message"
           >
-          <div *ngIf="joinTeamForm.get(field.name)?.invalid && (joinTeamForm.get(field.name)?.dirty || joinTeamForm.get(field.name)?.touched)" class="error-message">
-            <ng-container *ngIf="joinTeamForm.get(field.name)?.errors?.['required']">
-              {{ languageService.getTranslatedText(['Bu alan zorunludur', 'This field is required']) }}
+            <ng-container
+              *ngIf="joinTeamForm.get(field.name)?.errors?.['required']"
+            >
+              {{
+                languageService.getTranslatedText([
+                  "Bu alan zorunludur",
+                  "This field is required"
+                ])
+              }}
             </ng-container>
-            <ng-container *ngIf="joinTeamForm.get(field.name)?.errors?.['email']">
-              {{ languageService.getTranslatedText(['Geçerli bir email adresi giriniz', 'Please enter a valid email address']) }}
+            <ng-container
+              *ngIf="joinTeamForm.get(field.name)?.errors?.['email']"
+            >
+              {{
+                languageService.getTranslatedText([
+                  "Geçerli bir email adresi giriniz",
+                  "Please enter a valid email address"
+                ])
+              }}
             </ng-container>
           </div>
         </div>
 
         <div class="form-group file-upload-group">
-          <label for="cvFile" class="form-label">{{ languageService.getTranslatedText(aboutUsData.joinTeamForm.cvUploadLabel) }}<span class="required-star">*</span></label>
-          <input type="file" id="cvFile" (change)="onFileSelected($event)" class="form-control-file" [class.is-invalid]="joinTeamForm.get('cvFile')?.invalid && (joinTeamForm.get('cvFile')?.dirty || joinTeamForm.get('cvFile')?.touched)">
-          <div class="file-name-display" *ngIf="selectedFile">{{ selectedFile.name }}</div>
-          <div *ngIf="joinTeamForm.get('cvFile')?.invalid && (joinTeamForm.get('cvFile')?.dirty || joinTeamForm.get('cvFile')?.touched)" class="error-message">
-            <ng-container *ngIf="joinTeamForm.get('cvFile')?.errors?.['required']">
-              {{ languageService.getTranslatedText(['CV yüklemeniz zorunludur', 'CV upload is required']) }}
+          <label for="cvFile" class="form-label"
+            >{{
+              languageService.getTranslatedText(
+                aboutUsData.joinTeamForm.cvUploadLabel
+              )
+            }}<span class="required-star">*</span></label
+          >
+          <input
+            type="file"
+            id="cvFile"
+            (change)="onFileSelected($event)"
+            class="form-control-file"
+            [class.is-invalid]="
+              joinTeamForm.get('cvFile')?.invalid &&
+              (joinTeamForm.get('cvFile')?.dirty ||
+                joinTeamForm.get('cvFile')?.touched)
+            "
+          />
+          <div class="file-name-display" *ngIf="selectedFile">
+            {{ selectedFile.name }}
+          </div>
+          <div
+            *ngIf="
+              joinTeamForm.get('cvFile')?.invalid &&
+              (joinTeamForm.get('cvFile')?.dirty ||
+                joinTeamForm.get('cvFile')?.touched)
+            "
+            class="error-message"
+          >
+            <ng-container
+              *ngIf="joinTeamForm.get('cvFile')?.errors?.['required']"
+            >
+              {{
+                languageService.getTranslatedText([
+                  "CV yüklemeniz zorunludur",
+                  "CV upload is required"
+                ])
+              }}
             </ng-container>
           </div>
         </div>
 
-        <button type="submit" class="submit-btn" [disabled]="joinTeamForm.invalid">
-          {{ languageService.getTranslatedText(aboutUsData.joinTeamForm.submitText) }}
+        <div class="form-group checkbox-group">
+          <input
+            type="checkbox"
+            id="joinKvkk"
+            formControlName="kvkk"
+            class="form-checkbox"
+          />
+          <label for="joinKvkk" class="checkbox-label"
+            >{{
+              languageService.getTranslatedText(
+                aboutUsData.joinTeamForm.kvkkText
+              )
+            }}<span class="required-star">*</span></label
+          >
+          <div
+            *ngIf="
+              joinTeamForm.get('kvkk')?.invalid &&
+              (joinTeamForm.get('kvkk')?.dirty ||
+                joinTeamForm.get('kvkk')?.touched)
+            "
+            class="error-message"
+          >
+            {{
+              languageService.getTranslatedText([
+                "Onay vermelisiniz",
+                "You must approve"
+              ])
+            }}
+          </div>
+        </div>
+        <button
+          type="submit"
+          class="submit-btn"
+          [disabled]="joinTeamForm.invalid"
+        >
+          {{
+            languageService.getTranslatedText(
+              aboutUsData.joinTeamForm.submitText
+            )
+          }}
         </button>
       </form>
     </div>
     <ng-template #unavailableForm>
-      <p class="unavailable-message">{{ languageService.getTranslatedText(aboutUsData.joinTeamForm.unavailableMessage) }}</p>
+      <p class="unavailable-message">
+        {{
+          languageService.getTranslatedText(
+            aboutUsData.joinTeamForm.unavailableMessage
+          )
+        }}
+      </p>
     </ng-template>
   </section>
 
   <section class="blog-posts-section section-container">
-    <h2 class="section-heading">{{ languageService.getTranslatedText(aboutUsData.blogs.heading) }}</h2>
+    <h2 class="section-heading">
+      {{ languageService.getTranslatedText(aboutUsData.blogs.heading) }}
+    </h2>
     <div class="blogs-grid">
       <div *ngFor="let post of blogData.posts" class="blog-card">
-        <img [src]="post.image" [alt]="languageService.getTranslatedText(post.title)" class="blog-image">
+        <img
+          [src]="post.image"
+          [alt]="languageService.getTranslatedText(post.title)"
+          class="blog-image"
+        />
         <div class="blog-content">
-          <h3 class="blog-title">{{ languageService.getTranslatedText(post.title) }}</h3>
-          <p class="blog-description">{{ getFirstContentText(post.content) }}</p>
-          <a [routerLink]="['/', currentLanguageCode, 'blog', post.id]" class="read-more-btn">
-            {{ languageService.getTranslatedText(['Devamını Oku', 'Read More']) }}
+          <h3 class="blog-title">
+            {{ languageService.getTranslatedText(post.title) }}
+          </h3>
+          <p class="blog-description">
+            {{ getFirstContentText(post.content) }}
+          </p>
+          <a
+            [routerLink]="['/', currentLanguageCode, 'blog', post.id]"
+            class="read-more-btn"
+          >
+            {{
+              languageService.getTranslatedText(["Devamını Oku", "Read More"])
+            }}
           </a>
         </div>
       </div>

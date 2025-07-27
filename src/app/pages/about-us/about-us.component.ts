@@ -1,3 +1,4 @@
+// src/app/about-us/about-us.component.ts
 import { Component, OnInit } from '@angular/core';
 import { aboutUsMocks } from '../../core/mocks/about-us.mocks';
 import { blogMocks } from '../../core/mocks/blogmocks';
@@ -7,6 +8,8 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { EmailService } from '../../core/services/email.service';
 import { NotificationService } from '../../core/services/notification.service';
+
+
 
 @Component({
   selector: 'app-about-us',
@@ -46,7 +49,9 @@ export class AboutUsComponent implements OnInit {
       applicantEmail: ['', [Validators.required, Validators.email]],
       applicantPhone: [''],
       applicantMessage: [''],
-      cvFile: [null, Validators.required]
+      cvFile: [null, Validators.required],
+      // --- ADD THIS NEW KVKK CONTROL ---
+      kvkk: [false, Validators.requiredTrue]
     });
   }
 
@@ -117,33 +122,31 @@ export class AboutUsComponent implements OnInit {
     if (fileList && fileList.length > 0) {
       this.selectedFile = fileList[0];
       this.joinTeamForm.patchValue({
-        cvFile: this.selectedFile // Store the File object
+        cvFile: this.selectedFile
       });
-      this.joinTeamForm.get('cvFile')?.updateValueAndValidity(); // Recalculate validity for cvFile
+      this.joinTeamForm.get('cvFile')?.updateValueAndValidity();
     } else {
       this.selectedFile = null;
       this.joinTeamForm.patchValue({
         cvFile: null
       });
-      this.joinTeamForm.get('cvFile')?.updateValueAndValidity(); // Recalculate validity for cvFile
+      this.joinTeamForm.get('cvFile')?.updateValueAndValidity();
     }
   }
 
   onJoinTeamFormSubmit(): void {
-    if (this.joinTeamForm.valid && this.selectedFile) {
-      // Create a FormData object to send both text fields and the file
+    // Also check for kvkk validity here
+    if (this.joinTeamForm.valid && this.selectedFile && this.joinTeamForm.get('kvkk')?.value) {
       const formData = new FormData();
       formData.append('formType', 'becomeMember');
       formData.append('name', this.joinTeamForm.value.applicantName);
       formData.append('surname', this.joinTeamForm.value.applicantSurname);
       formData.append('email', this.joinTeamForm.value.applicantEmail);
-      formData.append('phone', this.joinTeamForm.value.applicantPhone || ''); // Phone might be optional
-      formData.append('message', this.joinTeamForm.value.applicantMessage || ''); // Message might be optional
-      formData.append('cvFile', this.selectedFile, this.selectedFile.name); // Append the file with its name
-
-      // Assuming KVKK is implicitly true for a job application form if not explicitly a checkbox
-      // If you need an explicit KVKK checkbox here, add it to your form and append its value
-      formData.append('kvkk', 'true'); // Sending as string 'true' for Flask backend
+      formData.append('phone', this.joinTeamForm.value.applicantPhone || '');
+      formData.append('message', this.joinTeamForm.value.applicantMessage || '');
+      formData.append('cvFile', this.selectedFile, this.selectedFile.name);
+      // --- APPEND THE NEW KVKK FIELD ---
+      formData.append('kvkk', this.joinTeamForm.value.kvkk.toString()); // Convert boolean to string for FormData
 
       this.emailService.sendEmail(formData).subscribe({
         next: (response) => {
@@ -156,6 +159,9 @@ export class AboutUsComponent implements OnInit {
           this.selectedFile = null;
           this.joinTeamForm.get('cvFile')?.setErrors(null);
           this.joinTeamForm.get('cvFile')?.markAsUntouched();
+          // --- RESET AND MARK UNTOUCHED FOR KVKK ---
+          this.joinTeamForm.get('kvkk')?.setValue(false);
+          this.joinTeamForm.get('kvkk')?.markAsUntouched();
         },
         error: (error) => {
           console.error('Error sending Join Team email with file:', error);
@@ -168,7 +174,7 @@ export class AboutUsComponent implements OnInit {
     } else {
       this.joinTeamForm.markAllAsTouched();
       this.notificationService.showNotification(
-        ['Lütfen tüm gerekli alanları doğru şekilde doldurun ve bir CV yükleyin.', 'Please fill in all required fields correctly and upload a CV.'],
+        ['Lütfen tüm gerekli alanları doğru şekilde doldurun ve bir CV yükleyin. KVKK onayını vermeniz gerekmektedir.', 'Please fill in all required fields correctly, upload a CV, and provide KVKK approval.'],
         'error'
       );
     }
