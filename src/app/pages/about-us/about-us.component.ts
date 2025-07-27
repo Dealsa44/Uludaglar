@@ -3,7 +3,7 @@ import { aboutUsMocks } from '../../core/mocks/about-us.mocks';
 import { blogMocks } from '../../core/mocks/blogmocks';
 import { LanguageService } from '../../core/services/language.service';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { CommonModule, NgIf, NgFor, NgClass } from '@angular/common'; // Explicitly import structural directives
+import { CommonModule } from '@angular/common'; // Explicitly import structural directives
 import { RouterLink } from '@angular/router';
 import { EmailService } from '../../core/services/email.service';
 import { NotificationService } from '../../core/services/notification.service';
@@ -11,7 +11,7 @@ import { NotificationService } from '../../core/services/notification.service';
 @Component({
   selector: 'app-about-us',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink, NgIf, NgFor, NgClass],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, ],
   templateUrl: './about-us.component.html',
   styleUrls: ['./about-us.component.scss']
 })

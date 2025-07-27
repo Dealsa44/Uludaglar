@@ -6,12 +6,11 @@ import { CommonModule } from '@angular/common';
 import { SafeUrlPipe } from '../../core/pipes/safe-url.pipe';
 import { EmailService } from '../../core/services/email.service';
 import { NotificationService } from '../../core/services/notification.service';
-import { NgClass } from '@angular/common'; // Explicitly import these
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, SafeUrlPipe,NgClass],
+  imports: [CommonModule, ReactiveFormsModule, SafeUrlPipe],
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss']
 })
