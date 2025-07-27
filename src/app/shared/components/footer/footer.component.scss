@@ -1,9 +1,7 @@
 @use "sass:color";
-
 /*=============================================
-=            Variable Declarations            =
+=          Variable Declarations           =
 =============================================*/
-
 // Color Palette
 $primary-bg: #0d1b2a; // Dark blue
 $accent-gold: #ffd700; // Gold accent
@@ -15,59 +13,47 @@ $secondary-text: color.adjust(
 $hover-bg: #415a77; // Medium blue for hover states
 $subtle-lines: #1b263b; // Darker blue for lines/borders
 $shadow-color: rgba(0, 0, 0, 0.5); // Stronger shadow for depth
-
 // Fonts
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 $primary-font: "Poppins", sans-serif;
-
 // Transitions & Animations
 $fast-transition: all 0.3s ease-in-out; // Smoother ease-in-out for transitions
 $medium-transition: all 0.4s ease-in-out;
-
 // Sizing & Spacing
 $footer-padding-desktop: 4rem 6rem; // Increased padding for more breathing room
 $footer-padding-tablet: 3rem 4rem;
 $footer-padding-mobile: 2rem 1.5rem;
 $border-radius-large: 12px; // Slightly larger border-radius for modern feel
 $border-radius-small: 8px;
-
 /*=====  End of Variable Declarations  ======*/
-
 /*=============================================
-=            Helper Mixins & Functions        =
+=          Helper Mixins & Functions         =
 =============================================*/
-
 // Mixin for centralizing elements
 @mixin center-block {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
 // Mixin for gold icon filter
 @mixin gold-icon-filter {
   filter: brightness(0) saturate(100%) invert(80%) sepia(90%) saturate(1000%)
     hue-rotate(350deg) brightness(100%) contrast(100%);
 }
-
 // Mixin for white icon filter
 @mixin white-icon-filter {
   filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7469%)
     hue-rotate(289deg) brightness(116%) contrast(100%);
 }
-
 // Mixin for dark/black icon filter
 @mixin dark-icon-filter {
   filter: brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(0%)
     hue-rotate(0deg) brightness(0%) contrast(100%);
 }
-
 /*=====  End of Helper Mixins & Functions  ======*/
-
 /*=============================================
-=            Footer Base Styling              =
+=          Footer Base Styling           =
 =============================================*/
-
 .footer {
   background-color: $primary-bg;
   color: $primary-text;
@@ -77,30 +63,26 @@ $border-radius-small: 8px;
   box-shadow: 0 -5px 15px $shadow-color; // Add a top shadow for depth
   position: relative; // For potential pseudo-elements or overlays
   overflow: hidden; // Prevent overflow from animations/pseudo-elements
-
   // Subtle background pattern or texture (optional, uncomment to try)
   // &::before {
-  //   content: '';
-  //   position: absolute;
-  //   top: 0;
-  //   left: 0;
-  //   width: 100%;
-  //   height: 100%;
-  //   background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-  //               radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  //   background-size: 20px 20px;
-  //   opacity: 0.1;
-  //   pointer-events: none; // Allow clicks to pass through
-  //   z-index: 0;
+  //    content: '';
+  //    position: absolute;
+  //    top: 0;
+  //    left: 0;
+  //    width: 100%;
+  //    height: 100%;
+  //    background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+  //                    radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  //    background-size: 20px 20px;
+  //    opacity: 0.1;
+  //    pointer-events: none; // Allow clicks to pass through
+  //    z-index: 0;
   // }
 }
-
 /*=====  End of Footer Base Styling  ======*/
-
 /*=============================================
-=            Footer Top Section (4 Columns)   =
+=          Footer Top Section (4 Columns)  =
 =============================================*/
-
 .footer-top {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -111,7 +93,6 @@ $border-radius-small: 8px;
   position: relative; // Ensure z-index for content above subtle lines
   z-index: 1;
 }
-
 .footer-column {
   .footer-title {
     font-size: 1.4rem; // Slightly larger title
@@ -120,7 +101,6 @@ $border-radius-small: 8px;
     margin-bottom: 1.5rem; // More space below title
     position: relative;
     padding-bottom: 0.75rem; // More padding for underline
-
     &::after {
       content: "";
       position: absolute;
@@ -133,15 +113,12 @@ $border-radius-small: 8px;
       box-shadow: 0 2px 8px rgba($accent-gold, 0.4); // Subtle glow for the line
     }
   }
-
   .footer-links {
     list-style: none;
     padding: 0;
     margin: 0;
-
     li {
       margin-bottom: 1rem; // More space between links
-
       a {
         color: $primary-text;
         text-decoration: none;
@@ -151,7 +128,6 @@ $border-radius-small: 8px;
         align-items: center; // Vertically align arrow and text
         position: relative;
         padding-left: 1.2rem; // More space for the arrow
-
         &::before {
           content: "▶"; // More modern arrow character
           position: absolute;
@@ -163,7 +139,6 @@ $border-radius-small: 8px;
           opacity: 0.8;
           transition: $fast-transition;
         }
-
         &:hover {
           color: $accent-gold;
           transform: translateX(8px); // More noticeable slide effect
@@ -175,11 +150,9 @@ $border-radius-small: 8px;
       }
     }
   }
-
   .footer-address {
     font-style: normal;
     font-size: 1rem; // Consistent font size
-
     .contact-link {
       color: $secondary-text; // Use secondary text color
       text-decoration: none;
@@ -187,26 +160,21 @@ $border-radius-small: 8px;
       align-items: flex-start; // Align to top for multi-line addresses
       transition: $fast-transition;
       margin-bottom: 0.8rem; // Consistent spacing
-
       &:last-child {
         margin-bottom: 0;
       }
-
       &:hover {
         color: $accent-gold;
         transform: translateX(8px); // Consistent slide effect
-
         .address-icon {
           @include gold-icon-filter; // Apply gold filter on hover
         }
       }
-
       span {
         line-height: 1.5; // Adjusted line-height for readability
         flex: 1; // Allow text to take remaining space
       }
     }
-
     .address-icon {
       width: 20px; // Slightly larger icons
       height: 20px;
@@ -218,25 +186,42 @@ $border-radius-small: 8px;
     }
   }
 }
-
 /*=====  End of Footer Top Section  ======*/
 
-/*=============================================
-=            Footer Bottom Section (3 Columns) =
-=============================================*/
-
 .footer-bottom {
-  display: flex;
-  justify-content: space-between;
+  display: flex; // Default to flex for smaller screens
+  justify-content: space-between; // Space between items by default
   align-items: center;
   flex-wrap: wrap;
   text-align: center; // Default centered for responsiveness
+
+  // Apply grid for screens wider than 1024px to center logo
+  @media (min-width: 1025px) {
+    display: grid; // Switch to grid layout
+    grid-template-columns: 1fr auto 1fr; // Left column, auto-width for logo, Right column
+    gap: 2rem; // Space between grid items
+    justify-items: center; // Center items within their grid tracks
+    text-align: unset; // Reset text alignment from default
+
+    // Ensure the text and social columns align correctly
+    .footer-bottom-column:first-child { // Left column (copyright text)
+      justify-self: start; // Align to the start of its grid track
+      text-align: left; // Align text to the left
+    }
+
+    .footer-bottom-column:last-child { // Right column (social icons)
+      justify-self: end; // Align to the end of its grid track
+      text-align: right; // Align text to the right
+      .social-icons {
+        justify-content: flex-end; // Ensure social icons are right-aligned within their column
+      }
+    }
+  }
 }
 
 .footer-bottom-column {
-  flex: 1;
+  flex: 1; // Default flex behavior for smaller screens
   padding: 0.8rem 0; // More padding
-
   p {
     font-size: 0.9rem; // Slightly larger font
     color: color.adjust(
@@ -244,7 +229,6 @@ $border-radius-small: 8px;
       $lightness: 20%
     ); // Lighter text for copyright, more subtle
     margin-bottom: 0.5rem; // More space
-
     &:last-child {
       margin-bottom: 0;
     }
@@ -262,7 +246,6 @@ $border-radius-small: 8px;
   width: auto;
   @include white-icon-filter; // Make logo white
   transition: $medium-transition; // Slower transition for logo
-
   &:hover {
     transform: scale(1.1); // More noticeable scale on hover
     // filter: none; // Optional: revert to original color on hover if logo has distinct colors
@@ -279,7 +262,6 @@ $border-radius-small: 8px;
   display: flex;
   justify-content: flex-end;
   gap: 1rem; // Increased space between icons
-
   .social-icon {
     @include center-block; // Use mixin for centering content within icon
     width: 45px; // Larger touch targets
@@ -290,7 +272,6 @@ $border-radius-small: 8px;
     transition: $fast-transition;
     position: relative;
     overflow: hidden; // For hover effects that expand
-
     img {
       width: 24px; // Larger icons
       height: 24px;
@@ -299,7 +280,6 @@ $border-radius-small: 8px;
       position: relative;
       z-index: 2; // Keep icon above hover overlay
     }
-
     // Hover effect: radial gradient fills from center
     &::before {
       content: "";
@@ -320,17 +300,14 @@ $border-radius-small: 8px;
         opacity 0.4s ease-out;
       z-index: 1;
     }
-
     &:hover {
       background-color: transparent; // Background will be covered by pseudo-element
       transform: translateY(-5px); // More noticeable lift
-
       &::before {
         width: 150%; // Expand to cover button
         height: 150%;
         opacity: 1;
       }
-
       img {
         @include dark-icon-filter; // Make icon black on gold hover
         transform: scale(1.05);
@@ -338,26 +315,20 @@ $border-radius-small: 8px;
     }
   }
 }
-
 /*=====  End of Footer Bottom Section  ======*/
 
-/*=============================================
-=            Responsive Design                =
-=============================================*/
 
 /* Tablet View: 2 columns for footer-top */
 @media (max-width: 1024px) {
   .footer {
     padding: $footer-padding-tablet;
   }
-
   .footer-top {
     grid-template-columns: repeat(2, 1fr); // Two columns
     gap: 2.5rem;
     padding-bottom: 2.5rem;
     margin-bottom: 2.5rem;
   }
-
   // Ensure columns are aligned properly when wrapping
   .footer-column {
     &:nth-child(2n + 1) {
@@ -375,8 +346,6 @@ $border-radius-small: 8px;
       }
       .footer-address .contact-link {
         justify-content: flex-start;
-
-        flex-direction: row-reverse;
       }
     }
     &:nth-child(2n) {
@@ -424,21 +393,17 @@ $border-radius-small: 8px;
       }
     }
   }
-
   .footer-bottom {
     flex-direction: column; // Stack bottom columns
     gap: 2rem; // Increased gap for stacked items
   }
-
   .footer-bottom-column {
     width: 100%;
     text-align: center; // Center all text
   }
-
   .logo-column {
     order: -1; // Move logo to the top when stacked
   }
-
   .social-column {
     text-align: center;
     .social-icons {
@@ -446,27 +411,23 @@ $border-radius-small: 8px;
     }
   }
 }
-
 /* Mobile View: Single column for everything */
 @media (max-width: 768px) {
   .footer {
     padding: $footer-padding-mobile;
   }
-
   .footer-top {
     grid-template-columns: 1fr; // Single column
     gap: 2rem;
     padding-bottom: 2rem;
     margin-bottom: 2rem;
   }
-
   .footer-column {
     text-align: center; // Center all content
     padding-bottom: 1.5rem; // Add space between stacked columns
     &:last-child {
       padding-bottom: 0;
     }
-
     // Reset styles for columns (apply to all when single column)
     &:nth-child(odd),
     &:nth-child(even) {
@@ -499,44 +460,36 @@ $border-radius-small: 8px;
       }
     }
   }
-
   .footer-logo {
     height: 60px; // Slightly smaller logo on mobile
   }
-
   .footer-bottom-column {
     padding: 0.8rem 0;
   }
 }
-
 /* Smaller Mobile Devices */
 @media (max-width: 480px) {
   .footer {
     padding: 1.5rem 1rem; // Reduce overall padding
   }
-
   .footer-column {
     .footer-title {
       font-size: 1.2rem; // Smaller title font
       margin-bottom: 1rem;
     }
-
     .footer-links li a,
     .footer-address .contact-link {
       font-size: 0.95rem; // Slightly smaller body text
     }
-
     .address-icon {
       width: 16px; // Smaller icons
       height: 16px;
       margin-right: 0.6rem; // Adjusted spacing
     }
   }
-
   .footer-logo {
     height: 50px; // Even smaller logo
   }
-
   .social-icons {
     gap: 0.6rem; // Tighter spacing for social icons
     .social-icon {
@@ -548,7 +501,6 @@ $border-radius-small: 8px;
       }
     }
   }
-
   .footer-bottom-column p {
     font-size: 0.8rem; // Smaller copyright text
   }

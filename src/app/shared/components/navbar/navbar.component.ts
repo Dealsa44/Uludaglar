@@ -7,9 +7,9 @@ import {
 import { CommonModule } from '@angular/common';
 import { LanguageService } from '../../../core/services/language.service';
 import { navbarMocks } from '../../../core/mocks/navbarmocks';
-import { Router, RouterModule, NavigationEnd, ActivatedRoute } from '@angular/router'; // Import ActivatedRoute and NavigationEnd
+import { Router, RouterModule, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { filter } from 'rxjs/operators'; // Import filter
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-navbar',
@@ -37,7 +37,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   constructor(
     private languageService: LanguageService,
     public router: Router,
-    private activatedRoute: ActivatedRoute // Inject ActivatedRoute
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -45,14 +45,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.languageSub = this.languageService.currentLanguage$.subscribe(
       index => this.currentLanguageIndex = index
     );
-
-    // This is optional if routerLinkActive is sufficient, but useful for complex active states
-    // For example, if you need to react to route changes for other logic
-    // this.router.events.pipe(
-    //   filter(event => event instanceof NavigationEnd)
-    // ).subscribe(() => {
-    //   // You can perform additional logic here if needed
-    // });
   }
 
   ngOnDestroy(): void {
@@ -114,22 +106,17 @@ export class NavbarComponent implements OnInit, OnDestroy {
     return item.isLanguageToggle === true;
   }
 
-  // Method to identify the Social Responsibility link
   isSocialResponsibilityLink(item: any): boolean {
     return (item.title && (item.title[0] === 'Sosyal Sorumluluk' || item.title[1] === 'Social Responsibility'));
   }
 
-  // New method to check if a dropdown parent should be active
   isDropdownParentActive(item: any): boolean {
     if (!item.hasDropdown || !item.dropdownItems) {
       return false;
     }
     const currentUrl = this.router.url;
     return item.dropdownItems.some((dropItem: any) => {
-      // Construct the full path for comparison
       const routeToCheck = `/${this.currentLanguageCode}/${dropItem.route}`;
-      // Check if the current URL starts with the route of any dropdown item
-      // This handles cases where child routes (e.g., /en/about-us/team) might exist
       return currentUrl.startsWith(routeToCheck);
     });
   }
@@ -167,5 +154,19 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.navItems.forEach(item => {
       item.mobileDropdownOpen = false;
     });
+  }
+
+  // New method to handle nav link clicks
+  handleNavLinkClick(targetRouteArray: string[]): void {
+    const targetUrl = this.router.createUrlTree(targetRouteArray).toString();
+    const currentUrl = this.router.url;
+
+    // Compare without query params or fragments for robust matching
+    const currentPath = currentUrl.split('?')[0].split('#')[0];
+    const targetPath = targetUrl.split('?')[0].split('#')[0];
+
+    if (currentPath === targetPath) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   }
 }

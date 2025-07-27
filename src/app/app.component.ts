@@ -19,8 +19,12 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe(() => {
-        window.scrollTo({ top: 0, behavior: 'smooth' }); // 👈 scroll to top
+      .subscribe((event: NavigationEnd) => {
+        // Check if the navigation state includes 'skipScrollToTop'
+        // This is a custom state property we'll set in LanguageService
+        if (!this.router.getCurrentNavigation()?.extras.state?.['skipScrollToTop']) {
+          window.scrollTo({ top: 0, behavior: 'smooth' }); // 👈 scroll to top conditionally
+        }
       });
   }
 }

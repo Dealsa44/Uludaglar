@@ -1,6 +1,6 @@
 <nav class="navbar">
   <div class="navbar-brand">
-    <a [routerLink]="['/', currentLanguageCode]">
+    <a [routerLink]="['/', currentLanguageCode]" (click)="handleNavLinkClick(['/', currentLanguageCode])">
       <img src="/assets/imgs/navbar/logo.webp" alt="Uludağlar Logo" class="logo" />
     </a>
   </div>
@@ -14,7 +14,7 @@
       <a
         *ngIf="!item.isLanguageToggle && !hasDropdown(item) && !isSocialResponsibilityLink(item)"
         [routerLink]="['/', currentLanguageCode, item.route]"
-        (click)="closeMobileMenu()"
+        (click)="closeMobileMenu(); handleNavLinkClick(['/', currentLanguageCode, item.route])"
         [routerLinkActive]="['active']"
       >
         <span>{{ getNavItemTitle(item) }}</span>
@@ -45,7 +45,7 @@
           *ngFor="let dropItem of getDropdownItems(item)"
           class="dropdown-item"
           [routerLink]="['/', currentLanguageCode, dropItem.route]"
-          (click)="closeMobileMenu()"
+          (click)="closeMobileMenu(); handleNavLinkClick(['/', currentLanguageCode, dropItem.route])"
           [routerLinkActive]="['active']"
         >
           {{ dropItem.title[currentLanguageIndex] }}
@@ -86,7 +86,7 @@
       <a
         *ngIf="!item.isLanguageToggle && !hasDropdown(item) && !isSocialResponsibilityLink(item)"
         [routerLink]="['/', currentLanguageCode, item.route]"
-        (click)="closeMobileMenu()"
+        (click)="closeMobileMenu(); handleNavLinkClick(['/', currentLanguageCode, item.route])"
         [routerLinkActive]="['active']"
       >
         <span>{{ getNavItemTitle(item) }}</span>
@@ -121,7 +121,7 @@
           *ngFor="let dropItem of getDropdownItems(item)"
           class="dropdown-item"
           [routerLink]="['/', currentLanguageCode, dropItem.route]"
-          (click)="closeMobileMenu()"
+          (click)="closeMobileMenu(); handleNavLinkClick(['/', currentLanguageCode, dropItem.route])"
           [routerLinkActive]="['active']"
         >
           {{ dropItem.title[currentLanguageIndex] }}
